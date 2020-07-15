@@ -1,0 +1,50 @@
+ERROR 20-19-2020 21:19:55 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-19-2020 21:19:56 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-19-2020 21:19:56 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-19-2020 21:19:56 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-19-2020 21:19:56 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-24-2020 21:24:20 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-24-2020 21:24:20 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-24-2020 21:24:20 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-24-2020 21:24:20 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+
+ERROR 20-24-2020 21:24:20 ChartDoc.Services.DataService.ClaimService - System.ArgumentException: Column 'FreeTicketNo' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ClaimService.GetAppointmentList(String fromDate, String toDate, Nullable`1 providerId, String statusId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ClaimService.cs:line 57 
+

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChartDoc.Api</name>
+    </assembly>
+    <members>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetLoginStatus(System.String,System.String)">
+            <summary>
+            Validate Login Id with Password and return the user object.
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetICD">
+            <summary>
+            Return List of ICD Details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetSavedICD(System.String)">
+            <summary>
+            Returns the Patient Related ICD Details
+            </summary>
+            <param name="PatientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.SearchPatient(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Returns Patient Details as per the search criteria
+            </summary>
+            <param name="firstName"></param>
+            <param name="lastName"></param>
+            <param name="DOB"></param>
+            <param name="Mobile"></param>
+            <param name="Email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetAllPatients">
+            <summary>
+            Returns All Patient Details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetDiagnosisByPatientId(System.String)">
+            <summary>
+            Returns All Diagnosis Details Related to a Particular Patient
+            </summary>
+            <param name="patientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetProceduresByPatientId(System.String)">
+            <summary>
+            Returns All Procedure Details Related to a Particular Patient
+            </summary>
+            <param name="patientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetDept">
+            <summary>
+            Returns All Department Details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetInsurance(System.String)">
+            <summary>
+            Returns All Insurance Details Related to a Particular Patient
+            </summary>
+            <param name="PatientID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetMedicine(System.String)">
+            <summary>
+            Returns All Medicine Details Related to a Particular Patient
+            </summary>
+            <param name="PatientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChartDoc.Api.Controllers.ChartDocController.GetDoctorList(System.String)">
+            <summary>
+            Returns List of All Doctors Details Related to a Particular Date
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

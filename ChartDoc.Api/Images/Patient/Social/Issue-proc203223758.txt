@@ -1,0 +1,33 @@
+Menu -Issue process--Function consultant
+
+grid
+IssueNo,IsuseReportdate,ISsueSubject,ErrorType,Priority,
+issueassigndate,AssignTo
+----UI
+IssueStatus-CR Created and Close
+Resolution --multiline
+Attachment--
+Currentdate
+-------------------table
+
+IssueProcess table
+column
+IssueProcessid PK auto,
+IssueAssignid,
+issueid,
+issuestatusid,
+Resolution 1000
+Filepath,FIleName,IssueProcessDate
+,Createdby,Createdon
+----------------
+
+1.GetIssueAssignByid and set the data in edit mode
+2.Save then redirect to listpage
+3.Attachment download
+
+
+
+
+
+
+

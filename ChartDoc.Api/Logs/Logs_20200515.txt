@@ -1,0 +1,32 @@
+ERROR 15-35-2020 00:35:42 ChartDoc.Services.DataService.ChargeMasterService - System.Data.SqlClient.SqlException (0x80131904): Operand type clash: int is incompatible with xml
+   at ChartDoc.DAL.DBUtils.GetSingleValue(String vSql) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\DBUtils.cs:line 224
+   at ChartDoc.Services.DataService.ChargeMasterService.SaveChargeDetails(Int32 chargeYearId, String chargeDetailsXml) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ChargeMasterService.cs:line 83
+ClientConnectionId:9751d06c-ecfa-4fc9-a7f5-bc3e1b79af13
+Error Number:206,State:2,Class:16 
+
+ERROR 15-38-2020 00:38:07 ChartDoc.Services.DataService.ChargeMasterService - System.Data.SqlClient.SqlException (0x80131904): Operand type clash: int is incompatible with xml
+   at ChartDoc.DAL.DBUtils.GetSingleValue(String vSql) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\DBUtils.cs:line 224
+   at ChartDoc.Services.DataService.ChargeMasterService.SaveChargeDetails(Int32 chargeYearId, String chargeDetailsXml) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ChargeMasterService.cs:line 83
+ClientConnectionId:9751d06c-ecfa-4fc9-a7f5-bc3e1b79af13
+Error Number:206,State:2,Class:16 
+
+ERROR 15-01-2020 01:01:36 ChartDoc.Services.DataService.ChargeMasterService - System.ArgumentException: Column 'ID' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ChargeMasterService.GetChargeDetails(Int32 chargeYearId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ChargeMasterService.cs:line 50 
+
+ERROR 15-05-2020 01:05:21 ChartDoc.Services.DataService.ChargeMasterService - System.ArgumentException: Column 'ID' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ChargeMasterService.GetChargeDetails(Int32 chargeYearId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ChargeMasterService.cs:line 50 
+
+ERROR 15-13-2020 01:13:51 ChartDoc.Services.DataService.ChargeMasterService - System.ArgumentException: Column 'ID' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ChargeMasterService.GetChargeDetails(Int32 chargeYearId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ChargeMasterService.cs:line 50 
+
+ERROR 15-14-2020 01:14:42 ChartDoc.Services.DataService.ChargeMasterService - System.ArgumentException: Column 'CPTDesc' does not belong to table .
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ChartDoc.Services.DataService.ChargeMasterService.GetChargeDetails(Int32 chargeYearId) in F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Services\DataService\ChargeMasterService.cs:line 54 
+

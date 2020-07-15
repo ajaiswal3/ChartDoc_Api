@@ -1,0 +1,43 @@
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csproj.CoreCompileInputs.cache
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csproj.CoreCompileInputs.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
+C:\BitBucket\ChartDoc\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
+C:\BitBucket\ChartDoc\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+C:\BitBucket\ChartDoc\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+C:\BitBucket\ChartDoc\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
+C:\BitBucket\ChartDoc\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
+C:\BitBucket\ChartDoc\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
+C:\BitBucket\ChartDoc\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
+C:\BitBucket\ChartDoc\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csproj.CoreCompileInputs.cache
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csproj.CoreCompileInputs.cache
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
+D:\Sandip da\Chart_Doc_RemovePhase3\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
