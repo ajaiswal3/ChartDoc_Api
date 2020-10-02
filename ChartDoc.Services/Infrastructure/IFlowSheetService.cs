@@ -11,5 +11,6 @@ namespace ChartDoc.Services.Infrastructure
         List<clsFlowSheet> GetFlowsheet(string date, string DoctorID);
         List<clsFlowSheet> GetOfficeCalenderList(string date);
         List<clsFlowSheet> AppointmentWeeklyView(string date, string DoctorID);
+        string  getInsurenaceStatus(string id);
     }
 }

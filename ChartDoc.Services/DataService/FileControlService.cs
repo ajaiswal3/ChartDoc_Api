@@ -1,6 +1,7 @@
 ﻿using ChartDoc.DAL;
 using ChartDoc.Models;
 using ChartDoc.Services.Infrastructure;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -18,6 +19,7 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance Variable******************************************************************************************************************************
         private readonly ILogService logService;
+        private readonly IHostingEnvironment _env;
         DBUtils context = DBUtils.GetInstance;
         #endregion
 
@@ -27,9 +29,10 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration">IConfiguration</param>
         /// <param name="logService">ILogService</param>
-        public FileControlService(IConfiguration configaration, ILogService logService)
+        public FileControlService(IConfiguration configaration, ILogService logService, IHostingEnvironment env)
         {
             context._configaration = configaration;
+            _env = env;
             this.logService = logService;
         }
         #endregion
@@ -44,7 +47,8 @@ namespace ChartDoc.Services.DataService
         public async Task<clsPatientSocial> SaveSocialImage(clsPatientSocial data, IFormFile uploadFile)
         {
             string imageName = string.Empty;
-            var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);
@@ -84,7 +88,8 @@ namespace ChartDoc.Services.DataService
         public async Task<clsPatientBilling>   SaveBillingImage(clsPatientBilling data, IFormFile file)
         {
             string imageName = string.Empty;
-            var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);
@@ -124,7 +129,8 @@ namespace ChartDoc.Services.DataService
         public async Task<clsPatientAuthorization>   SaveAuthorizationImage(clsPatientAuthorization data, IFormFile uploadFile)
         {
             string imageName = string.Empty;
-            var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);
@@ -164,7 +170,8 @@ namespace ChartDoc.Services.DataService
         public async Task<clsPatientInsurance>   SaveInsuranceImage(clsPatientInsurance data, IFormFile uploadFile)
         {
             string imageName = string.Empty;
-            var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient");
+            var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);
@@ -201,11 +208,12 @@ namespace ChartDoc.Services.DataService
         /// <param name="iUser">clsUserObj</param>
         /// <param name="file">IFormFileCollection</param>
         /// <returns>clsUserObj</returns>
-        public clsUserObj SaveUserImage(clsUserObj iUser, IFormFileCollection file)
+        public async Task<clsUserObj>  SaveUserImage(clsUserObj iUser, IFormFileCollection file)
         {
             if (file.Count > 0)
             {
-                var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\User");
+                //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\User");
+                var uploads = Path.Combine(_env.ContentRootPath, @"Images\User");
                 Guid fileName = Guid.NewGuid();
                 if (!Directory.Exists(uploads))
                 {
@@ -216,7 +224,7 @@ namespace ChartDoc.Services.DataService
                 {
                     try
                     {
-                        file[0].CopyToAsync(fileStream);
+                        await file[0].CopyToAsync(fileStream);
                         filePath = filePath.Replace(@"\", @"/");
                         filePath = filePath.Replace(filePath.Substring(0, filePath.IndexOf("Images")), context._configaration["SavedImageUrl"]);
                         iUser.imagePath = filePath;
@@ -239,11 +247,12 @@ namespace ChartDoc.Services.DataService
         /// <param name="appointment">clsAppointment</param>
         /// <param name="file">IFormFileCollection</param>
         /// <returns>clsAppointment</returns>
-        public clsAppointment SaveAppointmentImage(clsAppointment appointment, IFormFileCollection file)
+        public async Task<clsAppointment>  SaveAppointmentImage(clsAppointment appointment, IFormFileCollection file)
         {
             if (file.Count > 0)
             {
-                var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Appointment");
+                //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Appointment");
+                var uploads = Path.Combine(_env.ContentRootPath, @"Images\Appointment");
                 Guid fileName = Guid.NewGuid();
                 if (!Directory.Exists(uploads))
                 {
@@ -254,7 +263,7 @@ namespace ChartDoc.Services.DataService
                 {
                     try
                     {
-                        file[0].CopyToAsync(fileStream);
+                        await file[0].CopyToAsync(fileStream);
                         filePath = filePath.Replace(@"\", @"/");
                         filePath = filePath.Replace(filePath.Substring(0, filePath.IndexOf("Images")), context._configaration["SavedImageUrl"]);
                         appointment.imageUrl = filePath;
@@ -287,7 +296,8 @@ namespace ChartDoc.Services.DataService
                 {
                     if (file.Length > 0)
                     {
-                        var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Procedures");
+                        //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Procedures");
+                        var uploads = Path.Combine(_env.ContentRootPath, @"Images\Procedures");
                         Guid FileName = Guid.NewGuid();
                         if (!Directory.Exists(uploads))
                         {
@@ -340,7 +350,8 @@ namespace ChartDoc.Services.DataService
                 {
                     if (file.Length > 0)
                     {
-                        var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Diagnosis");
+                        //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Diagnosis");
+                        var uploads = Path.Combine(_env.ContentRootPath, @"Images\Diagnosis");
                         Guid fileName = Guid.NewGuid();
                         if (!Directory.Exists(uploads))
                         {
@@ -386,7 +397,8 @@ namespace ChartDoc.Services.DataService
         public async Task<clsPatientDetails> SavePatientProfileImage(clsPatientDetails data, IFormFile uploadFile)
         {
             string imageName = string.Empty;
-            var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient\Profile\");
+            //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient\Profile\");
+            var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient\Profile\");
             if (!Directory.Exists(uploads))
             {
                 Directory.CreateDirectory(uploads);

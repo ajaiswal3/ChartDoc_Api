@@ -66,5 +66,35 @@ namespace ChartDoc.Services.DataService
             return dtUser;
         }
         #endregion
+
+        #region DeleteRole***********************************************************************************************************************************
+        /// <summary>
+        /// DeleteReason
+        /// </summary>
+        /// <param name="sReason">clsReason</param>
+        /// <returns>string</returns>
+        public string DeleteRole(clsUType uType )
+        {
+            string flag = "0";
+            string sqlReason = " EXEC USP_DeleteRole   '" + uType.utCode + "'";
+            flag = (string)context.GetSingleValue(sqlReason);
+            return flag;
+        }
+        #endregion
+
+        #region SaveRole*************************************************************************************************************************************
+        /// <summary>
+        /// SaveRole
+        /// </summary>
+        /// <param name="sReason">clsUType</param>
+        /// <returns>string</returns>
+        public string SaveRole(clsUType uType)
+        {
+            string flag = "0";
+            string sqlReason = " EXEC USP_SaveROLE   '" + uType.utId + "', '" + uType.utCode + "','" + uType.userDescription + "'";
+            flag = (string)context.GetSingleValue(sqlReason);
+            return flag;
+        }
+        #endregion
     }
 }

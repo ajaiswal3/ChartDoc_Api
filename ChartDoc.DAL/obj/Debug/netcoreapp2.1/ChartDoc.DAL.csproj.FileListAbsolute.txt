@@ -1,0 +1,8 @@
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.1\ChartDoc.DAL.csproj.CoreCompileInputs.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.1\ChartDoc.DAL.AssemblyInfoInputs.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.1\ChartDoc.DAL.AssemblyInfo.cs
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.1\ChartDoc.DAL.deps.json
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.1\ChartDoc.DAL.dll
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.1\ChartDoc.DAL.pdb
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.1\ChartDoc.DAL.dll
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.1\ChartDoc.DAL.pdb

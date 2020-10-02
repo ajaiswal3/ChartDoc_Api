@@ -1,0 +1,9 @@
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\bin\Release\netcoreapp2.2\ChartDoc.DAL.deps.json
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\bin\Release\netcoreapp2.2\ChartDoc.DAL.dll
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\bin\Release\netcoreapp2.2\ChartDoc.DAL.pdb
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\obj\Release\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\obj\Release\netcoreapp2.2\ChartDoc.DAL.AssemblyInfoInputs.cache
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\obj\Release\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\obj\Release\netcoreapp2.2\ChartDoc.DAL.dll
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\obj\Release\netcoreapp2.2\ChartDoc.DAL.pdb
+F:\Sandip\Probal\ChartDoc API\ChartDocApi New\ChartDoc.Api\ChartDoc.DAL\obj\Release\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache

@@ -40,7 +40,7 @@ namespace ChartDoc.Services.DataService
         /// <param name="mobile">string</param>
         /// <param name="email">string</param>
         /// <returns>List<clsPatientDetails></returns>
-        public List<clsPatientDetails> SearchPatient(string firstName, string lastName, string dob, string mobile, string email, string gender)
+        public List<clsPatientDetails> SearchPatient(string firstName, string lastName, string dob, string mobile, string email, string gender,string isactivated)
         {
             List<clsPatientDetails> lstPatientDetails = new List<clsPatientDetails>();
             try
@@ -50,8 +50,8 @@ namespace ChartDoc.Services.DataService
                 dob = dob.Replace("{", "").Replace("}", "").Trim();
                 mobile = mobile.Replace("{", "").Replace("}", "").Trim();
                 email = email.Replace("{", "").Replace("}", "").Trim();
-
-                DataTable dtPatientDetails = GetPatient(firstName, lastName, dob, mobile, email, gender);
+                isactivated = isactivated.Replace("{", "").Replace("}", "").Trim();
+                DataTable dtPatientDetails = GetPatient(firstName, lastName, dob, mobile, email, gender, isactivated);
 
                 foreach (DataRow rowPatientDetails in dtPatientDetails.Rows)
                 {
@@ -106,7 +106,7 @@ namespace ChartDoc.Services.DataService
         /// <param name="mobile">string</param>
         /// <param name="email">string</param>
         /// <returns>DataTable</returns>
-        private DataTable GetPatient(string firstName = null, string lastName = null, string dob = null, string mobile = null, string email = null, string gender = null)
+        private DataTable GetPatient(string firstName = null, string lastName = null, string dob = null, string mobile = null, string email = null, string gender = null,string isactivated=null)
         {
 
             DataTable dtPatient = new DataTable();
@@ -142,7 +142,14 @@ namespace ChartDoc.Services.DataService
             {
                 gender = " AND [Gender] ='" + gender + "'";
             }
-            where = "WHERE Acitivated='Y' " + firstName + lastName + mobile + email + dob + gender;
+            if (String.IsNullOrEmpty(isactivated))
+            {
+                where = "WHERE Acitivated in ('Y','N') " + firstName + lastName + mobile + email + dob + gender;
+            }
+            else
+            {
+                where = "WHERE Acitivated='Y' " + firstName + lastName + mobile + email + dob + gender;
+            }
             sqlPatient = sqlPatient + where + " ORDER BY pd.Last_Name";
             try
             {

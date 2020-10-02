@@ -37,12 +37,22 @@ namespace ChartDoc.Services.DataService
             string sqlPatient = " EXEC [USP_CREATEUPDATE_PATIENT] '" + patientId + "','" + patientDetails + "','" + patientBilling + "','" + emergencyContact + "','" + employerContact + "','" + insurance + "','" + social + "','" + authorization + "'";
             string result = (string)db.GetSingleValue(sqlPatient);
             // Update RecopiaID while creating a new patient.
-            if (patientId == "0")
-            {
+            //if (patientId == "0")
+            //{
                 SavePatientDRFirst(result);
-            }
+            //}
             return result;
            
+        }
+        #endregion
+
+        #region Validate Duplicate Patient
+        public string ValidatePatient(string patientId, string patientFName, string patientMName, string patientLName, string patientAddr1, string patientAddr2, string dob, string ssn, string contact)
+        {
+            string sql = " EXEC [USP_PATIENT_DUPLICATE] '" + patientId + "','" + patientFName + "','" + patientMName + "','" + patientLName + "','" + patientAddr1 + "','" + patientAddr2 + "','" + dob + "','" + ssn + "','" + contact + "'";
+            string res = (string)db.GetSingleValue(sql);
+
+            return res;
         }
         #endregion
 
@@ -64,7 +74,7 @@ namespace ChartDoc.Services.DataService
 
             DataTable dtPatientDetails = db.GetData(sql);
 
-            if (dtPatientDetails.Rows.Count != 0)
+            if (dtPatientDetails.Rows.Count != 0 && Convert.ToString(dtPatientDetails.Rows[0]["RecopiaID2"])=="")
             {
                 string xmldata = @"xml=<?xml version = ""1.0"" encoding=""UTF-8""?><RCExtRequest version = ""2.36"">" +
                                 " <Caller><VendorName>" + Convert.ToString(dtconfig.Rows[0]["VendorName"]) + "</VendorName><VendorPassword>" + Convert.ToString(dtconfig.Rows[0]["VendorPassword"]) + "</VendorPassword> " +
@@ -200,6 +210,7 @@ namespace ChartDoc.Services.DataService
                     oPatientBilling.driversLicenseFilePath = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Drivers_License_FilePath"]);
                     oPatientBilling.primaryPhone = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Primary_Phone"]);
                     oPatientBilling.secondaryPhone = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Secondary_Phone"]);
+                    oPatientBilling.billingPartyOther = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["BillingPartyOther"]);
                     patientdtl.sPatientBilling = oPatientBilling;
                 }
                 //T_Patient_EmergencyContact
@@ -260,6 +271,7 @@ namespace ChartDoc.Services.DataService
                     oPatientSocial.ethicity = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Ethicity"]);
                     oPatientSocial.language = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Language"]);
                     oPatientSocial.commMode = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Comm_Mode"]);
+                    oPatientSocial.socialMaritalStatusOther = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["SocialMaritalStatusOther"]);
                     patientdtl.sPatientSocial = oPatientSocial;
                 }
                 //T_Patient_Authorization

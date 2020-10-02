@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace ChartDoc.Services.DataService
 {
@@ -218,46 +219,7 @@ namespace ChartDoc.Services.DataService
         }
         #endregion
 
-        #region Save Claim
-        /// <summary>
-        /// ClaimService : Save Claim
-        /// </summary>
-        /// <param name="chargeId"></param>
-        /// <param name="xmlHeader"></param>
-        /// <param name="xmlDetails"></param>
-        /// <param name="xmlAdjustment"></param>
-        /// <param name="isDelete"></param>
-        /// <returns></returns>
-        public string SaveClaim(int chargeId, string xmlHeader, string xmlDetails, string xmlAdjustment, string isDelete)
-        {
-            string result = "0";
-            string sqlClaims = " EXEC USP_SaveClaim " + chargeId + " ,'" + xmlHeader + "','" + xmlDetails + "','" + xmlAdjustment + "','" + isDelete + "'";
-            try
-            {
-                result = (string)db.GetSingleValue(sqlClaims);
-            }
-            catch (SqlException sqlEx)
-            {
-                result = sqlEx.Message;
-                var logger = logService.GetLogger(typeof(ClaimService));
-                logger.Error(sqlEx);
-            }
-            catch (NullReferenceException nullEx)
-            {
-                result = nullEx.Message;
-                var logger = logService.GetLogger(typeof(ClaimService));
-                logger.Error(nullEx);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-                var logger = logService.GetLogger(typeof(ClaimService));
-                logger.Error(ex);
-            }
-            return result;
-
-        }
-        #endregion
+    
         #endregion
 
         #region Private Method

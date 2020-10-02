@@ -15,8 +15,8 @@ namespace ChartDoc.Services.Infrastructure
         Task<clsPatientBilling> SaveBillingImage(clsPatientBilling data, IFormFile file);
         Task<clsPatientInsurance> SaveInsuranceImage(clsPatientInsurance data, IFormFile uploadFile);
 
-        clsUserObj SaveUserImage(clsUserObj iUser, IFormFileCollection file);
-        clsAppointment SaveAppointmentImage(clsAppointment appointment, IFormFileCollection file);
+        Task<clsUserObj>  SaveUserImage(clsUserObj iUser, IFormFileCollection file);
+        Task<clsAppointment>  SaveAppointmentImage(clsAppointment appointment, IFormFileCollection file);
         List<clsDocument> SaveProcedureImage(string PatientId, IFormFileCollection UploadFiles);
         List<clsDocument> SaveDiagnosisImage(string PatientId, IFormFileCollection UploadFiles);
 

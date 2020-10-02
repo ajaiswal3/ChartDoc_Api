@@ -28,6 +28,7 @@ namespace ChartDoc.Models
         public string ethicity { get; set; }
         public string language { get; set; }
         public string commMode { get; set; }
+        public string socialMaritalStatusOther { get; set; }
         #endregion
     }
 }

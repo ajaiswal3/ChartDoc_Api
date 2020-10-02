@@ -9,5 +9,6 @@ namespace ChartDoc.Services.Infrastructure
     {
         clsCreateUpdatePatient GetPatientInfo(string PatientId);
         string CreatePatient(string patientId, string patientDetails, string patientBilling, string emergencyContact, string employerContact, string insurance, string social, string authorization);
+        string ValidatePatient(string patientId, string patientFName, string patientMName, string patientLName, string patientAddr1, string patientAddr2, string dob, string ssn, string contact);
     }
 }

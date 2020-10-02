@@ -9,5 +9,6 @@ namespace ChartDoc.Services.Infrastructure
     {
         List<clsObservation> GetObservation(string AppointmentId);
         string SaveObservation(clsObservation objObservation);
+        List<clsObservation> GetVitalsList(string patientId);
     }
 }

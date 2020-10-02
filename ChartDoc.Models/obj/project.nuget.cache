@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KJ5FMZHKypyztHei7kphFZDws65e7z/1gDuMnoeQIFBXyL8iTAMhNZ3ANKd9pbYaWLx+poHLzkgl5DZUinxbYw==",
+  "dgSpecHash": "3VE2chRd1p8ZsBMUl9LVTul7kkg2D4JQPJxrKPMiMfzwuyOdKRu6VrEvVtDKlHUnH8LQWm/47yJju/AxpH0yCw==",
   "success": true,
-  "projectFilePath": "D:\\Sandip da\\Chart_Doc_RemovePhase3\\chartdoc_api1\\ChartDoc.Models\\ChartDoc.Models.csproj",
+  "projectFilePath": "D:\\Sandip da\\BackUP_17092020\\WEBAPP\\chartdoc_api1\\ChartDoc.Models\\ChartDoc.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.netcore.app\\2.2.0\\microsoft.netcore.app.2.2.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.2.0\\microsoft.netcore.dotnetapphost.2.2.0.nupkg.sha512",

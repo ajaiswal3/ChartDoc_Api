@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MIhBAq22n2l7EaxvguY0DWMBN1C2XqYsvmolqIiVfS+/rhjgSFKuy2jogJGruuKofXWbpnJtY5kSPBVWs8SVSA==",
+  "dgSpecHash": "pgClbISTzcuWt89WoH2tH1PJ8yKd647KXkRh9gaJcvOU5WjF/PjhQlMLB5eLDdghrAPB2HWLDYujfyB0xU38ug==",
   "success": true,
-  "projectFilePath": "D:\\Sandip da\\Chart_Doc_RemovePhase3\\chartdoc_api1\\ChartDoc.Api\\ChartDoc.Api.csproj",
+  "projectFilePath": "D:\\Sandip da\\BackUP_17092020\\WEBAPP\\chartdoc_api1\\ChartDoc.Api\\ChartDoc.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\jose-jwt\\2.3.0\\jose-jwt.2.3.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\log4net\\2.0.8\\log4net.2.0.8.nupkg.sha512",
@@ -192,7 +192,7 @@
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.win32.primitives\\4.0.1\\microsoft.win32.primitives.4.0.1.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\Akash jaiswal\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Akash jaiswal\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\nexmo.csharp.client\\4.3.2\\nexmo.csharp.client.4.3.2.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",

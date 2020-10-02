@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.Api", "ChartDoc.Api\ChartDoc.Api.csproj", "{FF701854-BF53-4046-9A6B-20E2A808E695}"
 EndProject
@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.Services", "ChartD
 	ProjectSection(ProjectDependencies) = postProject
 		{11C3350C-378E-445C-9B5F-4D51769518FD} = {11C3350C-378E-445C-9B5F-4D51769518FD}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartDoc.DAL", "ChartDoc.DAL\ChartDoc.DAL.csproj", "{1A18BD2A-B766-4904-95F3-312D730E8C40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.Context", "ChartDoc.Context\ChartDoc.Context.csproj", "{11C3350C-378E-445C-9B5F-4D51769518FD}"
 EndProject
@@ -32,6 +34,10 @@ Global
 		{BFDF34C2-065C-40E6-A8CB-E7B8DA1882C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFDF34C2-065C-40E6-A8CB-E7B8DA1882C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFDF34C2-065C-40E6-A8CB-E7B8DA1882C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A18BD2A-B766-4904-95F3-312D730E8C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A18BD2A-B766-4904-95F3-312D730E8C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A18BD2A-B766-4904-95F3-312D730E8C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A18BD2A-B766-4904-95F3-312D730E8C40}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11C3350C-378E-445C-9B5F-4D51769518FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11C3350C-378E-445C-9B5F-4D51769518FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C3350C-378E-445C-9B5F-4D51769518FD}.Release|Any CPU.ActiveCfg = Release|Any CPU

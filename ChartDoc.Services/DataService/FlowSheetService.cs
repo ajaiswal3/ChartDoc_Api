@@ -746,7 +746,7 @@ namespace ChartDoc.Services.DataService
                                 appointmentFromTime = Convert.ToString(dtAppointment.Rows[index]["AppointFromTime"]),
                                 appointmentToTime = Convert.ToString(dtAppointment.Rows[index]["AppointToTime"]),
                                 roomNo = Convert.ToString(dtAppointment.Rows[index]["ROOMNO"]),
-                                filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"])
+                                //filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"])
                             },
                             waitingArea = new clsWaitingArea
                             {
@@ -819,7 +819,7 @@ namespace ChartDoc.Services.DataService
                                 appointmentFromTime = Convert.ToString(dtAppointment.Rows[index]["AppointFromTime"]),
                                 appointmentToTime = Convert.ToString(dtAppointment.Rows[index]["AppointToTime"]),
                                 roomNo = Convert.ToString(dtAppointment.Rows[index]["ROOMNO"]),
-                                filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"]),
+                                //filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"]),
 
                             },
                             consultationRoom = new clsConsultationRoom
@@ -892,7 +892,7 @@ namespace ChartDoc.Services.DataService
                                 appointmentFromTime = Convert.ToString(dtAppointment.Rows[index]["AppointFromTime"]),
                                 appointmentToTime = Convert.ToString(dtAppointment.Rows[index]["AppointToTime"]),
                                 roomNo = Convert.ToString(dtAppointment.Rows[index]["ROOMNO"]),
-                                filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"])
+                                //filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"])
                             },
                             checkingOut = new clsCheckingOut
                             {
@@ -964,7 +964,7 @@ namespace ChartDoc.Services.DataService
                                 appointmentFromTime = Convert.ToString(dtAppointment.Rows[index]["AppointFromTime"]),
                                 appointmentToTime = Convert.ToString(dtAppointment.Rows[index]["AppointToTime"]),
                                 roomNo = Convert.ToString(dtAppointment.Rows[index]["ROOMNO"]),
-                                filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"])
+                                //filePath = Convert.ToString(dtAppointment.Rows[index]["filepath"])
 
                             }
                         });
@@ -989,9 +989,7 @@ namespace ChartDoc.Services.DataService
             DataTable dtAppointmentWeekly = BindAppointmentWeekly(date, doctorId);
             for (int index = 0; index <= dtAppointmentWeekly.Rows.Count - 1; index++)
             {
-                if (string.Compare(Convert.ToString(dtAppointmentWeekly.Rows[index]["FlowArea"]).ToUpper(), "APPOINTMENT") == 0 ||
-                    string.Compare(Convert.ToString(dtAppointmentWeekly.Rows[index]["FlowArea"]), string.Empty) == 0)
-                {
+               
                     if (string.Compare(Convert.ToString(dtAppointmentWeekly.Rows[index]["FlowArea"]).ToUpper(), "APPOINTMENT") == 0 ||
                         string.Compare(Convert.ToString(dtAppointmentWeekly.Rows[index]["FlowArea"]), string.Empty) == 0)
                     {
@@ -1241,7 +1239,7 @@ namespace ChartDoc.Services.DataService
                             }
                         });
                     }
-                }
+                
             }
 
             return lstFlowSheet;
@@ -1288,6 +1286,13 @@ namespace ChartDoc.Services.DataService
             string sql = "USP_FETCHAPPOINTMENT_DATERANGE '" + pDate + "','" + pDoctorId + "'";
             dtAppointmentWeekly = db.GetData(sql);
             return dtAppointmentWeekly;
+        }
+
+        public string getInsurenaceStatus(string patientId)
+        {
+            string result = string.Empty;
+            result = (string)db.GetSingleValue("USP_CHECKINSURANCE '" + patientId + "'" );
+            return result;
         }
         #endregion
     }

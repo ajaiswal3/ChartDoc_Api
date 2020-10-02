@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SEV9IsQmXXVFih3WyC4iOpPMygvDDh5RaYt2vDSHmlw1jU4tUUrIRYl4Emt83EtpRPRI9t0NKMCPMaYHVXZn3A==",
+  "dgSpecHash": "COURqQCOfQwUI4iYSoEA53bbXzV7c2QoQm5CPhrwmy8U+xbsQUum+UdL2LWujWdpsl3RG9szOyL4XxX06qZ9Ug==",
   "success": true,
-  "projectFilePath": "D:\\Sandip da\\Chart_Doc_RemovePhase3\\chartdoc_api1\\ChartDoc.Context\\ChartDoc.Context.csproj",
+  "projectFilePath": "D:\\Sandip da\\BackUP_17092020\\WEBAPP\\chartdoc_api1\\ChartDoc.Context\\ChartDoc.Context.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.entityframeworkcore\\2.2.0\\microsoft.entityframeworkcore.2.2.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\2.2.0\\microsoft.entityframeworkcore.abstractions.2.2.0.nupkg.sha512",

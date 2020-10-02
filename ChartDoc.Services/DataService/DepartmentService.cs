@@ -64,5 +64,35 @@ namespace ChartDoc.Services.DataService
             return dtDept;
         }
         #endregion
+
+        #region DeleteDept***************************************************************************************************************************
+        /// <summary>
+        /// DeleteDepartment
+        /// </summary>
+        /// <param name="sService">clsDept</param>
+        /// <returns>string</returns>
+        public string DeleteSAVEDEPARTMENT(clsDept dept)
+        {
+            string flag = "0";
+            string sqlService = " EXEC USP_SAVEDEPARTMENT_DELETE '" + dept.pId + "' ";
+            flag = (string)context.GetSingleValue(sqlService);
+            return flag;
+        }
+        #endregion
+
+        #region SaveDepartment*****************************************************************************************************************************
+        /// <summary>
+        /// SaveDepartment
+        /// </summary>
+        /// <param name="sService">clsDept</param>
+        /// <returns>string</returns>
+        public string SaveDepartment(clsDept dept)
+        {
+            string flag = "0";
+            string sqlService = " EXEC USP_SAVEDEPARTMENT_ADD_EDIT '" + dept.pId + "' ,'" + dept.pCcDescription + "'";
+            flag = (string)context.GetSingleValue(sqlService);
+            return flag;
+        }
+        #endregion
     }
 }

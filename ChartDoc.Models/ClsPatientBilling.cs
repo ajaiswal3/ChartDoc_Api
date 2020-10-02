@@ -26,6 +26,8 @@ namespace ChartDoc.Models
         public string driversLicenseFilePath { get; set; }
         public string primaryPhone { get; set; }
         public string secondaryPhone { get; set; }
+
+        public string billingPartyOther { get; set; }
         #endregion
     }
 }

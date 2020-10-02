@@ -7,18 +7,15 @@
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Nexmo.Csharp.Client" Version="4.3.2" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ChartDoc.Context\ChartDoc.Context.csproj" />
+    <ProjectReference Include="..\ChartDoc.DAL\ChartDoc.DAL.csproj" />
     <ProjectReference Include="..\ChartDoc.Models\ChartDoc.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ChartDoc.DAL">
-      <HintPath>bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Features">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.http.features\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
     </Reference>

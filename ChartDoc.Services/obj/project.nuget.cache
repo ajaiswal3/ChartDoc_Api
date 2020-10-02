@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P0r/H4pY63ShVc8CYAhwuTYiUGzzbMFZOuBfgKYG+n4SQEvRDtDHb49QRmNgNMZrk2qdlh1L8A4zRGCcsMfsbg==",
+  "dgSpecHash": "Uguw13GE0J6xlZdIH5aK4d4POafCRsRxXoDTk66Tubo0LO7+a2LvjgZDm6plxKVJqY9PAD7uHuGQtXOkD8w4nQ==",
   "success": true,
-  "projectFilePath": "D:\\Sandip da\\Chart_Doc_RemovePhase3\\chartdoc_api1\\ChartDoc.Services\\ChartDoc.Services.csproj",
+  "projectFilePath": "D:\\Sandip da\\BackUP_17092020\\WEBAPP\\chartdoc_api1\\ChartDoc.Services\\ChartDoc.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\jose-jwt\\2.3.0\\jose-jwt.2.3.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\log4net\\2.0.8\\log4net.2.0.8.nupkg.sha512",
@@ -84,7 +84,7 @@
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\Akash jaiswal\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
+    "C:\\Users\\Akash jaiswal\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\nexmo.csharp.client\\4.3.2\\nexmo.csharp.client.4.3.2.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\remotion.linq\\2.2.0\\remotion.linq.2.2.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",

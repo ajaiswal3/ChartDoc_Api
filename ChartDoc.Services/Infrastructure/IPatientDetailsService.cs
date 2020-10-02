@@ -8,7 +8,7 @@ namespace ChartDoc.Services.Infrastructure
     public interface IPatientDetailsService
     {
        // List<clsPatientDetails> GetAllPatients();
-        List<clsPatientDetails> SearchPatient(string firstName, string lastName, string DOB, string mobNo, string emailId, string gender);
+        List<clsPatientDetails> SearchPatient(string firstName, string lastName, string DOB, string mobNo, string emailId, string gender,string isactivated);
         clsPatientDetails SearchPatientbyID(string ID);
     }
 }

@@ -8,5 +8,8 @@ namespace ChartDoc.Services.Infrastructure
     public interface IUserTypeService
     {
         List<clsUType> GetUType(string Id);
+
+        string DeleteRole(clsUType uType);
+        string SaveRole(clsUType uType);
     }
 }

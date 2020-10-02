@@ -8,5 +8,7 @@ namespace ChartDoc.Services.Infrastructure
     public interface IDepartmentService
     {
         List<clsDept> GetDept();
+        string SaveDepartment(clsDept objdept);
+        string DeleteSAVEDEPARTMENT(clsDept dept);
     }
 }

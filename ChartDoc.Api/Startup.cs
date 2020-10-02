@@ -31,6 +31,7 @@ namespace ChartDoc.Api
                         .SetBasePath(env.ContentRootPath)
                         .AddJsonFile("appsettings.json");
             Configuration = builder.Build();
+            _env = env;
         }
         #endregion
 
@@ -39,6 +40,8 @@ namespace ChartDoc.Api
         /// Configuration: Property
         /// </summary>
         public IConfiguration Configuration { get; }
+
+        public IHostingEnvironment _env { get; }
 
         #endregion
 
@@ -88,7 +91,8 @@ namespace ChartDoc.Api
             services.AddTransient<ILogService, LogService>();
             services.AddTransient<IChargeDateRangeService, ChargeDateRangeService>();
             services.AddTransient<IChargeMasterService, ChargeMasterService>();
-          
+            services.AddTransient<IClaimService, ClaimService>();
+            services.AddTransient<IPaymentService, PaymentService>();
             services.AddTransient<ISmsService, SmsService>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IClaimFieldsService, ClaimFieldsService>();
@@ -163,10 +167,17 @@ namespace ChartDoc.Api
             app.UseHttpsRedirection();
             app.UseCors("AllowMyOrigin");
             app.ConfigureExceptionHandler(logService);
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //Path.Combine(Configuration.GetSection("FolderPath").Value, "Images")),
+            //    RequestPath = "/Images"
+            //});
+
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-            Path.Combine(Configuration.GetSection("FolderPath").Value, "Images")),
+            Path.Combine(_env.ContentRootPath, "Images")),
                 RequestPath = "/Images"
             });
 

@@ -1,0 +1,34 @@
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfoInputs.cache
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+E:\Sandip_da\Project\CoreApi\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+C:\BitBucket\ChartDoc\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
+C:\BitBucket\ChartDoc\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+C:\BitBucket\ChartDoc\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+C:\BitBucket\ChartDoc\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
+C:\BitBucket\ChartDoc\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfoInputs.cache
+C:\BitBucket\ChartDoc\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
+C:\BitBucket\ChartDoc\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+C:\BitBucket\ChartDoc\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfoInputs.cache
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfoInputs.cache
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb

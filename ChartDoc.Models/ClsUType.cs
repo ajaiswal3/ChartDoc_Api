@@ -13,6 +13,8 @@ namespace ChartDoc.Models
         #region Public Properties******************************************************************************************************************************
         public string utCode { get; set; }
         public string userDescription { get; set; }
+
+        public string utId { get; set; }
         #endregion
 
     }

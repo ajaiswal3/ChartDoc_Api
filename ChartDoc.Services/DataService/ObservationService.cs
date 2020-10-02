@@ -251,5 +251,50 @@ namespace ChartDoc.Services.DataService
             return table;
         }
         #endregion
+
+        #region Get Vitals List By Patient Id
+        public List<clsObservation> GetVitalsList(string patientId)
+        {
+            List<clsObservation> lstDetails = new List<clsObservation>();
+            DataTable dtObservation = BindVitals(patientId);
+
+            if (dtObservation.Rows.Count > 0)
+            {
+                for (int index = 0; index <= dtObservation.Rows.Count - 1; index++)
+                {
+                    clsObservation objObservation = new clsObservation();
+                    objObservation.BloodPressure = Convert.ToString(dtObservation.Rows[index]["Blood Presure"]);
+                    objObservation.Temperature = Convert.ToString(dtObservation.Rows[index]["Temperature"]);
+                    objObservation.Height = Convert.ToString(dtObservation.Rows[index]["Height"]);
+                    objObservation.Pulse = Convert.ToString(dtObservation.Rows[index]["Pulse"]);
+                    objObservation.Respiratory = Convert.ToString(dtObservation.Rows[index]["Respiratory"]);
+                    objObservation.AppointmentDate = Convert.ToString(dtObservation.Rows[index]["Date"]);
+                    objObservation.AppointmentFromTime = Convert.ToString(dtObservation.Rows[index]["FromTime"]);
+                    objObservation.AppointmentToTime = Convert.ToString(dtObservation.Rows[index]["ToTime"]);
+                    objObservation.pWeight = Convert.ToString(dtObservation.Rows[index]["Weight"]);
+                    lstDetails.Add(objObservation);
+                }
+            }
+            return lstDetails;
+        }
+
+        private DataTable BindVitals(string patientId)
+        {
+            DataTable dtObservation = new DataTable();
+            string sqlObservation = "EXEC USP_GETPATIENTVITALLIST '" + patientId + "'";
+            try
+            {
+                dtObservation = db.GetData(sqlObservation);
+            }
+            catch (Exception ex)
+            {
+                var logger = logService.GetLogger(this.GetType());
+                logger.Error(ex);
+            }
+            return dtObservation;
+        }
+        #endregion
+
+
     }
 }

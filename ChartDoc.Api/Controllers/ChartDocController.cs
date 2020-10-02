@@ -112,7 +112,9 @@ namespace ChartDoc.Api.Controllers
         /// <param name="logService">ILogService</param>
         /// <param name="chargeDateRangeService">IChargeDateRangeService</param>
         /// <param name="chargeMasterService">IChargeMasterService</param>
-       
+        /// <param name="claimService">IClaimService</param>
+        /// <param name="paymentService">IPaymentService</param>
+        /// <param name="claimStatusService">IClaimStatusService</param>
         public ChartDocController(IUserService userService,
             IIcdService icdService,
             IPatientDetailsService patientDetailsService,
@@ -152,8 +154,11 @@ namespace ChartDoc.Api.Controllers
             IFileControlService fileControlService,
             ILogService logService,
             IChargeDateRangeService chargeDateRangeService,
-            IChargeMasterService chargeMasterService
-            )
+            IChargeMasterService chargeMasterService,
+            IClaimService claimService,
+            IPaymentService paymentService,
+            IClaimFieldsService claimFieldsService,
+             IClaimStatusService claimStatusService)
         {
             _userService = userService;
             _icdService = icdService;
@@ -195,7 +200,10 @@ namespace ChartDoc.Api.Controllers
             _logService = logService;
             _chargeDateRangeService = chargeDateRangeService;
             _chargeMasterService = chargeMasterService;
-           
+            _claimService = claimService;
+            _paymentService = paymentService;
+            _claimFieldsService = claimFieldsService;
+            _claimStatusService = claimStatusService;
         }
         #endregion
 
@@ -252,8 +260,8 @@ namespace ChartDoc.Api.Controllers
         /// <param name="email">string</param>
         /// <returns>ActionResult<IEnumerable<clsPatientDetails>></returns>
         [HttpGet]
-        [Route("SearchPatient/{firstName}/{lastName}/{DOB}/{Mobile}/{Email}/{Gender}")]
-        public ActionResult<IEnumerable<clsPatientDetails>> SearchPatient(string firstName = "", string lastName = "", string dob = null, string mobile = "", string email = "", string gender ="")
+        [Route("SearchPatient/{firstName}/{lastName}/{DOB}/{Mobile}/{Email}/{Gender}/{Isactivated}")]
+        public ActionResult<IEnumerable<clsPatientDetails>> SearchPatient(string firstName = "", string lastName = "", string dob = null, string mobile = "", string email = "", string gender ="",string isactivated="")
         {
             firstName = firstName.Replace("{", "").Replace("}", "").Trim();
             lastName = lastName.Replace("{", "").Replace("}", "").Trim();
@@ -261,8 +269,8 @@ namespace ChartDoc.Api.Controllers
             mobile = mobile.Replace("{", "").Replace("}", "").Trim();
             email = email.Replace("{", "").Replace("}", "").Trim();
             gender = gender.Replace("{", "").Replace("}", "").Trim();
-
-            return _patientDetailsService.SearchPatient(firstName, lastName, dob, mobile, email, gender);
+            isactivated = isactivated.Replace("{", "").Replace("}", "").Trim();
+            return _patientDetailsService.SearchPatient(firstName, lastName, dob, mobile, email, gender, isactivated);
         }
         #endregion
 
@@ -275,7 +283,7 @@ namespace ChartDoc.Api.Controllers
         [Route("GetAllPatients")]
         public ActionResult<IEnumerable<clsPatientDetails>> GetAllPatients()
         {
-            return _patientDetailsService.SearchPatient("", "", "", "", "", "");
+            return _patientDetailsService.SearchPatient("", "", "", "", "", "","");
         }
         #endregion
 
@@ -857,6 +865,94 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        #region Get Charge Patient Adjustment Information
+        /// <summary>
+        /// Get Charge Patient Adjustment Information : Used For EOB
+        /// </summary>
+        /// <param name="chargeId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetChargePatientAdjustment/{chargeId}")]
+        public ActionResult<IEnumerable<clsClaimAdjustment>> GetChargePatientAdjustment(int chargeId)
+        {
+            return _claimService.GetChargePatientAdjustment(chargeId);
+        }
+        #endregion
+
+        #region Get Payment Details
+        /// <summary>
+        /// Get Payment Details
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetPaymentDetails/{patientId}")]
+        public ActionResult<clsPayment> GetPaymentDetails(string patientId)
+        {
+            return _paymentService.GetPaymentDetails(patientId);
+        }
+        #endregion
+
+        #region Get Payment List
+        /// <summary>
+        /// Get Payment List
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetPaymentList")]
+        public ActionResult<IEnumerable<clsPaymentDetails>> GetPaymentList()
+        {
+            return _paymentService.GetPaymentList();
+        }
+        #endregion
+
+        #region Get CPT With ChargeAmount
+        /// <summary>
+        /// GetCPT: Get CPT With ChargeAmount.
+        /// </summary>
+        /// <returns>ActionResult<IEnumerable<clsCPT>></returns>
+        [HttpGet]
+        [Route("GetCPTWITHChargeAmount")]
+        public ActionResult<IEnumerable<clsCPT>> GetCPTWITHChargeAmount()
+        {
+            return _cptService.GetCPTWITHChargeAmount();
+        }
+        #endregion
+
+        #region Get Claim Fields Header
+        /// <summary>
+        /// GetClaimFieldsHeader: Get ClaimFieldsHeader.
+        /// </summary>
+        /// <returns>ActionResult<IEnumerable<clsClaimFieldsHeader>></returns>
+        [HttpGet]
+        [Route("GetClaimFieldsHeader")]
+        public ActionResult<IEnumerable<clsClaimFieldsHeader>> GetClaimFieldsHeader()
+        {
+            return _claimFieldsService.GetClaimFieldsHeader();
+        }
+        #endregion
+
+        #region Get Claim Fields Details
+        /// <summary>
+        /// ClaimFieldsDetails: Get ClaimFieldsDetails.
+        /// </summary>
+        /// <returns>ActionResult<IEnumerable<clsClaimFieldsDetails>></returns>
+        [HttpGet]
+        [Route("GetClaimFieldsDetails")]
+        public ActionResult<IEnumerable<clsClaimFieldsDetails>> GetClaimFieldsDetails(string id)
+        {
+            return _claimFieldsService.GetClaimFieldsDetails(id);
+        }
+
+        [HttpGet]
+        [Route("GetClaimFieldsMaster")]
+        public ActionResult<IEnumerable<clsClaimFieldsDetails>> GetClaimFieldsDetails(int id)
+        {
+            return _claimFieldsService.GetClaimFieldsMasterDetails(id);
+        }
+        #endregion
+
         #region Get Insurance Claim Fields
         /// <summary>
         /// InsuranceClaimFields: Get InsuranceClaimFields.
@@ -871,7 +967,48 @@ namespace ChartDoc.Api.Controllers
         #endregion
 
 
-        
+        #region Get Claim Status
+        /// <summary>
+        /// ClaimStatus: Get ClaimStatus.
+        /// </summary>
+        /// <returns>ActionResult<IEnumerable<clsPatientChargeClaimFields>></returns>
+        [HttpGet]
+        [Route("GetClaimStatus")]
+        public ActionResult<IEnumerable<clsClaimStatus>> GetClaimStatus()
+        {
+            return _claimStatusService.GetClaimStatus();
+        }
+        #endregion
+
+        [HttpGet]
+        [Route("GetInusranceStatus/{patientId}")]
+        public string getInsuranceStatus(string patientId)
+        {
+            return _flowSheetService.getInsurenaceStatus(patientId);
+        }
+
+        #region Validate Duplicate Patient
+        /// <summary>
+        /// Validate Duplicate Patient
+        /// </summary>
+        /// <param name="patientValidation"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("ValidatePatient")]
+        public string validatePatient([FromQuery]clsPatientValidation patientValidation)
+        {
+            return _patientInformationService.ValidatePatient(patientValidation.patientId, patientValidation.patientfName, patientValidation.patientmName, patientValidation.patientlName, "", "", patientValidation.dob, patientValidation.ssn, patientValidation.gender);
+        }
+        #endregion
+
+        #region Get Vitals History
+        [HttpGet]
+        [Route("PatientVitalsHistory")]
+        public ActionResult<IEnumerable<clsObservation>> PatientVitalsHistory(string patientId)
+        {
+            return _observationService.GetVitalsList(patientId);
+        }
+        #endregion
 
         #endregion
         #endregion
@@ -976,10 +1113,10 @@ namespace ChartDoc.Api.Controllers
         /// <returns>string</returns>
         [HttpPost]
         [Route("SaveAppointmentNew")]
-        public string SaveAppointmentNew(IFormCollection data)
+        public async Task<string> SaveAppointmentNew(IFormCollection data)
         {
             clsAppointment appointment = JsonConvert.DeserializeObject<clsAppointment>(data["appointmentDetails"]);
-            appointment = _fileControlService.SaveAppointmentImage(appointment, data.Files);
+            appointment = await _fileControlService.SaveAppointmentImage(appointment, data.Files);
             return _appointmentService.SaveActiveAppointment(appointment);
         }
         #endregion
@@ -1037,13 +1174,13 @@ namespace ChartDoc.Api.Controllers
         /// <returns>string</returns>
         [HttpPost]
         [Route("SaveUserNew")]
-        public string SaveUserNew(IFormCollection data)
+        public async Task<string> SaveUserNew(IFormCollection data)
         {
             string xmlUser = null;
             DataTable dt = new DataTable();
 
             clsUserObj iUser = JsonConvert.DeserializeObject<clsUserObj>(data["userDetails"]);
-            iUser = _fileControlService.SaveUserImage(iUser, data.Files);
+            iUser = await _fileControlService.SaveUserImage(iUser, data.Files);
             dt = _sharedService.SingleObjToDataTable<clsUserObj>(iUser);
             xmlUser = _sharedService.ConvertDatatableToXMLNew(dt);
             return _userService.SaveUser(iUser.id, xmlUser);
@@ -1186,6 +1323,9 @@ namespace ChartDoc.Api.Controllers
 
                 await _fileControlService.SaveInsuranceImage(item, Request.Form.Files["insurances_" + index]);
             }
+            // other Info
+            clsAllergyImmunization objallergyImmunization = JsonConvert.DeserializeObject<clsAllergyImmunization>(Request.Form["allergyImmunization"]);
+            // other Info
             string @PatientID = "", @p_Details = "", @p_Billing = "", @p_EmergencyContact = "", @p_EmployerContact = "";
             string @p_Insurance = "", @p_Social = "", @p_Authorization = "";
 
@@ -1215,7 +1355,53 @@ namespace ChartDoc.Api.Controllers
             @p_Authorization = _sharedService.ConvertDatatableToXML(dt);
 
         var result=     _patientInformationService.CreatePatient(PatientID, p_Details, p_Billing, p_EmergencyContact, p_EmployerContact, p_Insurance, @p_Social, p_Authorization);
-            return  result+'~'+ objPatient.sPatientDetails.imagePath;
+
+            if (result.Length == 36)
+            {
+                // other info
+                objallergyImmunization.patientId = result;
+                string xmlAllergy = null;
+                string xmlImmunization = null;
+                string xmlAlert = null;
+                string xmlFamily = null;
+                string xmlSocial = null;
+
+                DataTable dtAlert = new DataTable();
+                DataTable dtAllergy = new DataTable();
+                DataTable dtImmunization = new DataTable();
+                DataTable dtFamily = new DataTable();
+                DataTable dtSocial = new DataTable();
+
+                dtAllergy = _sharedService.ObjArrayToDataTable<clsAllergies>(objallergyImmunization.allergies);
+                if(dtAllergy!=null)
+                    xmlAllergy = _sharedService.ConvertDatatableToXML(dtAllergy);
+                else
+                {
+                    xmlAllergy = "";
+                }
+
+                dtImmunization = _sharedService.ObjArrayToDataTable<clsImmunizations>(objallergyImmunization.immunizations);
+                xmlImmunization = _sharedService.ConvertDatatableToXML(dtImmunization);
+
+                dtAlert = _sharedService.SingleObjToDataTable<clsAlert>(objallergyImmunization.alert);
+                xmlAlert = _sharedService.ConvertDatatableToXML(dtAlert);
+
+                dtFamily = _sharedService.ObjArrayToDataTable<clsFamilies>(objallergyImmunization.families);
+                xmlFamily = _sharedService.ConvertDatatableToXML(dtFamily);
+
+                dtSocial = _sharedService.ObjArrayToDataTable<clsSocials>(objallergyImmunization.socials);
+                if (dtSocial != null)
+                {
+                    xmlSocial = _sharedService.ConvertDatatableToXML(dtSocial);
+                }
+                else
+                {
+                    xmlSocial = "";
+                }
+                _allergyImmunizationAlertSocialFamilyService.SaveAllergyImmunization(objallergyImmunization.patientId, xmlAllergy, xmlImmunization, xmlAlert, xmlFamily, xmlSocial);
+            }
+            // other info
+            return result +'~'+ objPatient.sPatientDetails.imagePath;
         }
 
 
@@ -1324,6 +1510,35 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        #region Delete Role
+        /// <summary>
+        /// DeleteRole: Delete Role.
+        /// </summary>
+        /// <param name="sReason">clsUType</param>
+        /// <returns>string</returns>
+        [HttpPost]
+        [Route("DeleteRole")]
+        public string DeleteRole([FromBody] clsUType uType)
+        {
+            return _userTypeService.DeleteRole(uType);
+        }
+        #endregion
+
+        #region Save Role
+        /// <summary>
+        /// SaveRole: Save Role.
+        /// </summary>
+        /// <param name="sReason">clsUType</param>
+        /// <returns>string</returns>
+        [HttpPost]
+        [Route("SaveRole")]
+        public string SaveRole([FromBody] clsUType uType)
+        {
+            return _userTypeService.SaveRole(uType);
+        }
+        #endregion
+
+
         #region Save Service Details
         /// <summary>
         /// SaveServiceDetails: Save Service Details.
@@ -1349,6 +1564,34 @@ namespace ChartDoc.Api.Controllers
         public string DeleteServiceDetails([FromBody] clsService objService)
         {
             return _serviceDetailsService.DeleteServiceDetails(objService);
+        }
+        #endregion
+
+        #region Save DEPARTMENT
+        /// <summary>
+        /// SaveDEPARTMENT: Save DEPARTMENT Details.
+        /// </summary>
+        /// <param name="objDEPARTMENT">clsDept</param>
+        /// <returns>string</returns>
+        [HttpPost]
+        [Route("SaveDepartment")]
+        public string SaveDepartment([FromBody] clsDept objdept)
+        {
+            return _departmentService.SaveDepartment(objdept);
+        }
+        #endregion
+
+        #region Delete DEPARTMENT
+        /// <summary>
+        /// DeleteDEPARTMENT: Delete DEPARTMENT Details.
+        /// </summary>
+        /// <param name="sservice">clsDept</param>
+        /// <returns>string</returns>
+        [HttpPost]
+        [Route("DeleteDepartment")]
+        public string DeleteDepartment([FromBody] clsDept objdept)
+        {
+            return _departmentService.DeleteSAVEDEPARTMENT(objdept);
         }
         #endregion
 
@@ -1459,12 +1702,113 @@ namespace ChartDoc.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("SaveChargeDetails")]
-        public string SaveChargeDetails([FromBody] clsChargeMaster chargeMaster)
+        public string SaveChargeDetails([FromBody] clsChargeMaster[] chargeMaster)
         {
-            int chargeYearId = chargeMaster.chargeYearId;
-            DataTable dtChargeDetails = _sharedService.SingleObjToDataTable<clsChargeMaster>(chargeMaster);
+            int chargeYearId = chargeMaster[0].chargeYearId;
+            DataTable dtChargeDetails = _sharedService.ObjArrayToDataTable<clsChargeMaster>(chargeMaster);
             string chargeDetailsXml = _sharedService.ConvertDatatableToXMLNew(dtChargeDetails);
             return _chargeMasterService.SaveChargeDetails(chargeYearId, chargeDetailsXml);
+        }
+        #endregion
+
+      
+
+        #region Save Payment Details
+        /// <summary>
+        /// Save Payment Details
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SavePaymentDetails")]
+        public string SavePaymentDetails(IFormCollection data)
+        {
+            string xmlDetails = null;
+            DataTable dtDetails = new DataTable();
+
+            string xmlBreakup = null;
+            DataTable dtBreakup = new DataTable();
+
+            int paymentId = JsonConvert.DeserializeObject<int>(data["paymentId"]); 
+            clsClaimHeader claimHeader = JsonConvert.DeserializeObject<clsClaimHeader>(data["claimHeader"]);
+            clsPaymentDetails paymentDetails = JsonConvert.DeserializeObject<clsPaymentDetails>(data["paymentDetails"]);
+            clsPaymentBreakup paymentBreakup = JsonConvert.DeserializeObject<clsPaymentBreakup>(data["paymentBreakup"]);
+
+            dtDetails = _sharedService.SingleObjToDataTable<clsPaymentDetails>(paymentDetails);
+            dtBreakup = _sharedService.SingleObjToDataTable<clsPaymentBreakup>(paymentBreakup);
+
+            xmlDetails = _sharedService.ConvertDatatableToXMLNew(dtDetails);
+            xmlBreakup = _sharedService.ConvertDatatableToXMLNew(dtBreakup);
+
+            return _paymentService.SavePaymentDetails(paymentId, xmlDetails, xmlBreakup);
+        }
+        #endregion
+
+        #region Save Patient Charge Claim Fields
+        /// <summary>
+        /// SavePatientChargeClaimFields
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SavePatientChargeClaimFields")]
+        public string SavePatientChargeClaimFields(IFormCollection data)
+        {
+            string xlmPatientChargeClaimFields = null;
+            DataTable dtPatientChargeClaimFields = new DataTable();
+
+
+
+
+
+            int chargeId = JsonConvert.DeserializeObject<int>(data["chargeId"]);
+            string typeem = JsonConvert.DeserializeObject<string>(data["typeem"]);
+
+            clsPatientChargeClaimFields[] patientChargeClaimFields = JsonConvert.DeserializeObject<clsPatientChargeClaimFields []>(data["patientChargeClaimFields"]);
+
+
+
+            dtPatientChargeClaimFields = _sharedService.ObjArrayToDataTable<clsPatientChargeClaimFields>(patientChargeClaimFields);
+
+
+
+            xlmPatientChargeClaimFields = _sharedService.ConvertDatatableToXMLNew(dtPatientChargeClaimFields);
+
+            return _claimFieldsService.SavePatientChargeClaimFields(chargeId, xlmPatientChargeClaimFields, typeem);
+        }
+        #endregion
+
+        #region Save Claim Field Master
+        /// <summary>
+        /// Save Claim Records
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SaveClaimFieldMaster")]
+        public string SaveClaimFieldMaster(IFormCollection data)
+        {
+            string xmlDetails = null;
+            DataTable dtDetails = new DataTable();
+
+            //string isDelete = JsonConvert.DeserializeObject<string>(data["isDelete"]);
+            string name = JsonConvert.DeserializeObject<string>(data["name"]);
+            int claimFieldId = JsonConvert.DeserializeObject<int>(data["id"]);
+            char type = JsonConvert.DeserializeObject<char>(data["type"]);
+            string isDeleted = "N";
+            if (data.ContainsKey("isDeleted"))
+            {
+                isDeleted = JsonConvert.DeserializeObject<string>(data["isDeleted"]); 
+            }
+
+            if (data.ContainsKey("claimFieldDetails"))
+            {
+                clsClaimFieldsDetails[] claimAdjustments = JsonConvert.DeserializeObject<clsClaimFieldsDetails[]>(data["claimFieldDetails"]);
+                dtDetails = _sharedService.ObjArrayToDataTable<clsClaimFieldsDetails>(claimAdjustments);
+                xmlDetails = _sharedService.ConvertDatatableToXMLNew(dtDetails);
+            }
+
+            return _claimFieldsService.SaveClaimFieldMaster(claimFieldId, name, type, isDeleted, xmlDetails);
         }
         #endregion
 
