@@ -24,9 +24,9 @@ namespace ChartDoc.Services.DataService
             context._configaration = configaration;
         }
 
-        public void sendEmail(clsAppointment appointment)
+        public void sendUserEmail(string fullName,string email)
         {
-            string sql = "USP_GETCONFIG";
+            string sql = "USP_GETCONFIG @ID=2";
             DataTable result = context.GetData(sql);
             foreach (DataRow row in result.Rows)
             {
@@ -39,11 +39,41 @@ namespace ChartDoc.Services.DataService
             }
             MailMessage objMailMessage = new MailMessage();     
             SmtpClient objSmtpClient = new SmtpClient(emailServerIp);
+            emailMsgBody = emailMsgBody.Replace("@@FName@@", fullName);
+            emailMsgBody = emailMsgBody.Replace("@@website@@", "ChartDoc URL");
+            emailMsgBody = emailMsgBody.Replace("@@Login@@", fullName);
+            emailMsgBody = emailMsgBody.Replace("@@Password@@", Convert.ToString("1234"));
+          
+            objMailMessage.From = new MailAddress(emailServerUserId);
+            objMailMessage.To.Add(email);
+            objMailMessage.Subject = emailMsgSubject;
+            objMailMessage.Body = emailMsgBody;
+
+            objSmtpClient.Port = Convert.ToInt32(emailServerPort);
+            objSmtpClient.Credentials = new System.Net.NetworkCredential(emailServerUserId, emailServerUserPassword);
+            objSmtpClient.EnableSsl = true;
+            objSmtpClient.Send(objMailMessage);
+        }
+        public void sendEmail(clsAppointment appointment)
+        {
+            string sql = "USP_GETCONFIG @ID=1";
+            DataTable result = context.GetData(sql);
+            foreach (DataRow row in result.Rows)
+            {
+                emailMsgBody = Convert.ToString(row["EMAILBODY"]);
+                emailMsgSubject = Convert.ToString(row["EMAILSUBJECT"]);
+                emailServerIp = Convert.ToString(row["EMAILSERVERIP"]);
+                emailServerPort = Convert.ToString(row["EMAILSERVERPORT"]);
+                emailServerUserId = Convert.ToString(row["EMAILSERVERUSERID"]);
+                emailServerUserPassword = Convert.ToString(row["EMAILSERVERPASSWORD"]);
+            }
+            MailMessage objMailMessage = new MailMessage();
+            SmtpClient objSmtpClient = new SmtpClient(emailServerIp);
             emailMsgSubject = emailMsgSubject.Replace("@@Date@@", appointment.date);
             emailMsgBody = emailMsgBody.Replace("@@date@@", appointment.date);
             emailMsgBody = emailMsgBody.Replace("@@FromTime@@", Convert.ToString(appointment.fromTime));
             emailMsgBody = emailMsgBody.Replace("@@ToTime@@", Convert.ToString(appointment.toTime));
-            emailMsgBody = emailMsgBody.Replace("@@AppointmentNo@@",appointment.appointmentNo);
+            emailMsgBody = emailMsgBody.Replace("@@AppointmentNo@@", appointment.appointmentNo);
             objMailMessage.From = new MailAddress(emailServerUserId);
             objMailMessage.To.Add(appointment.email);
             objMailMessage.Subject = emailMsgSubject;

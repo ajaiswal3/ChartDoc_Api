@@ -11,6 +11,6 @@ namespace ChartDoc.Services.Infrastructure
         List<clsDoctor> GetAllDoctorsDetails(string date);
         List<clsDoctorList> GetUserList(string userType);
         string UpdateStatusofUser(int id, int status);
-        string SaveUser(string id,string iUser);
+        string SaveUser(string id,string iUser, string fullname, string email);
     }
 }

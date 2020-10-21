@@ -19,6 +19,8 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance Variable******************************************************************************************************************************
         DBUtils db = DBUtils.GetInstance;
+        private readonly ILogService logService;
+        private readonly IEmailService emailService;
         #endregion
 
         #region UserService Constructor************************************************************************************************************************
@@ -26,9 +28,12 @@ namespace ChartDoc.Services.DataService
         /// UserService : Constructor
         /// </summary>
         /// <param name="configaration">IConfiguration</param>
-        public UserService( IConfiguration configaration)
+        public UserService( IConfiguration configaration, ILogService logService,  IEmailService emailService)
         {
             db._configaration = configaration;
+            this.logService = logService;
+            
+            this.emailService = emailService;
         }
         #endregion
 
@@ -197,11 +202,28 @@ namespace ChartDoc.Services.DataService
         /// <param name="id">string</param>
         /// <param name="xmlUser">string</param>
         /// <returns>string</returns>
-        public string SaveUser(string id,string xmlUser)
+        public string SaveUser(string id,string xmlUser,string fullname,string email)
         {
             string result = string.Empty;
             string sqlUser = " EXEC [USP_CreateUser] '"+ id +"','" + xmlUser + "'";
             result = (string)db.GetSingleValue(sqlUser);
+            try
+            {
+
+                if (id == "0")
+                {
+
+                    emailService.sendUserEmail(fullname, email);
+                }
+                
+                //SendMail(tomail, body);
+            }
+            catch (Exception ex)
+            {
+                var logger = logService.GetLogger(typeof(AppointmentService));
+                logger.Error(ex);
+                return result;
+            }
             return result;
         }
         #endregion

@@ -66,6 +66,7 @@ namespace ChartDoc.Api.Controllers
         private readonly IClaimStatusService _claimStatusService;
 
         private readonly IClaimFieldMasterService _claimFieldMasterService;
+        private readonly IReportService _reportService;
         #endregion
 
         #region Constructor
@@ -158,7 +159,9 @@ namespace ChartDoc.Api.Controllers
             IClaimService claimService,
             IPaymentService paymentService,
             IClaimFieldsService claimFieldsService,
-             IClaimStatusService claimStatusService)
+             IClaimStatusService claimStatusService,
+              IReportService reportService
+            )
         {
             _userService = userService;
             _icdService = icdService;
@@ -204,6 +207,7 @@ namespace ChartDoc.Api.Controllers
             _paymentService = paymentService;
             _claimFieldsService = claimFieldsService;
             _claimStatusService = claimStatusService;
+            _reportService = reportService;
         }
         #endregion
 
@@ -830,10 +834,16 @@ namespace ChartDoc.Api.Controllers
         /// <param name="statusId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetAppointmentList")]
-        public ActionResult<IEnumerable<clsClaimHeader>> GetAppointmentList(string fromDate = "", string toDate = "", int? providerId = 0, string statusId = "1")
+        [Route("GetAppointmentList/{fromDate}/{toDate}/{patientName}/{feeTicket}/{providerId}/{statusId}")]
+        public ActionResult<IEnumerable<clsClaimHeader>> GetAppointmentList(string fromDate = "", string toDate = "",string patientName="",string feeTicket="", string providerId = "0", string statusId = "1")
         {
-            return _claimService.GetAppointmentList(fromDate, toDate, providerId, statusId);
+            fromDate = fromDate.Replace("{", "").Replace("}", "").Trim();
+            toDate = toDate.Replace("{", "").Replace("}", "").Trim();
+            patientName = patientName.Replace("{", "").Replace("}", "").Trim();
+            feeTicket = feeTicket.Replace("{", "").Replace("}", "").Trim().Replace('-','/');
+            providerId = providerId.Replace("{", "").Replace("}", "").Trim();
+            statusId = statusId.Replace("{", "").Replace("}", "").Trim();
+            return _claimService.GetAppointmentList(fromDate, toDate, providerId, statusId, patientName, feeTicket);
         }
         #endregion
 
@@ -886,10 +896,25 @@ namespace ChartDoc.Api.Controllers
         /// <param name="patientId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetPaymentDetails/{patientId}")]
-        public ActionResult<clsPayment> GetPaymentDetails(string patientId)
+        [Route("GetPaymentDetails/{paymentId}/{patientId}")]
+        public ActionResult<clsPayment> GetPaymentDetails(string paymentId, string patientId)
         {
-            return _paymentService.GetPaymentDetails(patientId);
+            return _paymentService.GetPaymentDetails(paymentId, patientId);
+        }
+        #endregion
+
+
+        #region Get Payment BreakUp
+        /// <summary>
+        /// Get Payment Details
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetPaymentBreakUp/{paymentId}/{patientId}")]
+        public ActionResult<List<clsPaymentBreakup>> GetPaymentBreakUp(string paymentId, string patientId)
+        {
+            return _paymentService.GetPaymentBreakUp(paymentId, patientId);
         }
         #endregion
 
@@ -900,10 +925,14 @@ namespace ChartDoc.Api.Controllers
         /// <param name="patientId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetPaymentList")]
-        public ActionResult<IEnumerable<clsPaymentDetails>> GetPaymentList()
+        [Route("GetPaymentList/{fromDate}/{toDate}/{patientName}")]
+        public ActionResult<IEnumerable<clsPaymentDetails>> GetPaymentList(string fromDate = "", string toDate = "", string patientName = "")
         {
-            return _paymentService.GetPaymentList();
+            fromDate = fromDate.Replace("{", "").Replace("}", "").Trim();
+            toDate = toDate.Replace("{", "").Replace("}", "").Trim();
+            patientName = patientName.Replace("{", "").Replace("}", "").Trim();
+
+            return _paymentService.GetPaymentList(fromDate, toDate, patientName);
         }
         #endregion
 
@@ -1164,7 +1193,7 @@ namespace ChartDoc.Api.Controllers
 
             dt = _sharedService.SingleObjToDataTable<clsUserObj>(iUser);
             xmlUser = _sharedService.ConvertDatatableToXML(dt);
-            return _userService.SaveUser(iUser.id, xmlUser);
+            return _userService.SaveUser(iUser.id, xmlUser, iUser.fullName, iUser.email);
         }
 
         /// <summary>
@@ -1183,7 +1212,7 @@ namespace ChartDoc.Api.Controllers
             iUser = await _fileControlService.SaveUserImage(iUser, data.Files);
             dt = _sharedService.SingleObjToDataTable<clsUserObj>(iUser);
             xmlUser = _sharedService.ConvertDatatableToXMLNew(dt);
-            return _userService.SaveUser(iUser.id, xmlUser);
+            return _userService.SaveUser(iUser.id, xmlUser, iUser.fullName,iUser.email);
         }
         #endregion
 
@@ -1689,10 +1718,12 @@ namespace ChartDoc.Api.Controllers
         [HttpPost]
         [Route("SaveChargeDateRange")]
         public string SaveChargeDateRange([FromBody] clsChargeDateRange dateRange)
-        {
-            return _chargeDateRangeService.SaveChargeDateRange(dateRange);
+        {  
+                return _chargeDateRangeService.SaveChargeDateRange(dateRange);   
         }
         #endregion
+        
+
 
         #region Save Charge Details
         /// <summary>
@@ -1711,7 +1742,56 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
-      
+        #region Save Claim
+        /// <summary>
+        /// Save Claim Records
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SaveClaim")]
+        public string SaveClaim(IFormCollection data)
+        {
+            string xmlHeader = null;
+            DataTable dtHeader = new DataTable();
+
+            string xmlDetails = null;
+            DataTable dtDetails = new DataTable();
+
+            string xmlAdjustment = null;
+            DataTable dtAdjustment = new DataTable();
+
+            string isDelete = JsonConvert.DeserializeObject<string>(data["isDelete"]);
+
+            int chargeId = JsonConvert.DeserializeObject<int>(data["chargeId"]);
+
+            clsClaimHeader claimHeader = JsonConvert.DeserializeObject<clsClaimHeader>(data["claimHeader"]);
+
+            claimHeader.statusId =Convert.ToBoolean(claimHeader.denied) ? 1 : 0;
+
+            clsClaimDetails claimDetails = JsonConvert.DeserializeObject<clsClaimDetails>(data["claimDetails"]);
+            if (data.ContainsKey("claimAdjustment"))
+            {
+                clsClaimAdjustment[] claimAdjustments = JsonConvert.DeserializeObject<clsClaimAdjustment[]>(data["claimAdjustment"]);
+                dtAdjustment = _sharedService.ObjArrayToDataTable<clsClaimAdjustment>(claimAdjustments);
+                if (dtAdjustment != null)
+                    xmlAdjustment = _sharedService.ConvertDatatableToXMLNew(dtAdjustment);
+                else
+                    xmlAdjustment = "";
+            }
+
+
+            dtHeader = _sharedService.SingleObjToDataTable<clsClaimHeader>(claimHeader);
+            dtDetails = _sharedService.SingleObjToDataTable<clsClaimDetails>(claimDetails);
+
+
+            xmlHeader = _sharedService.ConvertDatatableToXMLNew(dtHeader);
+            xmlDetails = _sharedService.ConvertDatatableToXMLNew(dtDetails);
+
+
+            return _claimService.SaveClaim(chargeId, xmlHeader, xmlDetails, xmlAdjustment, isDelete);
+        }
+        #endregion
 
         #region Save Payment Details
         /// <summary>
@@ -1729,18 +1809,20 @@ namespace ChartDoc.Api.Controllers
             string xmlBreakup = null;
             DataTable dtBreakup = new DataTable();
 
-            int paymentId = JsonConvert.DeserializeObject<int>(data["paymentId"]); 
-            clsClaimHeader claimHeader = JsonConvert.DeserializeObject<clsClaimHeader>(data["claimHeader"]);
-            clsPaymentDetails paymentDetails = JsonConvert.DeserializeObject<clsPaymentDetails>(data["paymentDetails"]);
-            clsPaymentBreakup paymentBreakup = JsonConvert.DeserializeObject<clsPaymentBreakup>(data["paymentBreakup"]);
+            int paymentId = JsonConvert.DeserializeObject<int>(data["paymentId"]);
+            string isdelete = JsonConvert.DeserializeObject<string>(data["isDeleted"]);
+            clsPaymentDetails[] paymentDetails = JsonConvert.DeserializeObject<clsPaymentDetails[]>(data["paymentDetails"]);
+            clsPaymentBreakup[] paymentBreakup = JsonConvert.DeserializeObject<clsPaymentBreakup[]>(data["paymentBreakup"]);
 
-            dtDetails = _sharedService.SingleObjToDataTable<clsPaymentDetails>(paymentDetails);
-            dtBreakup = _sharedService.SingleObjToDataTable<clsPaymentBreakup>(paymentBreakup);
+            dtDetails = _sharedService.ObjArrayToDataTable<clsPaymentDetails>(paymentDetails);
+            dtBreakup = _sharedService.ObjArrayToDataTable<clsPaymentBreakup>(paymentBreakup);
 
-            xmlDetails = _sharedService.ConvertDatatableToXMLNew(dtDetails);
-            xmlBreakup = _sharedService.ConvertDatatableToXMLNew(dtBreakup);
+            if (dtDetails != null)
+                xmlDetails = _sharedService.ConvertDatatableToXMLNew(dtDetails);
+            if (dtBreakup != null)
+                xmlBreakup = _sharedService.ConvertDatatableToXMLNew(dtBreakup);
 
-            return _paymentService.SavePaymentDetails(paymentId, xmlDetails, xmlBreakup);
+            return _paymentService.SavePaymentDetails(paymentId, xmlDetails, xmlBreakup, isdelete);
         }
         #endregion
 
@@ -1813,6 +1895,45 @@ namespace ChartDoc.Api.Controllers
         #endregion
 
         #endregion
+        #endregion
+
+        #region Report API
+
+        #region Get Party Ledger
+        /// <summary>
+        /// Get Party Ledger
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetPartyLedger/{fromDate}/{toDate}/{patientName}")]
+        public ActionResult<IEnumerable<clsPartyLedger>> GetPartyLedger(string fromDate = "", string toDate = "", string patientName = "")
+        {
+            fromDate = fromDate.Replace("{", "").Replace("}", "").Trim();
+            toDate = toDate.Replace("{", "").Replace("}", "").Trim();
+            patientName = patientName.Replace("{", "").Replace("}", "").Trim();
+
+            return _reportService.GetPartyLedger(fromDate, toDate, patientName);
+        }
+        #endregion
+
+        #region Get Patient Balance
+        /// <summary>
+        /// Get Patient Balance
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetPatientBalance/{patientName}")]
+        public ActionResult<IEnumerable<clsPatientBalance>> GetPatientBalance(string patientName = "")
+        {
+           
+            patientName = patientName.Replace("{", "").Replace("}", "").Trim();
+
+            return _reportService.GetPatientBalance(patientName);
+        }
+        #endregion
+
         #endregion
     }
 }

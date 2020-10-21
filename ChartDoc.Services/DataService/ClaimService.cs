@@ -40,10 +40,10 @@ namespace ChartDoc.Services.DataService
         /// <param name="providerId"></param>
         /// <param name="statusId"></param>
         /// <returns></returns>
-        public List<clsClaimHeader> GetAppointmentList(string fromDate, string toDate, int? providerId, string statusId)
+        public List<clsClaimHeader> GetAppointmentList(string fromDate, string toDate, string providerId, string statusId, string patientName, string feeTicket)
         {
             List<clsClaimHeader> claimHeaders = new List<clsClaimHeader>();
-            DataTable dtAppointments = BindAppointmentList(fromDate, toDate, providerId, statusId);
+            DataTable dtAppointments = BindAppointmentList(fromDate, toDate, providerId, statusId, patientName, feeTicket);
 
             foreach (DataRow item in dtAppointments.Rows)
             {
@@ -115,7 +115,11 @@ namespace ChartDoc.Services.DataService
                         claimHeader.fileAsId = Convert.ToInt32(item["FileAsID"]);
                         claimHeader.fileAsName = Convert.ToString(item["FileAsName"]);
                         claimHeader.reasonId = Convert.ToInt32(item["REASONID"]);
-
+                        claimHeader.policy1 = Convert.ToString(item["Policy_1"]);
+                        claimHeader.policy2 = Convert.ToString(item["Policy_2"]);
+                        claimHeader.policy3 = Convert.ToString(item["Policy_3"]);
+                        claimHeader.status = Convert.ToString(item["Remarks"]);
+                        claimHeader.typeEM= Convert.ToString(item["typeEM"]);
                         claimHeaders.Add(claimHeader);
                     }
                     catch(Exception ex)
@@ -173,7 +177,8 @@ namespace ChartDoc.Services.DataService
                         claimDetail.capitated = Convert.ToString(item["CAPITATED"]);
                         claimDetail.modifiedCode = Convert.ToString(item["MODIFIEDCC"]);
                         claimDetail.reasonId = Convert.ToInt32(item["REASONID"]);
-
+                        claimDetail.paymentReceived = Convert.ToInt32(item["PaymentReceived"]);
+                        claimDetail.insuranceBalance = Convert.ToInt32(item["InsuranceBalance"]);
                         claimDetails.Add(claimDetail);
                     }
                     catch (Exception ex)
@@ -219,15 +224,54 @@ namespace ChartDoc.Services.DataService
         }
         #endregion
 
-    
+        #region Save Claim
+        /// <summary>
+        /// ClaimService : Save Claim
+        /// </summary>
+        /// <param name="chargeId"></param>
+        /// <param name="xmlHeader"></param>
+        /// <param name="xmlDetails"></param>
+        /// <param name="xmlAdjustment"></param>
+        /// <param name="isDelete"></param>
+        /// <returns></returns>
+        public string SaveClaim(int chargeId, string xmlHeader, string xmlDetails, string xmlAdjustment, string isDelete)
+        {
+            string result = "0";
+            string sqlClaims = " EXEC USP_SaveClaim " + chargeId + " ,'" + xmlHeader + "','" + xmlDetails + "','" + xmlAdjustment + "','" + isDelete + "'";
+            try
+            {
+                result = (string)db.GetSingleValue(sqlClaims);
+            }
+            catch (SqlException sqlEx)
+            {
+                result = sqlEx.Message;
+                var logger = logService.GetLogger(typeof(ClaimService));
+                logger.Error(sqlEx);
+            }
+            catch (NullReferenceException nullEx)
+            {
+                result = nullEx.Message;
+                var logger = logService.GetLogger(typeof(ClaimService));
+                logger.Error(nullEx);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                var logger = logService.GetLogger(typeof(ClaimService));
+                logger.Error(ex);
+            }
+            return result;
+
+        }
+        #endregion
         #endregion
 
         #region Private Method
         #region Bind Completed Appointment List
-        private DataTable BindAppointmentList(string fromDate, string toDate, int? providerId, string statusId)
+        private DataTable BindAppointmentList(string fromDate, string toDate, string providerId, string statusId,string patientName,string feeTicket)
         {
             DataTable dtAppointment = new DataTable();
-            string sqlAppointment = "EXEC USP_GetListAppointmentDetails '" + fromDate + "','" + toDate + "'," + providerId + ",'" + statusId + "'";
+            string sqlAppointment = "EXEC USP_GetListAppointmentDetails '" + fromDate + "','" + toDate + "'," + providerId + ",'" + statusId + "','" + patientName + "','" + feeTicket + "'";
             try
             {
                 dtAppointment = db.GetData(sqlAppointment);

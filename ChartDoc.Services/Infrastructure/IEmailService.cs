@@ -8,6 +8,7 @@ namespace ChartDoc.Services.Infrastructure
     public interface IEmailService
     {
         void sendEmail(clsAppointment appointment);
+        void sendUserEmail(string fullName, string email);
 
     }
 }

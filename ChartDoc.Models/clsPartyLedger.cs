@@ -4,24 +4,20 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
+
 namespace ChartDoc.Models
 {
-    public class clsPaymentHeader : IDisposable
+   public class clsPartyLedger : IDisposable
     {
-        public string patientId { get; set; }
-        public string patientName { get; set; }
-        public string mobile { get; set; }
-        public string email { get; set; }
-        public string modeOfPayment { get; set; }
-        public decimal totalBillValue { get; set; }
-        public decimal alreadyPaid { get; set; }
-        public decimal totalOutstanding { get; set; }
-        public string address { get; set; }
+        public string date { get; set; }
+        public string particulars { get; set; }
+        public decimal? amount { get; set; }
+        public string txnType { get; set; }
         public bool disposed = false;
 
         SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
 
-        ~clsPaymentHeader()
+        ~clsPartyLedger()
         {
             Dispose(false);
         }

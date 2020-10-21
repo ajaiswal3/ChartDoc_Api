@@ -25,7 +25,7 @@ namespace ChartDoc.Services.DataService
         public void SendMessage(clsAppointment appointment)
         {
 
-            string sql = "USP_GETCONFIG";
+            string sql = "USP_GETCONFIG @ID=1";
             DataTable result = context.GetData(sql);
 
             foreach (DataRow row in result.Rows)

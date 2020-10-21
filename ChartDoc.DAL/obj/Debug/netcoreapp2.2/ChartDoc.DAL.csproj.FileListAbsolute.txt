@@ -22,16 +22,6 @@ D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
-D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfoInputs.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb

@@ -9,9 +9,12 @@ namespace ChartDoc.Models
     public class clsPaymentBreakup : IDisposable
     {
         public int id { get; set; }
-        public int payId { get; set; }
+        public string freeTicketNo { get; set; }
+        public string appointmentDate { get; set; }
         public int appointmentId { get; set; }
-        public decimal amount { get; set; }
+        public decimal amount { get; set; }//due amount
+        public decimal paidAmount { get; set; }
+        public int payId { get; set; }
 
         public bool disposed = false;
 

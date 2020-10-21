@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nPPnjjmQBtLjaHWMrhMas73zTgZ6eUx+3dVjlMF4XbiQYJDCGaEt/pTqkvbx9YMtxxXgsO6au1VNpYBRx6hzQA==",
+  "dgSpecHash": "lbnXdx472WYahpUKbinfMtJMzZSl+8FRFd5xTtdFK/VAtEFUE+n458JekngTX9Nxl+RTe3rL/0nOKem0EN+3nA==",
   "success": true,
-  "projectFilePath": "D:\\Sandip da\\BackUP_17092020\\WEBAPP\\chartdoc_api1\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
+  "projectFilePath": "D:\\Sandip da\\ChartDoc\\WEBAPP\\chartdoc_api1\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.extensions.configuration\\2.2.0\\microsoft.extensions.configuration.2.2.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.2.0\\microsoft.extensions.configuration.abstractions.2.2.0.nupkg.sha512",

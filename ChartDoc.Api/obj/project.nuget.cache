@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pgClbISTzcuWt89WoH2tH1PJ8yKd647KXkRh9gaJcvOU5WjF/PjhQlMLB5eLDdghrAPB2HWLDYujfyB0xU38ug==",
+  "dgSpecHash": "S+25UN/dGarT15D5T+uk8I1Ri+sVq3l3kaEP1GbCJ7e+qWGJT4HAPvJDrsnqDnG0MsoJfuWBXGm4j4Xzybw9Kg==",
   "success": true,
-  "projectFilePath": "D:\\Sandip da\\BackUP_17092020\\WEBAPP\\chartdoc_api1\\ChartDoc.Api\\ChartDoc.Api.csproj",
+  "projectFilePath": "D:\\Sandip da\\ChartDoc\\WEBAPP\\chartdoc_api1\\ChartDoc.Api\\ChartDoc.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\jose-jwt\\2.3.0\\jose-jwt.2.3.0.nupkg.sha512",
     "C:\\Users\\Akash jaiswal\\.nuget\\packages\\log4net\\2.0.8\\log4net.2.0.8.nupkg.sha512",

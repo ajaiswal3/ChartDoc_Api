@@ -10,18 +10,6 @@ D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csproj.CopyComplete
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.dll
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.pdb
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.deps.json
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.dll
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.pdb
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csprojAssemblyReference.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.AssemblyInfoInputs.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.AssemblyInfo.cs
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csproj.CoreCompileInputs.cache
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csproj.CopyComplete
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.dll
-D:\Sandip da\BackUP_17092020\WEBAPP\chartdoc_api1\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.pdb
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.deps.json
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.pdb

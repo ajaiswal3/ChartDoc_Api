@@ -44,6 +44,9 @@ namespace ChartDoc.Models
         public int claimstatusId { get; set; }
         public bool? denied { get; set; }
         public bool disposed = false;
+        public string policy1 { get; set; }
+        public string policy2 { get; set; }
+        public string policy3 { get; set; }
 
         SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
 

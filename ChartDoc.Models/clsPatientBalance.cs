@@ -6,22 +6,22 @@ using System.Text;
 
 namespace ChartDoc.Models
 {
-    public class clsPaymentHeader : IDisposable
+    public class clsPatientBalance : IDisposable
     {
-        public string patientId { get; set; }
+        public string patientID { get; set; }
         public string patientName { get; set; }
         public string mobile { get; set; }
         public string email { get; set; }
-        public string modeOfPayment { get; set; }
-        public decimal totalBillValue { get; set; }
-        public decimal alreadyPaid { get; set; }
-        public decimal totalOutstanding { get; set; }
         public string address { get; set; }
+        public decimal? totalBillValue { get; set; }
+        public decimal? alreadyPaid { get; set; }
+        public decimal? totalOutstanding { get; set; }
+       
         public bool disposed = false;
 
         SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
 
-        ~clsPaymentHeader()
+        ~clsPatientBalance()
         {
             Dispose(false);
         }
