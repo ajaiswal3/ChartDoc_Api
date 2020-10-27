@@ -22,6 +22,7 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance Variable******************************************************************************************************************************
         private readonly ILogService logService;
+        ISharedService _sharedService;
         DBUtils db = DBUtils.GetInstance;
         #endregion
 
@@ -32,10 +33,11 @@ namespace ChartDoc.Services.DataService
         /// <param name="context">ChartDocDBContext</param>
         /// <param name="configaration">IConfiguration</param>
         /// <param name="logService">ILogService</param>
-        public ObservationService(ChartDocDBContext context, IConfiguration configaration, ILogService logService)
+        public ObservationService(ChartDocDBContext context, IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             db._configaration = configaration;
             this.logService = logService;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -54,14 +56,14 @@ namespace ChartDoc.Services.DataService
             {
                 clsObservation objObservation = new clsObservation();
                 objObservation.pId = Convert.ToString(dtObservation.Rows[index]["Id"]);
-                objObservation.pBloodPressureL = Convert.ToString(dtObservation.Rows[index]["BloodPressure_L"]);
-                objObservation.pBloodPressureR = Convert.ToString(dtObservation.Rows[index]["BloodPressure_R"]);
-                objObservation.pTemperature = Convert.ToString(dtObservation.Rows[index]["Temperature"]);
-                objObservation.pHeightL = Convert.ToString(dtObservation.Rows[index]["Height_L"]);
-                objObservation.pHeightR = Convert.ToString(dtObservation.Rows[index]["Height_R"]);
-                objObservation.pWeight = Convert.ToString(dtObservation.Rows[index]["Weight"]);
-                objObservation.pPulse = Convert.ToString(dtObservation.Rows[index]["Pulse"]);
-                objObservation.pRespiratory = Convert.ToString(dtObservation.Rows[index]["Respiratory"]);
+                objObservation.pBloodPressureL =_sharedService.Decrypt( Convert.ToString(dtObservation.Rows[index]["BloodPressure_L"]));
+                objObservation.pBloodPressureR = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["BloodPressure_R"]));
+                objObservation.pTemperature = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Temperature"]));
+                objObservation.pHeightL = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Height_L"]));
+                objObservation.pHeightR = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Height_R"]));
+                objObservation.pWeight = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Weight"]));
+                objObservation.pPulse = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Pulse"]));
+                objObservation.pRespiratory = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Respiratory"]));
                 lstDetails.Add(objObservation);
             }
             return lstDetails;
@@ -263,15 +265,15 @@ namespace ChartDoc.Services.DataService
                 for (int index = 0; index <= dtObservation.Rows.Count - 1; index++)
                 {
                     clsObservation objObservation = new clsObservation();
-                    objObservation.BloodPressure = Convert.ToString(dtObservation.Rows[index]["Blood Presure"]);
-                    objObservation.Temperature = Convert.ToString(dtObservation.Rows[index]["Temperature"]);
-                    objObservation.Height = Convert.ToString(dtObservation.Rows[index]["Height"]);
-                    objObservation.Pulse = Convert.ToString(dtObservation.Rows[index]["Pulse"]);
-                    objObservation.Respiratory = Convert.ToString(dtObservation.Rows[index]["Respiratory"]);
+                    objObservation.BloodPressure = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["BloodPressure_L"]))+"/"+ _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["BloodPressure_R"]));
+                    objObservation.Temperature = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Temperature"]));
+                    objObservation.Height = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Height_L"]))+"'"+ _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Height_R"])) + "''";
+                    objObservation.Pulse = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Pulse"]));
+                    objObservation.Respiratory = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Respiratory"]));
                     objObservation.AppointmentDate = Convert.ToString(dtObservation.Rows[index]["Date"]);
                     objObservation.AppointmentFromTime = Convert.ToString(dtObservation.Rows[index]["FromTime"]);
                     objObservation.AppointmentToTime = Convert.ToString(dtObservation.Rows[index]["ToTime"]);
-                    objObservation.pWeight = Convert.ToString(dtObservation.Rows[index]["Weight"]);
+                    objObservation.pWeight = _sharedService.Decrypt(Convert.ToString(dtObservation.Rows[index]["Weight"]));
                     lstDetails.Add(objObservation);
                 }
             }

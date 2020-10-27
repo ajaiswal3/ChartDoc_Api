@@ -37,6 +37,10 @@ namespace ChartDoc.Models
         public string dob { get; set; }
         public string email { get; set; }
         public string imageUrl { get; set; }
+        public string fName { get; set; }
+        public string mName { get; set; }
+        public string lName { get; set; }
+
         #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance Variable******************************************************************************************************************************
         DBUtils db = DBUtils.GetInstance;
+        ISharedService _sharedService;
         #endregion
 
         #region PatientInformationService Constructor**********************************************************************************************************
@@ -24,9 +25,10 @@ namespace ChartDoc.Services.DataService
         /// PatientInformationService : Constructor
         /// </summary>
         /// <param name="configaration">IConfiguration</param>
-        public PatientInformationService(IConfiguration configaration)
+        public PatientInformationService(IConfiguration configaration,ISharedService sharedService)
         {
             db._configaration = configaration;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -169,27 +171,27 @@ namespace ChartDoc.Services.DataService
                 if (dsPatientInformation.Tables[0].Rows.Count > 0)
                 {
                     oPatientDetails.patientId = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["PatientId"]);
-                    oPatientDetails.firstName = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["First_Name"]);
-                    oPatientDetails.middleName = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Middle_Name"]);
-                    oPatientDetails.lastName = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Last_Name"]);
-                    oPatientDetails.addressLine = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_Line"]);
-                    oPatientDetails.addressLine1 = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_Line1"]);
-                    oPatientDetails.addressCity = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_City"]);
-                    oPatientDetails.addressState = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_State"]);
-                    oPatientDetails.addressPostalCode = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_PostalCode"]);
-                    oPatientDetails.addressCountry = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_Country"]);
+                    oPatientDetails.firstName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["First_Name"]));
+                    oPatientDetails.middleName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Middle_Name"]));
+                    oPatientDetails.lastName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Last_Name"]));
+                    oPatientDetails.addressLine = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_Line"]));
+                    oPatientDetails.addressLine1 = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_Line1"]));
+                    oPatientDetails.addressCity = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_City"]));
+                    oPatientDetails.addressState = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_State"]));
+                    oPatientDetails.addressPostalCode = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_PostalCode"]));
+                    oPatientDetails.addressCountry = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Add_Country"]));
                     oPatientDetails.dob = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["DOB"]);
                     oPatientDetails.age = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Age"]);
-                    oPatientDetails.gender = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Gender"]);
-                    oPatientDetails.email = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Email"]);
-                    oPatientDetails.mobNo = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Mob_No"]);
+                    oPatientDetails.gender = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Gender"]));
+                    oPatientDetails.email = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Email"]));
+                    oPatientDetails.mobNo = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Mob_No"]));
                     oPatientDetails.imageName = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Image_Name"]);
                     oPatientDetails.imagePath = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Image_Path"]);
                     oPatientDetails.flag = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Data_Flag"]);
                     oPatientDetails.recopiaId = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["RecopiaID"]);
                     oPatientDetails.recopiaName = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["RecopiaName"]);
-                    oPatientDetails.primaryPhone = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Primary_Phone"]);
-                    oPatientDetails.secondaryPhone = Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Secondary_Phone"]);
+                    oPatientDetails.primaryPhone = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Primary_Phone"]));
+                    oPatientDetails.secondaryPhone = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[0].Rows[0]["Secondary_Phone"]));
                     patientdtl.sPatientDetails = oPatientDetails;
                 }
                 //T_Patient_Billing
@@ -197,19 +199,19 @@ namespace ChartDoc.Services.DataService
                 {
                     oPatientBilling.patientId = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["PatientId"]);
                     oPatientBilling.billingParty = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Billing_Party"]);
-                    oPatientBilling.firstName = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["First_Name"]);
-                    oPatientBilling.middleName = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Middle_Name"]);
-                    oPatientBilling.lastName = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Last_Name"]);
+                    oPatientBilling.firstName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["First_Name"]));
+                    oPatientBilling.middleName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Middle_Name"]));
+                    oPatientBilling.lastName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Last_Name"]));
                     oPatientBilling.dob = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["DOB"]);
-                    oPatientBilling.addLine = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_Line"]);
-                    oPatientBilling.addLine1 = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_Line1"]);
-                    oPatientBilling.addCity = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_City"]);
-                    oPatientBilling.addState = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_State"]);
-                    oPatientBilling.addZip = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_Zip"]);
-                    oPatientBilling.SSN = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["SSN"]);
+                    oPatientBilling.addLine =_sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_Line"]));
+                    oPatientBilling.addLine1 = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_Line1"]));
+                    oPatientBilling.addCity = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_City"]));
+                    oPatientBilling.addState = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_State"]));
+                    oPatientBilling.addZip = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Add_Zip"]));
+                    oPatientBilling.SSN = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["SSN"]));
                     oPatientBilling.driversLicenseFilePath = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Drivers_License_FilePath"]);
-                    oPatientBilling.primaryPhone = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Primary_Phone"]);
-                    oPatientBilling.secondaryPhone = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Secondary_Phone"]);
+                    oPatientBilling.primaryPhone = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Primary_Phone"]));
+                    oPatientBilling.secondaryPhone = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["Secondary_Phone"]));
                     oPatientBilling.billingPartyOther = Convert.ToString(dsPatientInformation.Tables[1].Rows[0]["BillingPartyOther"]);
                     patientdtl.sPatientBilling = oPatientBilling;
                 }
@@ -217,8 +219,8 @@ namespace ChartDoc.Services.DataService
                 if (dsPatientInformation.Tables[2].Rows.Count > 0)
                 {
                     oPatientEmergencyContact.patientId = Convert.ToString(dsPatientInformation.Tables[2].Rows[0]["PatientId"]);
-                    oPatientEmergencyContact.contactName = Convert.ToString(dsPatientInformation.Tables[2].Rows[0]["ContactName"]);
-                    oPatientEmergencyContact.contactPhone = Convert.ToString(dsPatientInformation.Tables[2].Rows[0]["ContactPhone"]);
+                    oPatientEmergencyContact.contactName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[2].Rows[0]["ContactName"]));
+                    oPatientEmergencyContact.contactPhone = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[2].Rows[0]["ContactPhone"]));
                     oPatientEmergencyContact.relationship = Convert.ToString(dsPatientInformation.Tables[2].Rows[0]["Relationship"]);
                     patientdtl.sPatientEmergency = oPatientEmergencyContact;
                 }
@@ -226,9 +228,9 @@ namespace ChartDoc.Services.DataService
                 if (dsPatientInformation.Tables[3].Rows.Count > 0)
                 {
                     oPatientEmployerContact.patientId = Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["PatientId"]);
-                    oPatientEmployerContact.name = Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["Name"]);
-                    oPatientEmployerContact.phone = Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["Phone"]);
-                    oPatientEmployerContact.address = Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["Address"]);
+                    oPatientEmployerContact.name = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["Name"]));
+                    oPatientEmployerContact.phone = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["Phone"]));
+                    oPatientEmployerContact.address = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[3].Rows[0]["Address"]));
                     patientdtl.sPatientEmpContact = oPatientEmployerContact;
                 }
                 //T_Patient_Insurance
@@ -240,7 +242,7 @@ namespace ChartDoc.Services.DataService
                         oPatientInsurance.patientId = Convert.ToString(item["PatientId"]);
                         oPatientInsurance.providerName = Convert.ToString(item["Provider_Name"]);
                         oPatientInsurance.providerId = Convert.ToString(item["Provider_ID"]);
-                        oPatientInsurance.insurancePolicy = Convert.ToString(item["Insurance_Policy"]);
+                        oPatientInsurance.insurancePolicy = _sharedService.Decrypt(Convert.ToString(item["Insurance_Policy"]));
                         oPatientInsurance.policyType = Convert.ToString(item["Policy_Type"]);
                         oPatientInsurance.policyTypeId = Convert.ToString(item["Policy_Type_ID"]);
                         oPatientInsurance.cardImageFilePath = Convert.ToString(item["Card_Image_FilePath"]);
@@ -255,17 +257,17 @@ namespace ChartDoc.Services.DataService
                 if (dsPatientInformation.Tables[5].Rows.Count > 0)
                 {
                     oPatientSocial.patientId = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["PatientId"]);
-                    oPatientSocial.maritalStatus = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Marital_Status"]);
-                    oPatientSocial.guardianFName = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Guardian_FName"]);
-                    oPatientSocial.guardianLName = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Guardian_LName"]);
-                    oPatientSocial.addLine = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_Line"]);
-                    oPatientSocial.addCity = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_City"]);
-                    oPatientSocial.addState = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_State"]);
-                    oPatientSocial.addZip = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_Zip"]);
+                    oPatientSocial.maritalStatus = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Marital_Status"]));
+                    oPatientSocial.guardianFName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Guardian_FName"]));
+                    oPatientSocial.guardianLName = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Guardian_LName"]));
+                    oPatientSocial.addLine = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_Line"]));
+                    oPatientSocial.addCity = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_City"]));
+                    oPatientSocial.addState = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_State"]));
+                    oPatientSocial.addZip = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Add_Zip"]));
                     oPatientSocial.DOB = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["DOB"]);
-                    oPatientSocial.patientSSN = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Patient_SSN"]);
-                    oPatientSocial.phoneNumber = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Phone_Number"]);
-                    oPatientSocial.guardianSSN = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Guardian_SSN"]);
+                    oPatientSocial.patientSSN = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Patient_SSN"]));
+                    oPatientSocial.phoneNumber = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Phone_Number"]));
+                    oPatientSocial.guardianSSN = _sharedService.Decrypt(Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Guardian_SSN"]));
                     oPatientSocial.driversLicenseFilePath = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Drivers_License_FilePath"]);
                     oPatientSocial.race = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Race"]);
                     oPatientSocial.ethicity = Convert.ToString(dsPatientInformation.Tables[5].Rows[0]["Ethicity"]);

@@ -15,6 +15,7 @@ namespace ChartDoc.Services.DataService
         #region Instance variables
         private readonly ILogService logService;
         DBUtils db = DBUtils.GetInstance;
+        ISharedService _sharedService;
         #endregion
 
         #region Constructor
@@ -23,10 +24,11 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration"></param>
         /// <param name="logService"></param>
-        public ClaimService(IConfiguration configaration, ILogService logService)
+        public ClaimService(IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             db._configaration = configaration;
             this.logService = logService;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -57,7 +59,7 @@ namespace ChartDoc.Services.DataService
                         claimHeader.feeTicketNo = Convert.ToString(item["AppointmentNo"]);
                         claimHeader.patientBalance = Convert.ToDecimal(item["PatientBalance"]);
                         claimHeader.patientId = Convert.ToString(item["PatientId"]);
-                        claimHeader.patientName = Convert.ToString(item["PatientName"]);
+                        claimHeader.patientName =_sharedService.Decrypt( Convert.ToString(item["PatientName"]));
                         claimHeader.status = Convert.ToString(item["Status"]);
                         claimHeader.statusId = Convert.ToInt32(item["StatusID"]);
 
@@ -95,7 +97,7 @@ namespace ChartDoc.Services.DataService
                         claimHeader.appointmentId = Convert.ToInt32(item["AppointmentID"]);
                         claimHeader.modeOfTransaction = Convert.ToInt32(item["ModeofTransaction"]);
                         claimHeader.patientId = Convert.ToString(item["PatientID"]);
-                        claimHeader.patientName = Convert.ToString(item["PatientName"]);
+                        claimHeader.patientName =_sharedService.Decrypt( Convert.ToString(item["PatientName"]));
                         claimHeader.doctorId = Convert.ToString(item["DoctorID"]);
                         claimHeader.doctorName = Convert.ToString(item["DoctorName"]);
                         claimHeader.insuranceId1 = Convert.ToInt32(item["InsuranceID_1"]);
@@ -115,9 +117,12 @@ namespace ChartDoc.Services.DataService
                         claimHeader.fileAsId = Convert.ToInt32(item["FileAsID"]);
                         claimHeader.fileAsName = Convert.ToString(item["FileAsName"]);
                         claimHeader.reasonId = Convert.ToInt32(item["REASONID"]);
-                        claimHeader.policy1 = Convert.ToString(item["Policy_1"]);
-                        claimHeader.policy2 = Convert.ToString(item["Policy_2"]);
-                        claimHeader.policy3 = Convert.ToString(item["Policy_3"]);
+                        if (Convert.ToString(item["Policy_1"]) != "-1")
+                            claimHeader.policy1 =_sharedService.Decrypt( Convert.ToString(item["Policy_1"]));
+                        if(Convert.ToString(item["Policy_2"])!="-1")
+                               claimHeader.policy2 = _sharedService.Decrypt(Convert.ToString(item["Policy_2"]));
+                        if (Convert.ToString(item["Policy_3"]) != "-1")
+                            claimHeader.policy3 = _sharedService.Decrypt(Convert.ToString(item["Policy_3"]));
                         claimHeader.status = Convert.ToString(item["Remarks"]);
                         claimHeader.typeEM= Convert.ToString(item["typeEM"]);
                         claimHeaders.Add(claimHeader);

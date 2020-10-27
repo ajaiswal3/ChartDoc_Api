@@ -18,6 +18,7 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance Variable******************************************************************************************************************************
         DBUtils db = DBUtils.GetInstance;
+        ISharedService _sharedService;
         #endregion
 
         #region InsuranceService Constructor*******************************************************************************************************************
@@ -25,9 +26,10 @@ namespace ChartDoc.Services.DataService
         /// InsuranceService : Constructor
         /// </summary>
         /// <param name="configuration">IConfiguration</param>
-        public InsuranceService(IConfiguration configuration)
+        public InsuranceService(IConfiguration configuration, ISharedService sharedService)
         {
             db._configaration = configuration;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -44,7 +46,10 @@ namespace ChartDoc.Services.DataService
             for (int index = 0; index <= dtInsurance.Rows.Count - 1; index++)
             {
                 string Details;
-                Details = Convert.ToString(dtInsurance.Rows[index]["Desc"]);
+                Details = Convert.ToString(dtInsurance.Rows[index]["ProviderName"]) + " ("
+                            + _sharedService.Decrypt(Convert.ToString(dtInsurance.Rows[index]["Insurance_Policy"])) + ") - " + Convert.ToString(dtInsurance.Rows[index]["Effective_From"])
+                            + " - " + Convert.ToString(dtInsurance.Rows[index]["PolicyStatus"]) + "/ " + Convert.ToString(dtInsurance.Rows[index]["PolicyMode"]);
+               // Details =_sharedService.Decrypt( Convert.ToString(dtInsurance.Rows[index]["Desc"]));
                 lstDetails.Add(Details);
             }
             return lstDetails;

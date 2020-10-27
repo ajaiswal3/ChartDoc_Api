@@ -20,6 +20,7 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance Variable******************************************************************************************************************************
         private readonly ILogService logService;
+        ISharedService _sharedService;
         DBUtils context = DBUtils.GetInstance;
         #endregion
 
@@ -29,9 +30,10 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration">IConfiguration</param>
         /// <param name="logService">ILogService</param>
-        public EncounterService(IConfiguration configaration, ILogService logService)
+        public EncounterService(IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             context._configaration = configaration;
+            this._sharedService = sharedService;
             this.logService = logService;
         }
         #endregion
@@ -52,9 +54,9 @@ namespace ChartDoc.Services.DataService
                 objEncounter = new clsEncounter();
                 objEncounter.id = Convert.ToString(dtEncounters.Rows[index]["id"]);
                 objEncounter.name = Convert.ToString(dtEncounters.Rows[index]["DoctorName"]);
-                objEncounter.encounterNote = Convert.ToString(dtEncounters.Rows[index]["EncounterNote"]);
+                objEncounter.encounterNote = _sharedService.Decrypt(Convert.ToString(dtEncounters.Rows[index]["EncounterNote"]));
                 objEncounter.doctorId = Convert.ToString(dtEncounters.Rows[index]["DoctorID"]);
-                objEncounter.summary = Convert.ToString(dtEncounters.Rows[index]["Summary"]);
+                objEncounter.summary = _sharedService.Decrypt(Convert.ToString(dtEncounters.Rows[index]["Summary"]));
                 objEncounter.encounterDate = Convert.ToString(dtEncounters.Rows[index]["EncounterDate"]);
                 lstDetails.Add(objEncounter);
             }

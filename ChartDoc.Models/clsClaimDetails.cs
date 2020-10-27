@@ -16,13 +16,13 @@ namespace ChartDoc.Models
         public int icd1 { get; set; }
         public string icdCode1 { get; set; }
         public string icdDesc1 { get; set; }
-        public int icd2 { get; set; }
+        public int ? icd2 { get; set; }
         public string icdCode2 { get; set; }
         public string icdDesc2 { get; set; }
-        public int icd3 { get; set; }
+        public int ? icd3 { get; set; }
         public string icdCode3 { get; set; }
         public string icdDesc3 { get; set; }
-        public int icd4 { get; set; }
+        public int ? icd4 { get; set; }
         public string icdCode4 { get; set; }
         public string icdDesc4 { get; set; }
         public decimal chargeAmount { get; set; }

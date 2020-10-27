@@ -15,6 +15,7 @@ namespace ChartDoc.Services.DataService
         #region Instance Variable******************************************************************************************************************************
         private readonly ILogService logService;
         DBUtils dB = DBUtils.GetInstance;
+        ISharedService _sharedService;
         #endregion
 
         #region PatientDetailsService Constructor**************************************************************************************************************
@@ -23,10 +24,11 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration">IConfiguration</param>
         /// <param name="logService">ILogService</param>
-        public PatientDetailsService(IConfiguration configaration, ILogService logService)
+        public PatientDetailsService(IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             dB._configaration = configaration;
             this.logService = logService;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -45,11 +47,15 @@ namespace ChartDoc.Services.DataService
             List<clsPatientDetails> lstPatientDetails = new List<clsPatientDetails>();
             try
             {
-                firstName = firstName.Replace("{", "").Replace("}", "").Trim();
-                lastName = lastName.Replace("{", "").Replace("}", "").Trim();
+                if(!string.IsNullOrEmpty(firstName))
+                    firstName = _sharedService.Encrypt(firstName.Replace("{", "").Replace("}", "").Trim());
+                if (!string.IsNullOrEmpty(lastName))
+                    lastName = _sharedService.Encrypt(lastName.Replace("{", "").Replace("}", "").Trim());
                 dob = dob.Replace("{", "").Replace("}", "").Trim();
-                mobile = mobile.Replace("{", "").Replace("}", "").Trim();
-                email = email.Replace("{", "").Replace("}", "").Trim();
+                if (!string.IsNullOrEmpty(mobile))
+                    mobile = _sharedService.Encrypt(mobile.Replace("{", "").Replace("}", "").Trim());
+                if (!string.IsNullOrEmpty(email))
+                    email = _sharedService.Encrypt(email.Replace("{", "").Replace("}", "").Trim());
                 isactivated = isactivated.Replace("{", "").Replace("}", "").Trim();
                 DataTable dtPatientDetails = GetPatient(firstName, lastName, dob, mobile, email, gender, isactivated);
 
@@ -57,27 +63,27 @@ namespace ChartDoc.Services.DataService
                 {
                     clsPatientDetails patient = new clsPatientDetails();
                     patient.patientId = Convert.ToString(rowPatientDetails["PatientId"]);
-                    patient.firstName = Convert.ToString(rowPatientDetails["First_Name"]);
-                    patient.middleName = Convert.ToString(rowPatientDetails["Middle_Name"]);
-                    patient.lastName = Convert.ToString(rowPatientDetails["Last_Name"]);
-                    patient.addressLine = Convert.ToString(rowPatientDetails["Add_Line"]);
-                    patient.addressLine1 = Convert.ToString(rowPatientDetails["Add_Line1"]);
-                    patient.addressCity = Convert.ToString(rowPatientDetails["Add_City"]).Trim();
-                    patient.addressState = Convert.ToString(rowPatientDetails["Add_State"]);
-                    patient.addressPostalCode = Convert.ToString(rowPatientDetails["Add_PostalCode"]);
-                    patient.addressCountry = Convert.ToString(rowPatientDetails["Add_Country"]);
+                    patient.firstName = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["First_Name"]));
+                    patient.middleName = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Middle_Name"]));
+                    patient.lastName = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Last_Name"]));
+                    patient.addressLine = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Add_Line"]));
+                    patient.addressLine1 = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Add_Line1"]));
+                    patient.addressCity = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Add_City"])).Trim();
+                    patient.addressState = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Add_State"]));
+                    patient.addressPostalCode = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Add_PostalCode"]));
+                    patient.addressCountry = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Add_Country"]));
                     patient.dob = DateTime.Parse(Convert.ToString(rowPatientDetails["DOB"])).ToString("MM-dd-yyyy");
-                    patient.gender = Convert.ToString(rowPatientDetails["Gender"]);
-                    patient.email = Convert.ToString(rowPatientDetails["Email"]);
-                    patient.mobNo = Convert.ToString(rowPatientDetails["Mob_No"]);
+                    patient.gender = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Gender"]));
+                    patient.email = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Email"]));
+                    patient.mobNo = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Mob_No"]));
                     patient.imageName = Convert.ToString(rowPatientDetails["Image_Name"]);
                     patient.imagePath = Convert.ToString(rowPatientDetails["Image_Path"]);
                     patient.flag = Convert.ToString(rowPatientDetails["Data_Flag"]);
                     patient.age = Convert.ToString(rowPatientDetails["Age"]);
                     patient.recopiaId = Convert.ToString(rowPatientDetails["RecopiaID"]);
                     patient.recopiaName = Convert.ToString(rowPatientDetails["RecopiaName"]);
-                    patient.primaryPhone = Convert.ToString(rowPatientDetails["Primary_Phone"]);
-                    patient.secondaryPhone = Convert.ToString(rowPatientDetails["Secondary_Phone"]);
+                    patient.primaryPhone = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Primary_Phone"]));
+                    patient.secondaryPhone = _sharedService.Decrypt(Convert.ToString(rowPatientDetails["Secondary_Phone"]));
                     patient.providerName = Convert.ToString(rowPatientDetails["Provider_Name"]);
                     patient.policyNo = Convert.ToString(rowPatientDetails["Insurance_Policy"]);
                     if (!String.IsNullOrEmpty(rowPatientDetails["Effective_From"].ToString()))
@@ -212,27 +218,27 @@ namespace ChartDoc.Services.DataService
                 foreach (DataRow rowPatient in dtPatient.Rows)
                 {
                     patient.patientId = Convert.ToString(rowPatient["PatientId"]);
-                    patient.firstName = Convert.ToString(rowPatient["First_Name"]);
-                    patient.middleName = Convert.ToString(rowPatient["Middle_Name"]);
-                    patient.lastName = Convert.ToString(rowPatient["Last_Name"]);
-                    patient.addressLine = Convert.ToString(rowPatient["Add_Line"]);
-                    patient.addressLine1 = Convert.ToString(rowPatient["Add_Line1"]);
-                    patient.addressCity = Convert.ToString(rowPatient["Add_City"]);
-                    patient.addressState = Convert.ToString(rowPatient["Add_State"]);
-                    patient.addressPostalCode = Convert.ToString(rowPatient["Add_PostalCode"]);
-                    patient.addressCountry = Convert.ToString(rowPatient["Add_Country"]);
+                    patient.firstName = _sharedService.Decrypt(Convert.ToString(rowPatient["First_Name"]));
+                    patient.middleName = _sharedService.Decrypt(Convert.ToString(rowPatient["Middle_Name"]));
+                    patient.lastName = _sharedService.Decrypt(Convert.ToString(rowPatient["Last_Name"]));
+                    patient.addressLine = _sharedService.Decrypt(Convert.ToString(rowPatient["Add_Line"]));
+                    patient.addressLine1 = _sharedService.Decrypt(Convert.ToString(rowPatient["Add_Line1"]));
+                    patient.addressCity = _sharedService.Decrypt(Convert.ToString(rowPatient["Add_City"])).Trim();
+                    patient.addressState = _sharedService.Decrypt(Convert.ToString(rowPatient["Add_State"]));
+                    patient.addressPostalCode = _sharedService.Decrypt(Convert.ToString(rowPatient["Add_PostalCode"]));
+                    patient.addressCountry = _sharedService.Decrypt(Convert.ToString(rowPatient["Add_Country"]));
                     patient.dob = DateTime.Parse(Convert.ToString(rowPatient["DOB"])).ToString("MM-dd-yyyy");
-                    patient.gender = Convert.ToString(rowPatient["Gender"]);
-                    patient.email = Convert.ToString(rowPatient["Email"]);
-                    patient.mobNo = Convert.ToString(rowPatient["Mob_No"]);
+                    patient.gender = _sharedService.Decrypt(Convert.ToString(rowPatient["Gender"]));
+                    patient.email = _sharedService.Decrypt(Convert.ToString(rowPatient["Email"]));
+                    patient.mobNo = _sharedService.Decrypt(Convert.ToString(rowPatient["Mob_No"]));
                     patient.imageName = Convert.ToString(rowPatient["Image_Name"]);
                     patient.imagePath = Convert.ToString(rowPatient["Image_Path"]);
                     patient.flag = Convert.ToString(rowPatient["Data_Flag"]);
                     patient.age = Convert.ToString(rowPatient["Age"]);
                     patient.recopiaId = Convert.ToString(rowPatient["RecopiaID"]);
                     patient.recopiaName = Convert.ToString(rowPatient["RecopiaName"]);
-                    patient.primaryPhone = Convert.ToString(rowPatient["Primary_Phone"]);
-                    patient.secondaryPhone = Convert.ToString(rowPatient["Secondary_Phone"]);
+                    patient.primaryPhone = _sharedService.Decrypt(Convert.ToString(rowPatient["Primary_Phone"]));
+                    patient.secondaryPhone = _sharedService.Decrypt(Convert.ToString(rowPatient["Secondary_Phone"]));
                     patient.providerName = Convert.ToString(rowPatient["Provider_Name"]);
                     patient.policyNo = Convert.ToString(rowPatient["Insurance_Policy"]);
                     if (!String.IsNullOrEmpty(rowPatient["Effective_From"].ToString()))

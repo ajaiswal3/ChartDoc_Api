@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using ChartDoc.Models;
 using System.Xml;
-
+using System.Security.Cryptography;
 namespace ChartDoc.Services.DataService
 {
     /// <summary>
@@ -234,5 +234,110 @@ namespace ChartDoc.Services.DataService
         }
         #endregion
 
+        private  string DecryptKEY(string encryptString)
+        {
+           
+            string decryptData = string.Empty;
+            UTF8Encoding encodeData = new UTF8Encoding();
+
+            if (!string.IsNullOrEmpty(encryptString))
+            {
+                try
+                {
+                    Decoder Decode = encodeData.GetDecoder();
+                    byte[] toDecodeByte = Convert.FromBase64String(encryptString);
+                    int charCount = Decode.GetCharCount(toDecodeByte, 0, toDecodeByte.Length);
+                    char[] decodedChar = new char[charCount];
+                    Decode.GetChars(toDecodeByte, 0, toDecodeByte.Length, decodedChar, 0);
+                    decryptData = new String(decodedChar);
+                    return decryptData;
+                }
+                catch (Exception ex)
+                {
+                    
+                    throw;
+                }
+            }
+            else return "";
+        }
+        // To encrypt - we are using this method
+        public  string Encrypt(string encryptString)
+        {
+            if (!string.IsNullOrEmpty(encryptString))
+            {
+                string EncryptionKey = DecryptKEY("OTkwMzA3NjMyNQ==");
+
+                byte[] clearBytes = Encoding.Unicode.GetBytes(encryptString);
+                using (Aes encryptor = Aes.Create())
+                {
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] {
+            0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
+            });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(clearBytes, 0, clearBytes.Length);
+                            cs.Close();
+                        }
+                        encryptString = Convert.ToBase64String(ms.ToArray());
+                    }
+                }
+
+            }
+            return encryptString;
+        }
+        public  string Decrypt(string cipherText)
+        {
+            if (!string.IsNullOrEmpty(cipherText))
+            {
+                string EncryptionKey = DecryptKEY("OTkwMzA3NjMyNQ==");
+
+                cipherText = cipherText.Replace(" ", "+");
+                byte[] cipherBytes = Convert.FromBase64String(cipherText);
+                using (Aes encryptor = Aes.Create())
+                {
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] {
+            0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
+            });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(cipherBytes, 0, cipherBytes.Length);
+                            cs.Close();
+                        }
+                        cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                    }
+                }
+            }
+            return cipherText;
+        }
+        public  string EncryptKEY(string data)
+        {
+            
+
+            if (!string.IsNullOrEmpty(data))
+            {
+                string encryptedData = string.Empty;
+                try
+                {
+                    byte[] encode = new byte[data.Length];
+                    encode = Encoding.UTF8.GetBytes(data);
+                    encryptedData = Convert.ToBase64String(encode);
+                    return encryptedData;
+                }
+                catch (Exception ex)
+                {
+                    
+                    throw;
+                }
+            }
+            else return "";
+        }
     }
 }

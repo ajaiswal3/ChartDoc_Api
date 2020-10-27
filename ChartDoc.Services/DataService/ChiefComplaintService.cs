@@ -18,6 +18,7 @@ namespace ChartDoc.Services.DataService
     {
         #region Instance variables*****************************************************************************************************************************
         private readonly ILogService logService;
+        ISharedService _sharedService;
         DBUtils db = DBUtils.GetInstance;
         #endregion
 
@@ -27,9 +28,10 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration">IConfiguration</param>
         /// <param name="logService">ILogService</param>
-        public ChiefComplaintService(IConfiguration configaration, ILogService logService)
+        public ChiefComplaintService(IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             db._configaration = configaration;
+            this._sharedService = sharedService;
             this.logService = logService;
         }
         #endregion
@@ -49,7 +51,7 @@ namespace ChartDoc.Services.DataService
                 using (clsCC details = new clsCC())
                 {
                     details.pId = Convert.ToString(dtChiefComplaint.Rows[index]["Id"]);
-                    details.pccDescription = Convert.ToString(dtChiefComplaint.Rows[index]["Description"]);
+                    details.pccDescription = _sharedService.Decrypt(Convert.ToString(dtChiefComplaint.Rows[index]["Description"]));
                     cCDetailsList.Add(details);
                 }
             }

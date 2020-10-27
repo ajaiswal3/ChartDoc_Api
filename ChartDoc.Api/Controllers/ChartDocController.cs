@@ -267,8 +267,8 @@ namespace ChartDoc.Api.Controllers
         [Route("SearchPatient/{firstName}/{lastName}/{DOB}/{Mobile}/{Email}/{Gender}/{Isactivated}")]
         public ActionResult<IEnumerable<clsPatientDetails>> SearchPatient(string firstName = "", string lastName = "", string dob = null, string mobile = "", string email = "", string gender ="",string isactivated="")
         {
-            firstName = firstName.Replace("{", "").Replace("}", "").Trim();
-            lastName = lastName.Replace("{", "").Replace("}", "").Trim();
+            firstName = firstName.Replace("{", "").Replace("}", "").Trim().ToUpper();
+            lastName = lastName.Replace("{", "").Replace("}", "").Trim().ToUpper();
             dob = dob.Replace("{", "").Replace("}", "").Trim();
             mobile = mobile.Replace("{", "").Replace("}", "").Trim();
             email = email.Replace("{", "").Replace("}", "").Trim();
@@ -1145,6 +1145,14 @@ namespace ChartDoc.Api.Controllers
         public async Task<string> SaveAppointmentNew(IFormCollection data)
         {
             clsAppointment appointment = JsonConvert.DeserializeObject<clsAppointment>(data["appointmentDetails"]);
+            appointment.fName = _sharedService.Encrypt(appointment.fName.ToUpper());
+            appointment.lName = _sharedService.Encrypt(appointment.lName.ToUpper());
+            appointment.mName = _sharedService.Encrypt(appointment.mName.ToUpper());
+            appointment.patientName = _sharedService.Encrypt(appointment.patientName.ToUpper());
+            appointment.contactNo = _sharedService.Encrypt(appointment.contactNo);
+            appointment.address = _sharedService.Encrypt(appointment.address);
+            appointment.gender = _sharedService.Encrypt(appointment.gender);
+            appointment.email = _sharedService.Encrypt(appointment.email);
             appointment = await _fileControlService.SaveAppointmentImage(appointment, data.Files);
             return _appointmentService.SaveActiveAppointment(appointment);
         }
@@ -1160,6 +1168,7 @@ namespace ChartDoc.Api.Controllers
         [Route("SaveChiefComplaint")]
         public ActionResult<string> SaveChiefComplaint([FromBody] clsCC cc)
         {
+            cc.pccDescription = _sharedService.Encrypt(cc.pccDescription);
             return _chiefComplaintService.SaveChiefComplaint(cc);
         }
         #endregion
@@ -1174,6 +1183,7 @@ namespace ChartDoc.Api.Controllers
         [Route("SaveImpressionPlan")]
         public ActionResult<string> SaveImpressionPlan([FromBody] clsImpression impression)
         {
+            impression.description = _sharedService.Encrypt(impression.description);
             return _impressionPlanService.SaveImpressionPlan(impression);
         }
         #endregion
@@ -1246,6 +1256,14 @@ namespace ChartDoc.Api.Controllers
         [Route("SaveObservation")]
         public string SaveObservation([FromBody] clsObservation objObservation)
         {
+            objObservation.pBloodPressureL = _sharedService.Encrypt(objObservation.pBloodPressureL);
+            objObservation.pBloodPressureR = _sharedService.Encrypt(objObservation.pBloodPressureR);
+            objObservation.pTemperature = _sharedService.Encrypt(objObservation.pTemperature);
+            objObservation.pHeightL = _sharedService.Encrypt(objObservation.pHeightL);
+            objObservation.pHeightR = _sharedService.Encrypt(objObservation.pHeightR);
+            objObservation.pWeight = _sharedService.Encrypt(objObservation.pWeight);
+            objObservation.pPulse = _sharedService.Encrypt(objObservation.pPulse);
+            objObservation.pRespiratory = _sharedService.Encrypt(objObservation.pRespiratory);
             return _observationService.SaveObservation(objObservation);
         }
         #endregion
@@ -1341,6 +1359,72 @@ namespace ChartDoc.Api.Controllers
         {
 
             clsCreateUpdatePatient objPatient = JsonConvert.DeserializeObject<clsCreateUpdatePatient>(Request.Form["createUpdatePatient"]);
+            #region Patient Details 
+            objPatient.sPatientDetails.firstName = _sharedService.Encrypt(objPatient.sPatientDetails.firstName.ToUpper());
+            objPatient.sPatientDetails.middleName = _sharedService.Encrypt(objPatient.sPatientDetails.middleName.ToUpper());
+            objPatient.sPatientDetails.lastName = _sharedService.Encrypt(objPatient.sPatientDetails.lastName.ToUpper());
+            objPatient.sPatientDetails.addressLine = _sharedService.Encrypt(objPatient.sPatientDetails.addressLine);
+            objPatient.sPatientDetails.addressLine1 = _sharedService.Encrypt(objPatient.sPatientDetails.addressLine1);
+            objPatient.sPatientDetails.addressCity = _sharedService.Encrypt(objPatient.sPatientDetails.addressCity);
+            objPatient.sPatientDetails.addressState = _sharedService.Encrypt(objPatient.sPatientDetails.addressState);
+            objPatient.sPatientDetails.addressPostalCode = _sharedService.Encrypt(objPatient.sPatientDetails.addressPostalCode);
+            objPatient.sPatientDetails.addressCountry = _sharedService.Encrypt(objPatient.sPatientDetails.addressCountry);
+            objPatient.sPatientDetails.age = objPatient.sPatientDetails.age;
+            objPatient.sPatientDetails.gender = _sharedService.Encrypt(objPatient.sPatientDetails.gender);
+            objPatient.sPatientDetails.email = _sharedService.Encrypt(objPatient.sPatientDetails.email);
+            objPatient.sPatientDetails.mobNo = _sharedService.Encrypt(objPatient.sPatientDetails.mobNo);
+            objPatient.sPatientDetails.primaryPhone = _sharedService.Encrypt(objPatient.sPatientDetails.primaryPhone);
+            objPatient.sPatientDetails.secondaryPhone = _sharedService.Encrypt(objPatient.sPatientDetails.secondaryPhone);
+            #endregion
+
+            #region Billing Details
+            objPatient.sPatientBilling.firstName=_sharedService.Encrypt(objPatient.sPatientBilling.firstName.ToUpper());
+            objPatient.sPatientBilling.middleName = _sharedService.Encrypt(objPatient.sPatientBilling.middleName.ToUpper());
+            objPatient.sPatientBilling.lastName = _sharedService.Encrypt(objPatient.sPatientBilling.lastName.ToUpper());
+            objPatient.sPatientBilling.addLine = _sharedService.Encrypt(objPatient.sPatientBilling.addLine);
+            objPatient.sPatientBilling.addLine1 = _sharedService.Encrypt(objPatient.sPatientBilling.addLine1);
+            objPatient.sPatientBilling.addCity = _sharedService.Encrypt(objPatient.sPatientBilling.addCity);
+            objPatient.sPatientBilling.addState = _sharedService.Encrypt(objPatient.sPatientBilling.addState);
+            objPatient.sPatientBilling.addZip = _sharedService.Encrypt(objPatient.sPatientBilling.addZip);
+            objPatient.sPatientBilling.SSN = _sharedService.Encrypt(objPatient.sPatientBilling.SSN);
+            objPatient.sPatientBilling.primaryPhone = _sharedService.Encrypt(objPatient.sPatientBilling.primaryPhone);
+            objPatient.sPatientBilling.secondaryPhone = _sharedService.Encrypt(objPatient.sPatientBilling.secondaryPhone);
+            #endregion
+
+            #region Emergency Details
+            objPatient.sPatientEmergency.contactName = _sharedService.Encrypt(objPatient.sPatientEmergency.contactName);
+            objPatient.sPatientEmergency.contactPhone = _sharedService.Encrypt(objPatient.sPatientEmergency.contactPhone);
+            //objPatient.sPatientEmergency.relationship = _sharedService.Encrypt(objPatient.sPatientEmergency.relationship);
+            #endregion
+
+            #region Employer Contact
+            objPatient.sPatientEmpContact.name = _sharedService.Encrypt(objPatient.sPatientEmpContact.name);
+            objPatient.sPatientEmpContact.phone = _sharedService.Encrypt(objPatient.sPatientEmpContact.phone);
+            objPatient.sPatientEmpContact.address = _sharedService.Encrypt(objPatient.sPatientEmpContact.address);
+            #endregion
+
+            #region Insurance
+            foreach (clsPatientInsurance item in objPatient.sPatientInsurance)
+            {
+                item.insurancePolicy= _sharedService.Encrypt(item.insurancePolicy);
+                
+
+            }
+            #endregion
+
+            #region Social
+            objPatient.sPatientSocial.maritalStatus = _sharedService.Encrypt(objPatient.sPatientSocial.maritalStatus);
+            objPatient.sPatientSocial.guardianFName = _sharedService.Encrypt(objPatient.sPatientSocial.guardianFName);
+            objPatient.sPatientSocial.guardianLName = _sharedService.Encrypt(objPatient.sPatientSocial.guardianLName);
+            objPatient.sPatientSocial.addLine = _sharedService.Encrypt(objPatient.sPatientSocial.addLine);
+            objPatient.sPatientSocial.addCity = _sharedService.Encrypt(objPatient.sPatientSocial.addCity);
+            objPatient.sPatientSocial.addState = _sharedService.Encrypt(objPatient.sPatientSocial.addState);
+            objPatient.sPatientSocial.addZip     = _sharedService.Encrypt(objPatient.sPatientSocial.addZip);
+            objPatient.sPatientSocial.guardianSSN = _sharedService.Encrypt(objPatient.sPatientSocial.guardianSSN);
+            objPatient.sPatientSocial.patientSSN = _sharedService.Encrypt(objPatient.sPatientSocial.patientSSN);
+            objPatient.sPatientSocial.phoneNumber = _sharedService.Encrypt(objPatient.sPatientSocial.phoneNumber);
+            #endregion
+
             objPatient.sPatientDetails = await _fileControlService.SavePatientProfileImage(objPatient.sPatientDetails, Request.Form.Files["profile"]);
             objPatient.sPatientSocial = await _fileControlService.SaveSocialImage(objPatient.sPatientSocial, Request.Form.Files["social"]);
             objPatient.sPatientBilling = await  _fileControlService.SaveBillingImage(objPatient.sPatientBilling, Request.Form.Files["billing"]);
@@ -1479,6 +1563,8 @@ namespace ChartDoc.Api.Controllers
         [Route("SaveEncounter")]
         public string SaveEncounter([FromBody] clsEncounter encounter)
         {
+            encounter.encounterNote = _sharedService.Encrypt(encounter.encounterNote);
+            encounter.summary = _sharedService.Encrypt(encounter.summary);
             return _encounterService.SaveEncounter(encounter);
         }
         #endregion
@@ -1766,7 +1852,18 @@ namespace ChartDoc.Api.Controllers
             int chargeId = JsonConvert.DeserializeObject<int>(data["chargeId"]);
 
             clsClaimHeader claimHeader = JsonConvert.DeserializeObject<clsClaimHeader>(data["claimHeader"]);
-
+            if (claimHeader.policy1 !="" || claimHeader.policy1 != "-1")
+            {
+                claimHeader.policy1 = _sharedService.Encrypt(claimHeader.policy1);
+            }
+            if (claimHeader.policy2 != "" || claimHeader.policy2 != "-1")
+            {
+                claimHeader.policy2 = _sharedService.Encrypt(claimHeader.policy2);
+            }
+            if (claimHeader.policy3 != "" || claimHeader.policy3 != "-1")
+            {
+                claimHeader.policy3 = _sharedService.Encrypt(claimHeader.policy3);
+            }
             claimHeader.statusId =Convert.ToBoolean(claimHeader.denied) ? 1 : 0;
 
             clsClaimDetails claimDetails = JsonConvert.DeserializeObject<clsClaimDetails>(data["claimDetails"]);
@@ -1934,6 +2031,53 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        #endregion
+
+        #region EncryptKEY
+        /// <summary>
+        /// SaveICD: Save ICD.
+        /// </summary>
+        /// <param name="icd">clsICD[]</param>
+        /// <returns>string</returns>
+        [HttpGet]
+        [Route("EncryptKEY/{key}")]
+        public string EncryptKEY(string key)
+        {
+            
+
+            return _sharedService.EncryptKEY(key);
+        }
+        #endregion
+
+        #region Data Encrypt
+        /// <summary>
+        /// SaveICD: Save ICD.
+        /// </summary>
+        /// <param name="icd">clsICD[]</param>
+        /// <returns>string</returns>
+        [HttpGet]
+        [Route("DataEncrypt/{value}")]
+        public string DataEncrypt(string value)
+        {
+
+
+            return _sharedService.Encrypt(value);
+        }
+        #endregion
+        #region Data Decrypt
+        /// <summary>
+        /// SaveICD: Save ICD.
+        /// </summary>
+        /// <param name="icd">clsICD[]</param>
+        /// <returns>string</returns>
+        [HttpGet]
+        [Route("DataDecrypt/{value}")]
+        public string DataDecrypt(string value)
+        {
+
+
+            return _sharedService.Decrypt(value);
+        }
         #endregion
     }
 }

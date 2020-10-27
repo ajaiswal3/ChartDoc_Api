@@ -16,5 +16,8 @@ namespace ChartDoc.Services.Infrastructure
         DataSet ObjListToDataTable<T>(List<T> objects);
         DataTable ObjToDataTableProcedure(clsProcedures objects);
         string ConvertDatatableToXMLNew(DataTable dt);
+        string EncryptKEY(string data);
+        string Encrypt(string encryptString);
+        string Decrypt(string cipherText);
     }
 }
