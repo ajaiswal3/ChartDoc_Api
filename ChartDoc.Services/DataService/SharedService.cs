@@ -8,6 +8,9 @@ using System.Text;
 using ChartDoc.Models;
 using System.Xml;
 using System.Security.Cryptography;
+using Microsoft.Extensions.Configuration;
+using ChartDoc.DAL;
+
 namespace ChartDoc.Services.DataService
 {
     /// <summary>
@@ -15,6 +18,23 @@ namespace ChartDoc.Services.DataService
     /// </summary>
     public class SharedService : ISharedService
     {
+        #region Instance Variable******************************************************************************************************************************
+        DBUtils db = DBUtils.GetInstance;
+       
+        #endregion
+
+        #region SharedService Constructor*******************************************************************************************************************************
+        /// <summary>
+        /// FlowSheetService : Constructor
+        /// </summary>
+        /// <param name="configuration"></param>
+        public SharedService(IConfiguration configuration)
+        {
+            db._configaration = configuration;
+           
+        }
+        #endregion
+
         #region ConvertDatatableToXML**************************************************************************************************************************
         /// <summary>
         /// ConvertDatatableToXML
@@ -265,7 +285,8 @@ namespace ChartDoc.Services.DataService
         {
             if (!string.IsNullOrEmpty(encryptString))
             {
-                string EncryptionKey = DecryptKEY("OTkwMzA3NjMyNQ==");
+                string key = GetEncryptKEY();
+                string EncryptionKey = DecryptKEY(key);
 
                 byte[] clearBytes = Encoding.Unicode.GetBytes(encryptString);
                 using (Aes encryptor = Aes.Create())
@@ -293,7 +314,8 @@ namespace ChartDoc.Services.DataService
         {
             if (!string.IsNullOrEmpty(cipherText))
             {
-                string EncryptionKey = DecryptKEY("OTkwMzA3NjMyNQ==");
+                string key = GetEncryptKEY();
+                string EncryptionKey = DecryptKEY(key);
 
                 cipherText = cipherText.Replace(" ", "+");
                 byte[] cipherBytes = Convert.FromBase64String(cipherText);
@@ -338,6 +360,14 @@ namespace ChartDoc.Services.DataService
                 }
             }
             else return "";
+        }
+        private string GetEncryptKEY()
+        {
+            DataTable dt = new DataTable();
+            string sql = "select EncryptKEY from tbl_Param";
+            dt = db.GetData(sql);
+            return Convert.ToString(dt.Rows[0][0]);
+            // return "OTkwMzA3NjMyNQ==";
         }
     }
 }
