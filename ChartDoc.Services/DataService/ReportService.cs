@@ -14,6 +14,7 @@ namespace ChartDoc.Services.DataService
         #region Instance variables
         private readonly ILogService logService;
         DBUtils db = DBUtils.GetInstance;
+        ISharedService _sharedService;
         #endregion
 
         #region Constructor
@@ -22,10 +23,11 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration"></param>
         /// <param name="logService"></param>
-        public ReportService(IConfiguration configaration, ILogService logService)
+        public ReportService(IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             db._configaration = configaration;
             this.logService = logService;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -80,10 +82,10 @@ namespace ChartDoc.Services.DataService
                     try
                     {
                         clsPatientBalance.patientID = Convert.ToString(item["PatientID"]);
-                        clsPatientBalance.patientName = Convert.ToString(item["PatientName"]);
-                        clsPatientBalance.mobile = Convert.ToString(item["Mobile"]);
-                        clsPatientBalance.email = Convert.ToString(item["Email"]);
-                        clsPatientBalance.address = Convert.ToString(item["Address"]);
+                        clsPatientBalance.patientName =_sharedService.Decrypt( Convert.ToString(item["FName"]))+" "+ _sharedService.Decrypt(Convert.ToString(item["LName"]));
+                        clsPatientBalance.mobile = _sharedService.Decrypt(Convert.ToString(item["Mobile"]));
+                        clsPatientBalance.email = _sharedService.Decrypt(Convert.ToString(item["Email"]));
+                        clsPatientBalance.address = _sharedService.Decrypt(Convert.ToString(item["Address"]));
                         clsPatientBalance.totalBillValue = Convert.ToDecimal(item["TotalBillValue"]);
                         clsPatientBalance.alreadyPaid = Convert.ToDecimal(item["AlreadyPaid"]);
                         clsPatientBalance.totalOutstanding = Convert.ToDecimal(item["TotalOutstanding"]); 
