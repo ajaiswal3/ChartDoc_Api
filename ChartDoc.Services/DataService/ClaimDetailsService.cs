@@ -54,16 +54,19 @@ namespace ChartDoc.Services.DataService
             {
                 var logger = logService.GetLogger(typeof(ClaimDetailsService));
                 logger.Error(sqlEx);
+                res = false;
             }
             catch (NullReferenceException nullEx)
             {
                 var logger = logService.GetLogger(typeof(ClaimDetailsService));
                 logger.Error(nullEx);
+                res = false;
             }
             catch (Exception ex)
             {
                 var logger = logService.GetLogger(typeof(ClaimDetailsService));
                 logger.Error(ex);
+                res = false;
             }
             return res;
         }
@@ -98,15 +101,7 @@ namespace ChartDoc.Services.DataService
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 writer.Close();
-                //for(int i=0; i< ds.Tables[0].Rows.Count; i++)
-                //{
-                //    writer.WriteStartElement("claim");
-                //    CreateNode(writer, ds.Tables[0]);
-                //    writer.WriteEndElement();
-                //    writer.WriteEndDocument();
-                //    writer.Close();
-                //}
-
+                res = true;
             }
             return res;
         }
