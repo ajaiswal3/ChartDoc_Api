@@ -67,6 +67,7 @@ namespace ChartDoc.Api.Controllers
 
         private readonly IClaimFieldMasterService _claimFieldMasterService;
         private readonly IReportService _reportService;
+        private readonly IClaimDetailsService _claimDetailsService;
         #endregion
 
         #region Constructor
@@ -159,8 +160,9 @@ namespace ChartDoc.Api.Controllers
             IClaimService claimService,
             IPaymentService paymentService,
             IClaimFieldsService claimFieldsService,
-             IClaimStatusService claimStatusService,
-              IReportService reportService
+            IClaimStatusService claimStatusService,
+            IReportService reportService,
+            IClaimDetailsService claimDetailsService
             )
         {
             _userService = userService;
@@ -208,6 +210,7 @@ namespace ChartDoc.Api.Controllers
             _claimFieldsService = claimFieldsService;
             _claimStatusService = claimStatusService;
             _reportService = reportService;
+            _claimDetailsService = claimDetailsService;
         }
         #endregion
 
@@ -1039,6 +1042,15 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        #endregion
+
+        #region 3rd Phase
+        [HttpGet]
+        [Route("GetClaimDetails")]
+        public bool GetClaimDetails()
+        {
+            return _claimDetailsService.GetClaimDetails();
+        }
         #endregion
         #endregion
 
