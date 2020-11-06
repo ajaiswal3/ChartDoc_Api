@@ -1019,6 +1019,7 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        //Added by Suvresh
         [HttpGet]
         [Route("GetInusranceStatus/{patientId}")]
         public string getInsuranceStatus(string patientId)
