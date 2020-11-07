@@ -990,6 +990,20 @@ namespace ChartDoc.Api.Controllers
         {
             return _userAccessService.GetUserAccessDetailsByUserType(userTypeId);
         }
+
+        [HttpGet]
+        [Route("GetDUOSignatureRequest")]
+        public ActionResult<string> GetDUOSignatureRequest(string userName)
+        {
+            return _userAccessService.GetUserSignatureRequest(userName);
+        }
+
+        [HttpGet]
+        [Route("GetDUOResponseUserName")]
+        public ActionResult<string> GetDUOResponseUserName(string sig_response)
+        {
+            return _userAccessService.GetResponseStatus(sig_response);
+        }
         #endregion
 
         #region Get Insurance Claim Fields

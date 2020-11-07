@@ -52,3 +52,5 @@ D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDo
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.csproj.CopyComplete
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\DuoWeb.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\DuoWeb.pdb

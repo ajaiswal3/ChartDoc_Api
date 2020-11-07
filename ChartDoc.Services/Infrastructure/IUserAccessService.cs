@@ -8,5 +8,7 @@ namespace ChartDoc.Services.Infrastructure
     public interface IUserAccessService
     {
         List<UserAccessDetailsDTO> GetUserAccessDetailsByUserType(int userTypeId);
+        string GetUserSignatureRequest(string userName);
+        string GetResponseStatus(string sig_response);
     }
 }

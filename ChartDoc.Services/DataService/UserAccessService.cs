@@ -14,6 +14,10 @@ namespace ChartDoc.Services.DataService
         #region Instance Variable
         DBUtils context = DBUtils.GetInstance;
         private readonly ILogService logService;
+
+        private const string ikey = "DI0SXJ7GXLWH29WBBUFJ";
+        private const string skey = "1zGqMMnTB4waCWymnYg7qgg5gqEtlz9AQt9HQjRj";
+        private const string akey = "fybnfpaeqegvcfzjeqyouiqcogccmpjfjvcnlwvo";
         #endregion
 
         public UserAccessService(IConfiguration configaration, ILogService logService)
@@ -45,6 +49,18 @@ namespace ChartDoc.Services.DataService
                 lstDetails.Add(objAccessDetails);
             }
             return lstDetails;
+        }
+
+        public string GetUserSignatureRequest(string userName)
+        {
+            string sig_request = Duo.Web.SignRequest(ikey, skey, akey, userName);
+            return sig_request;
+        }
+
+        public string GetResponseStatus(string sig_response)
+        {
+            var authenticated_username = Duo.Web.VerifyResponse(ikey, skey, akey, sig_response);
+            return authenticated_username;
         }
     }
 }
