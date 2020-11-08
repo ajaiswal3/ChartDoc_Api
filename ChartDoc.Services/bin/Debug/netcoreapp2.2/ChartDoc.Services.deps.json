@@ -12,7 +12,8 @@
           "ChartDoc.DAL": "1.0.0",
           "ChartDoc.Models": "1.0.0",
           "Nexmo.Csharp.Client": "4.3.2",
-          "log4net": "2.0.8"
+          "log4net": "2.0.8",
+          "DuoWeb": "1.0.0.0"
         },
         "runtime": {
           "ChartDoc.Services.dll": {}
@@ -2165,6 +2166,14 @@
         "runtime": {
           "ChartDoc.Models.dll": {}
         }
+      },
+      "DuoWeb/1.0.0.0": {
+        "runtime": {
+          "DuoWeb.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -3523,6 +3532,11 @@
     },
     "ChartDoc.Models/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DuoWeb/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }
