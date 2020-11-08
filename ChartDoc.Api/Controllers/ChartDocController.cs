@@ -159,6 +159,7 @@ namespace ChartDoc.Api.Controllers
             IChargeDateRangeService chargeDateRangeService,
             IChargeMasterService chargeMasterService,
             IClaimService claimService,
+            IClaimDetailsService claimDetailsService,
             IPaymentService paymentService,
             IClaimFieldsService claimFieldsService,
              IClaimStatusService claimStatusService,
