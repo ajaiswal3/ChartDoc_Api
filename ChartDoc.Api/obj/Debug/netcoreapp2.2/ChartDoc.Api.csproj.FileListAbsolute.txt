@@ -26,3 +26,31 @@ D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Api\obj\Debug\netcoreapp2.2\
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.dll
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.pdb
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.genruntimeconfig.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\appsettings.Development.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\appsettings.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\log4net.config
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Api.deps.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Api.runtimeconfig.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Api.runtimeconfig.dev.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Api.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Api.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Context.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Services.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Services.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Context.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.csprojAssemblyReference.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.RazorAssemblyInfo.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.RazorAssemblyInfo.cs
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.AssemblyInfoInputs.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.AssemblyInfo.cs
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.RazorTargetAssemblyInfo.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.csproj.CopyComplete
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\DuoWeb.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\DuoWeb.pdb

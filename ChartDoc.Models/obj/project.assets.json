@@ -687,27 +687,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Akash jaiswal\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Suvresh.C\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sandip da\\ChartDoc\\WEBAPP\\chartdoc_api1\\ChartDoc.Models\\ChartDoc.Models.csproj",
+      "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj",
       "projectName": "ChartDoc.Models",
-      "projectPath": "D:\\Sandip da\\ChartDoc\\WEBAPP\\chartdoc_api1\\ChartDoc.Models\\ChartDoc.Models.csproj",
-      "packagesPath": "C:\\Users\\Akash jaiswal\\.nuget\\packages\\",
-      "outputPath": "D:\\Sandip da\\ChartDoc\\WEBAPP\\chartdoc_api1\\ChartDoc.Models\\obj\\",
+      "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj",
+      "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+      "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Akash jaiswal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -747,7 +740,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

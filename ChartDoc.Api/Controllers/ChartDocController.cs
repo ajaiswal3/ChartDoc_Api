@@ -67,6 +67,8 @@ namespace ChartDoc.Api.Controllers
 
         private readonly IClaimFieldMasterService _claimFieldMasterService;
         private readonly IReportService _reportService;
+        private readonly IUserAccessService _userAccessService;
+        private readonly IClaimDetailsService _claimDetailsService;
         private readonly IMenuService _menuService;
         #endregion
 
@@ -159,9 +161,12 @@ namespace ChartDoc.Api.Controllers
             IChargeDateRangeService chargeDateRangeService,
             IChargeMasterService chargeMasterService,
             IClaimService claimService,
+            IClaimDetailsService claimDetailsService,
             IPaymentService paymentService,
             IClaimFieldsService claimFieldsService,
              IClaimStatusService claimStatusService,
+              IReportService reportService,
+              IUserAccessService userAccessService
               IReportService reportService,
                IMenuService menuService
             )
@@ -211,6 +216,8 @@ namespace ChartDoc.Api.Controllers
             _claimFieldsService = claimFieldsService;
             _claimStatusService = claimStatusService;
             _reportService = reportService;
+            _userAccessService = userAccessService;
+            _claimDetailsService = claimDetailsService;
             _menuService = menuService;
         }
         #endregion
@@ -992,6 +999,27 @@ namespace ChartDoc.Api.Controllers
         {
             return _claimFieldsService.GetClaimFieldsMasterDetails(id);
         }
+
+        [HttpGet]
+        [Route("GetUserAccessDetails")]
+        public ActionResult<IEnumerable<UserAccessDetailsDTO>> GetUserAccessDetails(int userTypeId)
+        {
+            return _userAccessService.GetUserAccessDetailsByUserType(userTypeId);
+        }
+
+        [HttpGet]
+        [Route("GetDUOSignatureRequest")]
+        public ActionResult<string> GetDUOSignatureRequest(string userName)
+        {
+            return _userAccessService.GetUserSignatureRequest(userName);
+        }
+
+        [HttpGet]
+        [Route("GetDUOResponseUserName")]
+        public ActionResult<string> GetDUOResponseUserName(string sig_response)
+        {
+            return _userAccessService.GetResponseStatus(sig_response);
+        }
         #endregion
 
         #region Get Insurance Claim Fields
@@ -1021,6 +1049,7 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        //Added by Suvresh
         [HttpGet]
         [Route("GetInusranceStatus/{patientId}")]
         public string getInsuranceStatus(string patientId)
@@ -1051,6 +1080,15 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        #endregion
+
+        #region 3rd Phase
+        [HttpGet]
+        [Route("GetClaimDetails")]
+        public bool GetClaimDetails()
+        {
+            return _claimDetailsService.GetClaimDetails();
+        }
         #endregion
         #endregion
 
