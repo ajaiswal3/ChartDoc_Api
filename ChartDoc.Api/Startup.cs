@@ -98,6 +98,7 @@ namespace ChartDoc.Api
             services.AddTransient<IClaimFieldsService, ClaimFieldsService>();
             services.AddTransient<IClaimStatusService, ClaimStatusService>();
             services.AddTransient<IReportService, ReportService>();
+            services.AddTransient<IMenuService, MenuService>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;

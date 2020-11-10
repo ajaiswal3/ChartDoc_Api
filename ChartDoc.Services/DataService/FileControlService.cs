@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -396,10 +397,40 @@ namespace ChartDoc.Services.DataService
         /// <param name="data">clsPatientDetails</param>
         /// <param name="uploadFile">IFormFile</param>
         /// <returns>clsPatientDetails</returns>
-        public async Task<clsPatientDetails> SavePatientProfileImage(clsPatientDetails data, IFormFile uploadFile)
+       public async Task<clsPatientDetails> SavePatientProfileImage(clsPatientDetails data, IFormFile uploadFile)
+        
         {
+            //string imageName = string.Empty;
+
+            //var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient\Profile\");
+            //if (!Directory.Exists(uploads))
+            //{
+            //    Directory.CreateDirectory(uploads);
+            //}
+            //if (uploadFile != null && uploadFile.Length > 0)
+            //{
+            //    imageName = new String(Path.GetFileNameWithoutExtension(uploadFile.FileName)).Replace(" ", "-");
+            //    imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(uploadFile.FileName);
+            //    var filePath = Path.Combine(uploads, imageName);
+            //using (var stream = new FileStream(filePath, FileMode.Create))
+            //{
+            //    try
+            //    {
+            //        await uploadFile.CopyToAsync(stream);
+            //        filePath = filePath.Replace(@"\", @"/");
+            //        filePath = filePath.Replace(filePath.Substring(0, filePath.IndexOf("Images")), context._configaration["SavedImageUrl"]);
+            //        data.imagePath = filePath;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        var logger = logService.GetLogger(this.GetType());
+            //        logger.Error(ex);
+            //    }
+            //}
+            //}
+            //return data;
             string imageName = string.Empty;
-            //var uploads = Path.Combine(context._configaration["FolderPath"], @"Images\Patient\Profile\");
+            string imageNameOutput = string.Empty;
             var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient\Profile\");
             if (!Directory.Exists(uploads))
             {
@@ -408,16 +439,19 @@ namespace ChartDoc.Services.DataService
             if (uploadFile != null && uploadFile.Length > 0)
             {
                 imageName = new String(Path.GetFileNameWithoutExtension(uploadFile.FileName)).Replace(" ", "-");
+                imageNameOutput = imageName + DateTime.Now.ToString("yymmssfff")+"_enc" + Path.GetExtension(uploadFile.FileName);
                 imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(uploadFile.FileName);
+                data.imageName = imageNameOutput;
                 var filePath = Path.Combine(uploads, imageName);
+                var filePathOutput = Path.Combine(uploads, imageNameOutput);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     try
                     {
+                       // uploadFile.CopyTo(stream);
                         await uploadFile.CopyToAsync(stream);
-                        filePath = filePath.Replace(@"\", @"/");
-                        filePath = filePath.Replace(filePath.Substring(0, filePath.IndexOf("Images")), context._configaration["SavedImageUrl"]);
-                        data.imagePath = filePath;
+                        
+                        
                     }
                     catch (Exception ex)
                     {
@@ -425,8 +459,14 @@ namespace ChartDoc.Services.DataService
                         logger.Error(ex);
                     }
                 }
+                this.EncryptFile(filePath, filePathOutput);
+                File.Delete(filePath);
+                filePathOutput = filePathOutput.Replace(@"\", @"/");
+                filePathOutput = filePathOutput.Replace(filePathOutput.Substring(0, filePathOutput.IndexOf("Images")), context._configaration["SavedImageUrl"]);
+                data.imagePath = filePathOutput;
             }
             return data;
+            
         }
         #endregion
 
@@ -434,38 +474,29 @@ namespace ChartDoc.Services.DataService
         ///</summary>
         ///<param name="inputFile"></param>
         ///<param name="outputFile"></param>
-        private void EncryptFile(string inputFile, string outputFile)
+        private void EncryptFile(string inputFilePath, string outputfilePath)
         {
 
-            try
+            string EncryptionKey = GetEncryptKEY();
+            using (Aes encryptor = Aes.Create())
             {
-                string password = @"myKey123"; // Your Key Here
-                UnicodeEncoding UE = new UnicodeEncoding();
-                byte[] key = UE.GetBytes(password);
-
-                string cryptFile = outputFile;
-                FileStream fsCrypt = new FileStream(cryptFile, FileMode.Create);
-
-                RijndaelManaged RMCrypto = new RijndaelManaged();
-
-                CryptoStream cs = new CryptoStream(fsCrypt,
-                    RMCrypto.CreateEncryptor(key, key),
-                    CryptoStreamMode.Write);
-
-                FileStream fsIn = new FileStream(inputFile, FileMode.Open);
-
-                int data;
-                while ((data = fsIn.ReadByte()) != -1)
-                    cs.WriteByte((byte)data);
-
-
-                fsIn.Close();
-                cs.Close();
-                fsCrypt.Close();
-            }
-            catch
-            {
-               // MessageBox.Show("Encryption failed!", "Error");
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
+                {
+                    using (CryptoStream cs = new CryptoStream(fsOutput, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
+                        {
+                            int data;
+                            while ((data = fsInput.ReadByte()) != -1)
+                            {
+                                cs.WriteByte((byte)data);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -474,34 +505,97 @@ namespace ChartDoc.Services.DataService
         ///</summary>
         ///<param name="inputFile"></param>
         ///<param name="outputFile"></param>
-        private void DecryptFile(string inputFile, string outputFile)
+        //private void DecryptFile(string inputFile, string outputFile)
+        //{
+
+        //    {
+        //        string password = @"myKey123"; // Your Key Here
+
+        //        UnicodeEncoding UE = new UnicodeEncoding();
+        //        byte[] key = UE.GetBytes(password);
+
+        //        FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
+
+        //        RijndaelManaged RMCrypto = new RijndaelManaged();
+
+        //        CryptoStream cs = new CryptoStream(fsCrypt,
+        //            RMCrypto.CreateDecryptor(key, key),
+        //            CryptoStreamMode.Read);
+
+        //        FileStream fsOut = new FileStream(outputFile, FileMode.Create);
+
+        //        int data;
+        //        while ((data = cs.ReadByte()) != -1)
+        //            fsOut.WriteByte((byte)data);
+
+        //        fsOut.Close();
+        //        cs.Close();
+        //        fsCrypt.Close();
+
+        //    }
+        //}
+
+        public string DecryptFile(string filemame)
         {
+            //Get the Input File Name and Extension
+            var uploads = Path.Combine(_env.ContentRootPath, @"Images\Patient\Profile");
+            string fileName = filemame.Split('.')[0];
+            string fileExtension = "." + filemame.Split('.')[1];
 
+            //Build the File Path for the original (input) and the decrypted (output) file
+            string input = Path.Combine(uploads, fileName+ fileExtension);
+            string output = Path.Combine(uploads, fileName+"_dec"+fileExtension);
+
+
+            this.Decrypt(input, output);
+
+            //Download the Decrypted File.
+            //Response.Clear();
+            //Response.ContentType = FileUpload1.PostedFile.ContentType;
+            //Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(output));
+            //Response.WriteFile(output);
+            //Response.Flush();
+
+            //Delete the original (input) and the decrypted (output) file.
+            byte[] b = System.IO.File.ReadAllBytes(output);
+            var bytetdata= "data:image/png;base64," + Convert.ToBase64String(b);
+            File.Delete(output);
+
+            // Response.End();
+          return bytetdata;
+        }
+        private string GetEncryptKEY()
+        {
+            DataTable dt = new DataTable();
+            string sql = "select EncryptKEY from tbl_Param";
+            dt = context.GetData(sql);
+            return Convert.ToString(dt.Rows[0][0]);
+            // return "OTkwMzA3NjMyNQ==";
+        }
+        private void Decrypt(string inputFilePath, string outputfilePath)
+        {
+            string EncryptionKey = GetEncryptKEY();
+            using (Aes encryptor = Aes.Create())
             {
-                string password = @"myKey123"; // Your Key Here
-
-                UnicodeEncoding UE = new UnicodeEncoding();
-                byte[] key = UE.GetBytes(password);
-
-                FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
-
-                RijndaelManaged RMCrypto = new RijndaelManaged();
-
-                CryptoStream cs = new CryptoStream(fsCrypt,
-                    RMCrypto.CreateDecryptor(key, key),
-                    CryptoStreamMode.Read);
-
-                FileStream fsOut = new FileStream(outputFile, FileMode.Create);
-
-                int data;
-                while ((data = cs.ReadByte()) != -1)
-                    fsOut.WriteByte((byte)data);
-
-                fsOut.Close();
-                cs.Close();
-                fsCrypt.Close();
-
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (FileStream fsInput = new FileStream(inputFilePath, FileMode.Open))
+                {
+                    using (CryptoStream cs = new CryptoStream(fsInput, encryptor.CreateDecryptor(), CryptoStreamMode.Read))
+                    {
+                        using (FileStream fsOutput = new FileStream(outputfilePath, FileMode.Create))
+                        {
+                            int data;
+                            while ((data = cs.ReadByte()) != -1)
+                            {
+                                fsOutput.WriteByte((byte)data);
+                            }
+                        }
+                    }
+                }
             }
         }
+
     }
 }
