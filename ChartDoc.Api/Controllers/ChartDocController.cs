@@ -166,8 +166,8 @@ namespace ChartDoc.Api.Controllers
             IClaimFieldsService claimFieldsService,
              IClaimStatusService claimStatusService,
               IReportService reportService,
-              IUserAccessService userAccessService
-              IReportService reportService,
+              IUserAccessService userAccessService,
+              
                IMenuService menuService
             )
         {
