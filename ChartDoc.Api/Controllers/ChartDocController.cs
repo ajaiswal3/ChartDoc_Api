@@ -68,6 +68,8 @@ namespace ChartDoc.Api.Controllers
         private readonly IClaimFieldMasterService _claimFieldMasterService;
         private readonly IReportService _reportService;
         private readonly IUserAccessService _userAccessService;
+        private readonly IClaimDetailsService _claimDetailsService;
+        private readonly IMenuService _menuService;
         #endregion
 
         #region Constructor
@@ -117,6 +119,7 @@ namespace ChartDoc.Api.Controllers
         /// <param name="claimService">IClaimService</param>
         /// <param name="paymentService">IPaymentService</param>
         /// <param name="claimStatusService">IClaimStatusService</param>
+        /// <param name="menuService">IMenuService</param>
         public ChartDocController(IUserService userService,
             IIcdService icdService,
             IPatientDetailsService patientDetailsService,
@@ -158,11 +161,14 @@ namespace ChartDoc.Api.Controllers
             IChargeDateRangeService chargeDateRangeService,
             IChargeMasterService chargeMasterService,
             IClaimService claimService,
+            IClaimDetailsService claimDetailsService,
             IPaymentService paymentService,
             IClaimFieldsService claimFieldsService,
              IClaimStatusService claimStatusService,
               IReportService reportService,
-              IUserAccessService userAccessService
+              IUserAccessService userAccessService,
+              
+               IMenuService menuService
             )
         {
             _userService = userService;
@@ -211,6 +217,8 @@ namespace ChartDoc.Api.Controllers
             _claimStatusService = claimStatusService;
             _reportService = reportService;
             _userAccessService = userAccessService;
+            _claimDetailsService = claimDetailsService;
+            _menuService = menuService;
         }
         #endregion
 
@@ -571,7 +579,15 @@ namespace ChartDoc.Api.Controllers
         [Route("GetPatientInfo/{PatientId}")]
         public ActionResult<clsCreateUpdatePatient> GetPatientInfo(string patientId)
         {
-            return _patientInformationService.GetPatientInfo(patientId);
+           
+            //return _patientInformationService.GetPatientInfo(patientId);
+            var obj=  _patientInformationService.GetPatientInfo(patientId);
+            if (obj.sPatientDetails.imageName != "")
+            {
+                var decrytImage = _fileControlService.DecryptFile(obj.sPatientDetails.imageName);
+                obj.sPatientDetails.imagePath = decrytImage;
+            }
+            return obj;
         }
         #endregion
 
@@ -1065,6 +1081,15 @@ namespace ChartDoc.Api.Controllers
         #endregion
 
         #endregion
+
+        #region 3rd Phase
+        [HttpGet]
+        [Route("GetClaimDetails")]
+        public bool GetClaimDetails()
+        {
+            return _claimDetailsService.GetClaimDetails();
+        }
+        #endregion
         #endregion
 
         #region PUT Api
@@ -1451,6 +1476,7 @@ namespace ChartDoc.Api.Controllers
             #endregion
 
             objPatient.sPatientDetails = await _fileControlService.SavePatientProfileImage(objPatient.sPatientDetails, Request.Form.Files["profile"]);
+           // objPatient.sPatientDetails =  _fileControlService.SavePatientProfileImage(objPatient.sPatientDetails, Request.Form.Files["profile"]);
             objPatient.sPatientSocial = await _fileControlService.SaveSocialImage(objPatient.sPatientSocial, Request.Form.Files["social"]);
             objPatient.sPatientBilling = await  _fileControlService.SaveBillingImage(objPatient.sPatientBilling, Request.Form.Files["billing"]);
             objPatient.sPatientAuthorisation = await _fileControlService.SaveAuthorizationImage(objPatient.sPatientAuthorisation, Request.Form.Files["authorization"]);
@@ -2102,6 +2128,30 @@ namespace ChartDoc.Api.Controllers
 
 
             return _sharedService.Decrypt(value);
+        }
+        #endregion
+
+        [HttpGet]
+        [Route("download/{value}")]
+        public string DecryptFile()
+        {
+
+
+            return _fileControlService.DecryptFile("");
+        }
+
+        #region Get Menu
+        /// <summary>
+        /// GetMenu: 
+        /// </summary>
+        /// <param ></param>
+        /// <returns>ActionResult<clsCreateUpdatePatient></returns>
+        [HttpGet]
+        [Route("GetMenudata")]
+        public ActionResult<ClsMeuList> GetMenudata()
+        {
+            return _menuService.GetMenudata();
+            
         }
         #endregion
     }

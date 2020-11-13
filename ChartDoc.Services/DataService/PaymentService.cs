@@ -15,6 +15,7 @@ namespace ChartDoc.Services.DataService
         #region Instance variables
         private readonly ILogService logService;
         DBUtils db = DBUtils.GetInstance;
+        ISharedService _sharedService;
         #endregion
 
         #region Constructor
@@ -23,10 +24,11 @@ namespace ChartDoc.Services.DataService
         /// </summary>
         /// <param name="configaration"></param>
         /// <param name="logService"></param>
-        public PaymentService(IConfiguration configaration, ILogService logService)
+        public PaymentService(IConfiguration configaration, ILogService logService, ISharedService sharedService)
         {
             db._configaration = configaration;
             this.logService = logService;
+            this._sharedService = sharedService;
         }
         #endregion
 
@@ -47,12 +49,12 @@ namespace ChartDoc.Services.DataService
                 try
                 {
                     paymentHeader.alreadyPaid = Convert.ToDecimal(dsPaymentDetails.Tables[0].Rows[0]["AlreadyPaid"]);
-                    paymentHeader.email = Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["Email"]);
-                    paymentHeader.mobile = Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["Mobile"]);
-                    paymentHeader.address = Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["address"]); 
+                    paymentHeader.email =_sharedService.Decrypt( Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["Email"]));
+                    paymentHeader.mobile = _sharedService.Decrypt(Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["Mobile"]));
+                    paymentHeader.address = _sharedService.Decrypt(Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["address"])); 
                     // paymentHeader.modeOfPayment = Convert.ToString(dtPaymentDetails.Rows[0]["Mode_of_Payment"]);
                     paymentHeader.patientId = Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["PatientID"]);
-                    paymentHeader.patientName = Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["PatientName"]);
+                    paymentHeader.patientName = _sharedService.Decrypt(Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["FName"]))+" "+ _sharedService.Decrypt(Convert.ToString(dsPaymentDetails.Tables[0].Rows[0]["LName"]));
                     paymentHeader.totalBillValue = Convert.ToDecimal(dsPaymentDetails.Tables[0].Rows[0]["TotalBillValue"]);
                     paymentHeader.totalOutstanding = Convert.ToDecimal(dsPaymentDetails.Tables[0].Rows[0]["TotalOutstanding"]);
                     claimPayments.paymentHeader = paymentHeader;
@@ -190,7 +192,7 @@ namespace ChartDoc.Services.DataService
                         objPaymentDetails.instrumentTypeId = Convert.ToInt32(item["INSTRUMENTTYPEID"]);
                         objPaymentDetails.instrumentTypeName = Convert.ToString(item["INSTRUMENTTYPENAME"]);
                         objPaymentDetails.patientId = Convert.ToString(item["PATIENTID"]);
-                        objPaymentDetails.PatientName = Convert.ToString(item["PatientName"]); 
+                        objPaymentDetails.PatientName = _sharedService.Decrypt(Convert.ToString(item["First_Name"]))+" "+ _sharedService.Decrypt(Convert.ToString(item["Last_Name"])); 
                         objPaymentDetails.paymentDate = Convert.ToString(item["PAYMENTDATE"]);
                         objPaymentDetails.reasonId = Convert.ToInt32(item["REASONID"]);
                         objPaymentDetails.reasonName = Convert.ToString(item["REASONDESCRIPTOON"]);
