@@ -171,12 +171,7 @@ namespace ChartDoc.Api
             app.UseHttpsRedirection();
             app.UseCors("AllowMyOrigin");
             app.ConfigureExceptionHandler(logService);
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //Path.Combine(Configuration.GetSection("FolderPath").Value, "Images")),
-            //    RequestPath = "/Images"
-            //});
+            
 
             app.UseStaticFiles(new StaticFileOptions
             {
