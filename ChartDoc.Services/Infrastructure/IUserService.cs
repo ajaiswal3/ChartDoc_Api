@@ -12,5 +12,6 @@ namespace ChartDoc.Services.Infrastructure
         List<clsDoctorList> GetUserList(string userType);
         string UpdateStatusofUser(int id, int status);
         string SaveUser(string id,string iUser, string fullname, string email);
+        ResetPasswordDTO GetResponseValidateUserEmail(string userEmail);
     }
 }

@@ -2042,6 +2042,20 @@ namespace ChartDoc.Api.Controllers
         }
         #endregion
 
+        [HttpPost]
+        [Route("UserLogin")]
+        public ActionResult<clsUser> UserLogin(UserLoginDTO userLogin)
+        {
+            return _userService.GetUser(userLogin.UserName, userLogin.Password);
+        }
+
+        [HttpPost]
+        [Route("ValidateUserEmail")]
+        public ActionResult<ResetPasswordDTO> ValidateUserEmail(ResetPasswordParams resetPassword)
+        {
+            return _userService.GetResponseValidateUserEmail(resetPassword.email);
+        }
+
         #endregion
         #endregion
 

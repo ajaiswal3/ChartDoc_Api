@@ -242,6 +242,36 @@ namespace ChartDoc.Services.DataService
             result = (string)db.GetSingleValue(sqlUser);
             return result;
         }
+
+        private string ValidateUserEmail(string userEmail)
+        {
+            string result = string.Empty;
+            string sqlUser = "USP_ValidateUserEmail '" + userEmail + "'";
+            result = (string)db.GetSingleValue(sqlUser);
+            return result;
+        }
+
+        public ResetPasswordDTO GetResponseValidateUserEmail(string userEmail)
+        {
+            string retVal = ValidateUserEmail(userEmail);
+            ResetPasswordDTO returnObj = new ResetPasswordDTO();
+            ReturnData retData = new ReturnData();
+            if(retVal.Contains("We sent an"))
+            {
+                retData.Valid = true;
+            }
+            else
+            {
+                retData.Valid = false;
+            }
+            retData.Message = retVal;
+            returnObj.data = retData;
+
+            returnObj.Status = "";
+            returnObj.Code = "";
+
+            return returnObj;
+        }
         #endregion
 
         #region BindDoctorList*********************************************************************************************************************************
