@@ -251,6 +251,36 @@ namespace ChartDoc.Services.DataService
             return result;
         }
 
+        private string ResetUserPasswordDB(string userEmail, string userPassword)
+        {
+            string result = string.Empty;
+            string sqlUser = "USP_UpdateUserPassword '" + userEmail + "', '" + userPassword + "'";
+            result = (string)db.GetSingleValue(sqlUser);
+            return result;
+        }
+
+        public ResetPasswordDTO GetResponseResetPassword(string userEmail, string userPassword)
+        {
+            string retVal = ResetUserPasswordDB(userEmail, userPassword);
+            ResetPasswordDTO returnObj = new ResetPasswordDTO();
+            ReturnData retData = new ReturnData();
+            if (retVal.Contains("Your new password has been"))
+            {
+                retData.Valid = true;
+            }
+            else
+            {
+                retData.Valid = false;
+            }
+            retData.Message = retVal;
+            returnObj.data = retData;
+
+            returnObj.Status = "";
+            returnObj.Code = "";
+
+            return returnObj;
+        }
+
         public ResetPasswordDTO GetResponseValidateUserEmail(string userEmail)
         {
             string retVal = ValidateUserEmail(userEmail);

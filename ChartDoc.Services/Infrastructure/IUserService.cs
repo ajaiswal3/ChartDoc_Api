@@ -13,5 +13,6 @@ namespace ChartDoc.Services.Infrastructure
         string UpdateStatusofUser(int id, int status);
         string SaveUser(string id,string iUser, string fullname, string email);
         ResetPasswordDTO GetResponseValidateUserEmail(string userEmail);
+        ResetPasswordDTO GetResponseResetPassword(string userEmail, string userPassword);
     }
 }

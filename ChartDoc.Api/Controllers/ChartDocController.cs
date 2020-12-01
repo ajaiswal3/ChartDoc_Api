@@ -2056,6 +2056,13 @@ namespace ChartDoc.Api.Controllers
             return _userService.GetResponseValidateUserEmail(resetPassword.email);
         }
 
+        [HttpPost]
+        [Route("ChangePassword")]
+        public ActionResult<ResetPasswordDTO> ChangePassword(ResetUserPasswordParams resetPassword)
+        {
+            return _userService.GetResponseResetPassword(resetPassword.email, resetPassword.password);
+        }
+
         #endregion
         #endregion
 
