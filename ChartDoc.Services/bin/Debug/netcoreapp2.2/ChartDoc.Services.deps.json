@@ -12,6 +12,7 @@
           "ChartDoc.DAL": "1.0.0",
           "ChartDoc.Models": "1.0.0",
           "Nexmo.Csharp.Client": "4.3.2",
+          "Radius": "2.0.0.2",
           "log4net": "2.0.8",
           "DuoWeb": "1.0.0.0"
         },
@@ -1042,6 +1043,14 @@
           "lib/netstandard2.0/Nexmo.Api.dll": {
             "assemblyVersion": "4.3.2.0",
             "fileVersion": "4.3.2.0"
+          }
+        }
+      },
+      "Radius/2.0.0.2": {
+        "runtime": {
+          "lib/net45/Radius.dll": {
+            "assemblyVersion": "2.0.0.2",
+            "fileVersion": "2.0.0.2"
           }
         }
       },
@@ -2715,6 +2724,13 @@
       "path": "nexmo.csharp.client/4.3.2",
       "hashPath": "nexmo.csharp.client.4.3.2.nupkg.sha512"
     },
+    "Radius/2.0.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QVEWjP3dn3d0BAf2zGcY152gP0e5iStXnem4ETwxvbL2os4izHnDgd2EO887tr74MJReN8g4EfitYVlsazE2zA==",
+      "path": "radius/2.0.0.2",
+      "hashPath": "radius.2.0.0.2.nupkg.sha512"
+    },
     "Remotion.Linq/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -2907,7 +2923,7 @@
     "System.Collections.NonGeneric/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
+      "sha512": "sha512-LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
       "path": "system.collections.nongeneric/4.3.0",
       "hashPath": "system.collections.nongeneric.4.3.0.nupkg.sha512"
     },
@@ -3313,7 +3329,7 @@
     "System.Runtime.Serialization.Primitives/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
+      "sha512": "sha512-2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "hashPath": "system.runtime.serialization.primitives.4.3.0.nupkg.sha512"
     },

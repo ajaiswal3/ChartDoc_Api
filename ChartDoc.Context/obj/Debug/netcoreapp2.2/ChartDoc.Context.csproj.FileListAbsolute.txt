@@ -21,3 +21,15 @@ D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\obj\Debug\netcoreapp2.2\Cha
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csproj.CopyComplete
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.pdb
+D:\suvresh\ChartDocDEV\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.deps.json
+D:\suvresh\ChartDocDEV\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.dll
+D:\suvresh\ChartDocDEV\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Context.pdb
+D:\suvresh\ChartDocDEV\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
+D:\suvresh\ChartDocDEV\ChartDoc.Context\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csprojAssemblyReference.cache
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.AssemblyInfoInputs.cache
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.AssemblyInfo.cs
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csproj.CoreCompileInputs.cache
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.csproj.CopyComplete
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.dll
+D:\suvresh\ChartDocDEV\ChartDoc.Context\obj\Debug\netcoreapp2.2\ChartDoc.Context.pdb
