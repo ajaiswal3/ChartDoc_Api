@@ -1,0 +1,8 @@
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\bin\Debug\netcoreapp2.2\ChartDoc.Radius.deps.json
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\bin\Debug\netcoreapp2.2\ChartDoc.Radius.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\bin\Debug\netcoreapp2.2\ChartDoc.Radius.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\obj\Debug\netcoreapp2.2\ChartDoc.Radius.csprojAssemblyReference.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\obj\Debug\netcoreapp2.2\ChartDoc.Radius.AssemblyInfoInputs.cache
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\obj\Debug\netcoreapp2.2\ChartDoc.Radius.AssemblyInfo.cs
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\obj\Debug\netcoreapp2.2\ChartDoc.Radius.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Radius\obj\Debug\netcoreapp2.2\ChartDoc.Radius.pdb

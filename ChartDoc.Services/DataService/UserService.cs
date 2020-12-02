@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.IO;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using ChartDoc.Radius;
 
 namespace ChartDoc.Services.DataService
 {
@@ -26,6 +27,9 @@ namespace ChartDoc.Services.DataService
         DBUtils db = DBUtils.GetInstance;
         private readonly ILogService logService;
         private readonly IEmailService emailService;
+
+        private string _duoHostName = "127.0.0.1";
+        private string _duoSharedSecret = "secret123";
         #endregion
 
         #region UserService Constructor************************************************************************************************************************
@@ -168,6 +172,52 @@ namespace ChartDoc.Services.DataService
             return objUser;
         }
         #endregion
+
+        private async Task<string> Authenticate(string userName, string password)
+        {
+            string returnStatus = string.Empty;
+            string statusValue = string.Empty;
+
+            RadiusClient rc = new RadiusClient(_duoHostName, _duoSharedSecret);
+            RadiusPacket authPacket = rc.Authenticate(userName, password);
+            authPacket.SetAttribute(new VendorSpecificAttribute(10135, 1, UTF8Encoding.UTF8.GetBytes("Testing")));
+            authPacket.SetAttribute(new VendorSpecificAttribute(10135, 2, new[] { (byte)7 }));
+            RadiusPacket receivedPacket = await rc.SendAndReceivePacket(authPacket);
+            if (receivedPacket == null) throw new Exception("Can't contact remote radius server !");
+
+            switch (receivedPacket.PacketType)
+            {
+                case RadiusCode.ACCESS_ACCEPT:
+                    //Console.WriteLine("Access-Accept");
+                    returnStatus = "Access - Accept#";
+                    foreach (var attr in receivedPacket.Attributes)
+                    {
+                        statusValue += attr.Type.ToString() + " = " + attr.Value;
+                        //Console.WriteLine(attr.Type.ToString() + " = " + attr.Value);
+                    }
+                    returnStatus = returnStatus + statusValue;
+                    break;
+                case RadiusCode.ACCESS_CHALLENGE:
+                    //Console.WriteLine("Access-Challenge");
+                    returnStatus = "Access-Challenge";
+                    break;
+                case RadiusCode.ACCESS_REJECT:
+                    //Console.WriteLine("Access-Reject");
+                    returnStatus = "Access-Reject";
+                    if (!rc.VerifyAuthenticator(authPacket, receivedPacket))
+                    {
+                        //Console.WriteLine("Authenticator check failed: Check your secret");
+                        returnStatus = returnStatus + "Authenticator check failed: Check your secret";
+                    }
+                    break;
+                default:
+                    //Console.WriteLine("Rejected");
+                    returnStatus = "Rejected";
+                    break;
+            }
+
+            return returnStatus;
+        }
 
         #region GetUserList************************************************************************************************************************************
         /// <summary>

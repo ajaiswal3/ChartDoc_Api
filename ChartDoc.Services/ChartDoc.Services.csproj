@@ -14,6 +14,7 @@
     <ProjectReference Include="..\ChartDoc.Context\ChartDoc.Context.csproj" />
     <ProjectReference Include="..\ChartDoc.DAL\ChartDoc.DAL.csproj" />
     <ProjectReference Include="..\ChartDoc.Models\ChartDoc.Models.csproj" />
+    <ProjectReference Include="..\ChartDoc.Radius\ChartDoc.Radius.csproj" />
   </ItemGroup>
 
   <ItemGroup>

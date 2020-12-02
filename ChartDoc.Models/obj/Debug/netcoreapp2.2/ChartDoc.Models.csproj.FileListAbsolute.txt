@@ -40,4 +40,3 @@ D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\Char
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
-D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache

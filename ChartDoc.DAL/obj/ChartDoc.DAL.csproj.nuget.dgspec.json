@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {}
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {}
   },
   "projects": {
-    "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
+        "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
         "projectName": "ChartDoc.DAL",
-        "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\obj\\",
+        "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
+        "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+        "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp2.2": {
-            "targetAlias": "netcoreapp2.2",
             "projectReferences": {}
           }
         },
@@ -41,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "targetAlias": "netcoreapp2.2",
           "dependencies": {
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -72,7 +67,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -2050,6 +2050,14 @@ namespace ChartDoc.Api.Controllers
         }
 
         [HttpPost]
+        [Route("UserLoginWithDUO")]
+        public ActionResult<clsUser> UserLoginWithDUO(UserLoginDTO userLogin)
+        {
+            var duoStatus = _userService.Authenticate(userLogin.UserName, userLogin.Password);
+            return _userService.GetUser(userLogin.UserName, userLogin.Password);
+        }
+
+        [HttpPost]
         [Route("ValidateUserEmail")]
         public ActionResult<ResetPasswordDTO> ValidateUserEmail(ResetPasswordParams resetPassword)
         {
