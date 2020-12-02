@@ -1136,11 +1136,20 @@
           "ChartDoc.Models.dll": {}
         }
       },
+      "ChartDoc.Radius/1.0.0": {
+        "runtime": {
+          "ChartDoc.Radius.dll": {}
+        },
+        "compile": {
+          "ChartDoc.Radius.dll": {}
+        }
+      },
       "ChartDoc.Services/1.0.0": {
         "dependencies": {
           "ChartDoc.Context": "1.0.0",
           "ChartDoc.DAL": "1.0.0",
           "ChartDoc.Models": "1.0.0",
+          "ChartDoc.Radius": "1.0.0",
           "Nexmo.Csharp.Client": "4.3.2",
           "Radius": "2.0.0.2",
           "log4net": "2.0.8"
@@ -4759,6 +4768,11 @@
       "sha512": ""
     },
     "ChartDoc.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ChartDoc.Radius/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

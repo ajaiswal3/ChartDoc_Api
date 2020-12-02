@@ -173,7 +173,7 @@ namespace ChartDoc.Services.DataService
         }
         #endregion
 
-        private async Task<string> Authenticate(string userName, string password)
+        public async Task<string> Authenticate(string userName, string password)
         {
             string returnStatus = string.Empty;
             string statusValue = string.Empty;
