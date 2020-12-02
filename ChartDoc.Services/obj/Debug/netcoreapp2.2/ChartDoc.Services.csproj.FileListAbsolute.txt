@@ -94,3 +94,5 @@ D:\suvresh\ChartDocDEV\ChartDoc.Services\bin\Debug\netcoreapp2.2\DuoWeb.pdb
 D:\suvresh\ChartDocDEV\ChartDoc.Services\obj\Debug\netcoreapp2.2\ChartDoc.Services.csproj.CopyComplete
 D:\suvresh\ChartDocDEV\ChartDoc.Services\obj\Debug\netcoreapp2.2\ChartDoc.Services.dll
 D:\suvresh\ChartDocDEV\ChartDoc.Services\obj\Debug\netcoreapp2.2\ChartDoc.Services.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Services\bin\Debug\netcoreapp2.2\ChartDoc.Radius.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Services\bin\Debug\netcoreapp2.2\ChartDoc.Radius.pdb
