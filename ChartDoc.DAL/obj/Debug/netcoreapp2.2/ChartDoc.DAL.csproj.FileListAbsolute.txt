@@ -39,3 +39,4 @@ D:\suvresh\ChartDocDEV\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.Assembl
 D:\suvresh\ChartDocDEV\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csproj.CoreCompileInputs.cache
 D:\suvresh\ChartDocDEV\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
 D:\suvresh\ChartDocDEV\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
+D:\suvresh\ChartDocDEV\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
