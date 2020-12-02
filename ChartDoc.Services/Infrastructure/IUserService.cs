@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ChartDoc.Services.Infrastructure
 {
@@ -14,5 +15,7 @@ namespace ChartDoc.Services.Infrastructure
         string SaveUser(string id,string iUser, string fullname, string email);
         ResetPasswordDTO GetResponseValidateUserEmail(string userEmail);
         ResetPasswordDTO GetResponseResetPassword(string userEmail, string userPassword);
+        InsuranceResponseDTO ValidatePatientInsurance(string patientId);
+        int ResetPasswordEmail(SendEmailResetPasswordParams emailParams);
     }
 }

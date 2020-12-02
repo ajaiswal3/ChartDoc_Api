@@ -2057,6 +2057,20 @@ namespace ChartDoc.Api.Controllers
         }
 
         [HttpPost]
+        [Route("SendEmailResetPassword")]
+        public ActionResult<int> SendEmailResetPassword(SendEmailResetPasswordParams resetPassword)
+        {
+            return _userService.ResetPasswordEmail(resetPassword);
+        }
+
+        [HttpGet]
+        [Route("ValidateInsurance/{patientId}")]
+        public ActionResult<InsuranceResponseDTO> ValidateInsurance(string patientId)
+        {
+            return _userService.ValidatePatientInsurance(patientId);
+        }
+
+        [HttpPost]
         [Route("ChangePassword")]
         public ActionResult<ResetPasswordDTO> ChangePassword(ResetUserPasswordParams resetPassword)
         {

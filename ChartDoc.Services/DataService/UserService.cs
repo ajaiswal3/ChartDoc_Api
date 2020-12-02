@@ -10,6 +10,11 @@ using System.Linq;
 using System.Text;
 using ChartDoc.DAL;
 using Microsoft.Extensions.Configuration;
+using System.Net.Http;
+using System.IO;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
 namespace ChartDoc.Services.DataService
 {
     /// <summary>
@@ -195,6 +200,298 @@ namespace ChartDoc.Services.DataService
         }
         #endregion
 
+        private InsuranceData GetInsuranceDataByPatientId(string patientId)
+        {
+            StringBuilder sb = new StringBuilder();
+            DataTable dtPatient = GetPatientInfoForClaimMD(patientId);
+            InsuranceData objInsurance = new InsuranceData();
+
+            if (dtPatient.Rows.Count>0)
+            {
+                //TODO
+                // Map Patient details to CURL string
+                sb.AppendFormat(@"curl -i -F AccountKey=9295oIlHpKlworVmEoiWzTbuSjdM -F UserID=sanjay -F payerid=""87726"" -F ins_name_l=""SMITH"" -F ins_name_f=""BOB"" ");
+                sb.AppendFormat(@"-F ins_dob=""2015-07-30"" -F ins_number=""12341234"" -F pat_rel=""18"" -F service_code=""30"" -F fdos=""2019-07-13"" -F prov_name_l=""COMPANY"" -F prov_npi=""1111111112"" ");
+                sb.AppendFormat(@"-F prov_taxonomy=""207P00000X"" -F prov_taxid=""999999999"" -F prov_taxid_type=""E"" -F prov_addr_1=""21 JUMP ST"" -F prov_city=""Oradell"" -F prov_state=""NJ"" -F prov_zip=""076491519"" https://www.claim.md/services/eligxml/");
+
+                // Call Curl command to GET Insurance Data from Claim.MD
+                // Bind Insurance Data to <InsuranceData> object
+                
+                objInsurance.CoPAyAmount = "$60";
+                objInsurance.InsuranceDetails = "Insurance Details";
+                objInsurance.InsuranceProvidor = "Cigna";
+                objInsurance.PatientId = patientId;
+                objInsurance.PolicyHolder = "Sanjay";
+            }
+
+            //var client = new HttpClient();
+            try
+            {
+                //// Create the HttpContent for the form to be posted.
+                //var requestContent = new FormUrlEncodedContent(new[] {
+                //new KeyValuePair<string, string>("text", sb.ToString()),
+                //});
+
+                //// Get the response.
+                //HttpResponseMessage response = await client.PostAsync(
+                //    "https://www.claim.md/services/eligxml/",
+                //    requestContent);
+
+                //// Get the response content.
+                //HttpContent responseContent = response.Content;
+
+                //// Get the stream of the content.
+                //using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+                //{
+                //    // Write the output.
+                //    //Console.WriteLine(await reader.ReadToEndAsync());
+                //    var ss = await reader.ReadToEndAsync();
+                //}
+
+                //using (var httpClient = new HttpClient())
+                //{
+                //    using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://www.claim.md/services/eligxml/"))
+                //    {
+                //        var multipartContent = new MultipartFormDataContent();
+                //        multipartContent.Add(new StringContent("9295oIlHpKlworVmEoiWzTbuSjdM"), "AccountKey");
+                //        multipartContent.Add(new StringContent("sanjay"), "UserID");
+                //        multipartContent.Add(new StringContent("87726"), "payerid");
+                //        multipartContent.Add(new StringContent("SMITH"), "ins_name_l");
+                //        multipartContent.Add(new StringContent("BOB"), "ins_name_f");
+                //        multipartContent.Add(new StringContent("2015-07-30"), "ins_dob");
+                //        multipartContent.Add(new StringContent("12341234"), "ins_number");
+                //        multipartContent.Add(new StringContent("18"), "pat_rel");
+                //        multipartContent.Add(new StringContent("30"), "service_code");
+                //        multipartContent.Add(new StringContent("2019-07-13"), "fdos");
+                //        multipartContent.Add(new StringContent("COMPANY"), "prov_name_l");
+                //        multipartContent.Add(new StringContent("1111111112"), "prov_npi");
+                //        multipartContent.Add(new StringContent("207P00000X"), "prov_taxonomy");
+                //        multipartContent.Add(new StringContent("999999999"), "prov_taxid");
+                //        multipartContent.Add(new StringContent("E"), "prov_taxid_type");
+                //        multipartContent.Add(new StringContent("21 JUMP ST"), "prov_addr_1");
+                //        multipartContent.Add(new StringContent("Oradell"), "prov_city");
+                //        multipartContent.Add(new StringContent("NJ"), "prov_state");
+                //        multipartContent.Add(new StringContent("076491519"), "prov_zip");
+                //        request.Content = multipartContent;
+
+                //        var response = await httpClient.SendAsync(request);
+
+                //        HttpContent responseContent = response.Content;
+
+                //        // Get the stream of the content.
+                //        using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+                //        {
+                //            // Write the output.
+                //            //Console.WriteLine(await reader.ReadToEndAsync());
+                //            var ss = await reader.ReadToEndAsync();
+                //        }
+                //    }
+                //}
+
+                //string str = PostCurlCommand(sb.ToString(), 15);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return objInsurance;
+        }
+        public InsuranceResponseDTO ValidatePatientInsurance(string patientId)
+        {
+            InsuranceResponseDTO responseObj = new InsuranceResponseDTO();
+            var retVal = GetInsuranceDataByPatientId(patientId);
+            if(retVal!=null)
+            {
+                responseObj.data = retVal;
+                responseObj.HasInsuranceData = true;
+                responseObj.IsActiveInsurance = true;
+            }
+            responseObj.Code = "";
+            responseObj.Status = "";
+
+            return responseObj;
+        }
+        public int ResetPasswordEmail(SendEmailResetPasswordParams emailParams)
+        {
+            int status = 0;
+            try
+            {
+                emailService.SendResetPasswordLinkEmail(emailParams.Email, emailParams.LandingPageLink);
+                status = 1;
+            }
+            catch (Exception ex)
+            {
+                status = 0;
+            }
+            return status;
+        }
+
+        private string PostCurlCommand(string curlCommand, int timeoutInSeconds)
+        {
+            if (string.IsNullOrEmpty(curlCommand))
+                return "";
+
+            curlCommand = curlCommand.Trim();
+            if (curlCommand.StartsWith("curl"))
+            {
+                curlCommand = curlCommand.Substring("curl".Length).Trim();
+            }
+
+            curlCommand = curlCommand.Replace("--compressed", "");
+
+            var fullPath = System.IO.Path.Combine(Environment.SystemDirectory, "curl.exe");
+            if (System.IO.File.Exists(fullPath) == false)
+            {
+                //if (Debugger.IsAttached) { Debugger.Break(); }
+                throw new Exception("Windows 10 or higher is required to run this application");
+            }
+
+            List<string> parameters = new List<string>();
+
+            try
+            {
+                Queue<char> q = new Queue<char>();
+
+                foreach (var c in curlCommand.ToCharArray())
+                {
+                    q.Enqueue(c);
+                }
+
+                StringBuilder currentParameter = new StringBuilder();
+
+                void insertParameter()
+                {
+                    var temp = currentParameter.ToString().Trim();
+                    if (string.IsNullOrEmpty(temp) == false)
+                    {
+                        parameters.Add(temp);
+                    }
+
+                    currentParameter.Clear();
+                }
+
+                while (true)
+                {
+                    if (q.Count == 0)
+                    {
+                        insertParameter();
+                        break;
+                    }
+
+                    char x = q.Dequeue();
+
+                    if (x == '\'')
+                    {
+                        insertParameter();
+
+                        while (true)
+                        {
+                            x = q.Dequeue();
+                            if (x == '\\' && q.Count > 0 && q.Peek() == '\'')
+                            {
+                                currentParameter.Append('\'');
+                                q.Dequeue();
+                                continue;
+                            }
+
+                            if (x == '\'')
+                            {
+                                insertParameter();
+                                break;
+                            }
+
+                            currentParameter.Append(x);
+                        }
+                    }
+                    else if (x == '"')
+                    {
+                        insertParameter();
+
+                        while (true)
+                        {
+                            x = q.Dequeue();
+
+                            // if next 2 characetrs are \"
+                            if (x == '\\' && q.Count > 0 && q.Peek() == '"')
+                            {
+                                currentParameter.Append('"');
+                                q.Dequeue();
+                                continue;
+                            }
+
+                            if (x == '"')
+                            {
+                                insertParameter();
+                                break;
+                            }
+
+                            currentParameter.Append(x);
+                        }
+                    }
+                    else
+                    {
+                        currentParameter.Append(x);
+                    }
+                }
+            }
+            catch
+            {
+                //if (Debugger.IsAttached) { Debugger.Break(); }
+                throw new Exception("Invalid curl command");
+            }
+
+            StringBuilder finalCommand = new StringBuilder();
+
+            foreach (var p in parameters)
+            {
+                if (p.StartsWith("-"))
+                {
+                    finalCommand.Append(p);
+                    finalCommand.Append(" ");
+                    continue;
+                }
+
+                var temp = p;
+
+                if (temp.Contains("\""))
+                {
+                    temp = temp.Replace("\"", "\\\"");
+                }
+
+                if (temp.Contains("'"))
+                {
+                    temp = temp.Replace("'", "\\'");
+                }
+
+                finalCommand.Append($"\"{temp}\"");
+                finalCommand.Append(" ");
+            }
+
+            using (var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "curl.exe",
+                    Arguments = finalCommand.ToString(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = false,
+                    WorkingDirectory = Environment.SystemDirectory
+                }
+            })
+            {
+                proc.Start();
+
+                proc.WaitForExit(timeoutInSeconds * 10);
+
+                var bb = proc.StandardOutput.ReadToEnd();
+
+                return bb;
+            }
+        }
+
         #region SaveUser***************************************************************************************************************************************
         /// <summary>
         /// SaveUser
@@ -318,5 +615,13 @@ namespace ChartDoc.Services.DataService
             return dtDoctor;
         }
         #endregion
+
+        private DataTable GetPatientInfoForClaimMD(string patientId)
+        {
+            DataTable dtPatient = new DataTable();
+            string sqlDoctor = "exec USP_GETINSURANCEELIGIBILITY '" + patientId + "'";
+            dtPatient = db.GetData(sqlDoctor);
+            return dtPatient;
+        }
     }
 }
