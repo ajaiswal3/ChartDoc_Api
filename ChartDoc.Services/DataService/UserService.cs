@@ -178,6 +178,8 @@ namespace ChartDoc.Services.DataService
             string returnStatus = string.Empty;
             string statusValue = string.Empty;
 
+            userName = @"ChartDoc\" + userName;
+
             RadiusClient rc = new RadiusClient(_duoHostName, _duoSharedSecret);
             RadiusPacket authPacket = rc.Authenticate(userName, password);
             authPacket.SetAttribute(new VendorSpecificAttribute(10135, 1, UTF8Encoding.UTF8.GetBytes("Testing")));

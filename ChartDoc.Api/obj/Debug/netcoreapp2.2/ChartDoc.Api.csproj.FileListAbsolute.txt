@@ -85,3 +85,5 @@ D:\suvresh\ChartDocDEV\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.pdb
 D:\suvresh\ChartDocDEV\ChartDoc.Api\obj\Debug\netcoreapp2.2\ChartDoc.Api.genruntimeconfig.cache
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Radius.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Radius.pdb
+D:\suvresh\ChartDocDEV\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Radius.dll
+D:\suvresh\ChartDocDEV\ChartDoc.Api\bin\Debug\netcoreapp2.2\ChartDoc.Radius.pdb
