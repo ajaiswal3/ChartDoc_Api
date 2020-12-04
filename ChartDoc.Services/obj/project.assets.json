@@ -5571,11 +5571,12 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
+      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -8649,11 +8650,12 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
+      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -10124,23 +10126,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Suvresh.C\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Services\\ChartDoc.Services.csproj",
+      "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\ChartDoc.Services.csproj",
       "projectName": "ChartDoc.Services",
-      "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Services\\ChartDoc.Services.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Services\\obj\\",
+      "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\ChartDoc.Services.csproj",
+      "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+      "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10152,19 +10150,18 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "targetAlias": "netcoreapp2.2",
           "projectReferences": {
-            "D:\\suvresh\\ChartDocDEV\\ChartDoc.Context\\ChartDoc.Context.csproj": {
-              "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Context\\ChartDoc.Context.csproj"
+            "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj": {
+              "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj"
             },
-            "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
-              "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.DAL\\ChartDoc.DAL.csproj"
+            "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
+              "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj"
             },
-            "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\ChartDoc.Models.csproj": {
-              "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\ChartDoc.Models.csproj"
+            "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj": {
+              "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj"
             },
-            "D:\\suvresh\\ChartDocDEV\\ChartDoc.Radius\\ChartDoc.Radius.csproj": {
-              "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Radius\\ChartDoc.Radius.csproj"
+            "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj": {
+              "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj"
             }
           }
         }
@@ -10177,7 +10174,6 @@
     },
     "frameworks": {
       "netcoreapp2.2": {
-        "targetAlias": "netcoreapp2.2",
         "dependencies": {
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
@@ -10208,7 +10204,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
