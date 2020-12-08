@@ -84,5 +84,34 @@ namespace ChartDoc.Services.DataService
             objSmtpClient.EnableSsl = true;
             objSmtpClient.Send(objMailMessage);
         }
+
+        public void SendResetPasswordLinkEmail(string email, string resetLink)
+        {
+            string sql = "USP_GETCONFIG @ID=3";
+            DataTable result = context.GetData(sql);
+            foreach (DataRow row in result.Rows)
+            {
+                emailMsgBody = Convert.ToString(row["EMAILBODY"]);
+                emailMsgSubject = Convert.ToString(row["EMAILSUBJECT"]);
+                emailServerIp = Convert.ToString(row["EMAILSERVERIP"]);
+                emailServerPort = Convert.ToString(row["EMAILSERVERPORT"]);
+                emailServerUserId = Convert.ToString(row["EMAILSERVERUSERID"]);
+                emailServerUserPassword = Convert.ToString(row["EMAILSERVERPASSWORD"]);
+            }
+            MailMessage objMailMessage = new MailMessage();
+            SmtpClient objSmtpClient = new SmtpClient(emailServerIp);
+            emailMsgBody = emailMsgBody.Replace("@@EMAIL@@", email);
+            emailMsgBody = emailMsgBody.Replace("@@RESETLINK@@", resetLink);
+
+            objMailMessage.From = new MailAddress(emailServerUserId);
+            objMailMessage.To.Add(email);
+            objMailMessage.Subject = emailMsgSubject;
+            objMailMessage.Body = emailMsgBody;
+
+            objSmtpClient.Port = Convert.ToInt32(emailServerPort);
+            objSmtpClient.Credentials = new System.Net.NetworkCredential(emailServerUserId, emailServerUserPassword);
+            objSmtpClient.EnableSsl = true;
+            objSmtpClient.Send(objMailMessage);
+        }
     }
 }

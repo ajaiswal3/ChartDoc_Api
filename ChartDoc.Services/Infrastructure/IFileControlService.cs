@@ -20,7 +20,9 @@ namespace ChartDoc.Services.Infrastructure
         List<clsDocument> SaveProcedureImage(string PatientId, IFormFileCollection UploadFiles);
         List<clsDocument> SaveDiagnosisImage(string PatientId, IFormFileCollection UploadFiles);
 
-         Task<clsPatientDetails> SavePatientProfileImage(clsPatientDetails data, IFormFile uploadFile);
+        Task<clsPatientDetails> SavePatientProfileImage(clsPatientDetails data, IFormFile uploadFile);
+        // clsPatientDetails SavePatientProfileImage(clsPatientDetails data, IFormFile uploadFile);
+        string DecryptFile(string filemame);
 
 
     }

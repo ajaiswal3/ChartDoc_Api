@@ -27,17 +27,17 @@ C:\BitBucket\ChartDoc\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pd
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
-D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csproj.CoreCompileInputs.cache
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
 D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\Sandip da\ChartDoc\WEBAPP\chartdoc_api1\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.deps.json
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\bin\Debug\netcoreapp2.2\ChartDoc.Models.pdb
-D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfoInputs.cache
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.AssemblyInfo.cs
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Models\obj\Debug\netcoreapp2.2\ChartDoc.Models.csprojAssemblyReference.cache

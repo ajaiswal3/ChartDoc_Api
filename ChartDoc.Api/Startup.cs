@@ -98,6 +98,9 @@ namespace ChartDoc.Api
             services.AddTransient<IClaimFieldsService, ClaimFieldsService>();
             services.AddTransient<IClaimStatusService, ClaimStatusService>();
             services.AddTransient<IReportService, ReportService>();
+            services.AddTransient<IUserAccessService, UserAccessService>();
+            services.AddTransient<IClaimDetailsService, ClaimDetailsService>();
+            services.AddTransient<IMenuService, MenuService>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -168,12 +171,7 @@ namespace ChartDoc.Api
             app.UseHttpsRedirection();
             app.UseCors("AllowMyOrigin");
             app.ConfigureExceptionHandler(logService);
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //Path.Combine(Configuration.GetSection("FolderPath").Value, "Images")),
-            //    RequestPath = "/Images"
-            //});
+            
 
             app.UseStaticFiles(new StaticFileOptions
             {
