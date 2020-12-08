@@ -1,35 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\ChartDoc.Models.csproj": {}
+    "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj": {}
   },
   "projects": {
-    "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\ChartDoc.Models.csproj": {
+    "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\ChartDoc.Models.csproj",
+        "projectUniqueName": "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj",
         "projectName": "ChartDoc.Models",
-        "projectPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\ChartDoc.Models.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\suvresh\\ChartDocDEV\\ChartDoc.Models\\obj\\",
+        "projectPath": "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj",
+        "packagesPath": "C:\\Users\\swatantra\\.nuget\\packages\\",
+        "outputPath": "D:\\QBA\\ChartDoc.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\swatantra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.2": {
-            "targetAlias": "netcoreapp2.2",
             "projectReferences": {}
           }
         },
@@ -41,7 +39,6 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "targetAlias": "netcoreapp2.2",
           "dependencies": {
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -60,7 +57,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
