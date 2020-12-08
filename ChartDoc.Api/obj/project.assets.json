@@ -3135,6 +3135,15 @@
           "lib/net40/Owin.dll": {}
         }
       },
+      "Radius/2.0.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Radius.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Radius.dll": {}
+        }
+      },
       "Remotion.Linq/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -5320,6 +5329,16 @@
           "bin/placeholder/ChartDoc.Models.dll": {}
         }
       },
+      "ChartDoc.Radius/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/ChartDoc.Radius.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChartDoc.Radius.dll": {}
+        }
+      },
       "ChartDoc.Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -5327,7 +5346,9 @@
           "ChartDoc.Context": "1.0.0",
           "ChartDoc.DAL": "1.0.0",
           "ChartDoc.Models": "1.0.0",
+          "ChartDoc.Radius": "1.0.0",
           "Nexmo.Csharp.Client": "4.3.2",
+          "Radius": "2.0.0.2",
           "log4net": "2.0.8"
         },
         "compile": {
@@ -9025,6 +9046,18 @@
         "lib/net40/Owin.dll",
         "owin.1.0.0.nupkg.sha512",
         "owin.nuspec"
+      ]
+    },
+    "Radius/2.0.0.2": {
+      "sha512": "QVEWjP3dn3d0BAf2zGcY152gP0e5iStXnem4ETwxvbL2os4izHnDgd2EO887tr74MJReN8g4EfitYVlsazE2zA==",
+      "type": "package",
+      "path": "radius/2.0.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Radius.dll",
+        "radius.2.0.0.2.nupkg.sha512",
+        "radius.nuspec"
       ]
     },
     "Remotion.Linq/2.2.0": {
@@ -14552,6 +14585,11 @@
       "path": "../ChartDoc.Models/ChartDoc.Models.csproj",
       "msbuildProject": "../ChartDoc.Models/ChartDoc.Models.csproj"
     },
+    "ChartDoc.Radius/1.0.0": {
+      "type": "project",
+      "path": "../ChartDoc.Radius/ChartDoc.Radius.csproj",
+      "msbuildProject": "../ChartDoc.Radius/ChartDoc.Radius.csproj"
+    },
     "ChartDoc.Services/1.0.0": {
       "type": "project",
       "path": "../ChartDoc.Services/ChartDoc.Services.csproj",
@@ -14803,6 +14841,16 @@
       "warningLevel": 1,
       "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
       "libraryId": "Owin",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Radius 2.0.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
+      "libraryId": "Radius",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"
       ]

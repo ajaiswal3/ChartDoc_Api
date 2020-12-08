@@ -1274,6 +1274,20 @@ namespace ChartDoc.Api.Controllers
             xmlUser = _sharedService.ConvertDatatableToXMLNew(dt);
             return _userService.SaveUser(iUser.id, xmlUser, iUser.fullName,iUser.email);
         }
+
+        [HttpPost]
+        [Route("SaveTemplate")]
+        public string SaveTemplate(TemplateMasterParams templateData)
+        {
+            return _userService.SaveTemplate(templateData.TemplateId, templateData.TemplateTitle, templateData.Description, templateData.Tag);
+        }
+
+        [HttpGet]
+        [Route("GetTemplateById/{templateId}")]
+        public ActionResult<TemplateDTO> GetTemplateById(string templateId)
+        {
+            return _userService.TemplateByTemplateId(Convert.ToInt32(templateId));
+        }
         #endregion
 
         #region Save ICD
@@ -2046,6 +2060,14 @@ namespace ChartDoc.Api.Controllers
         [Route("UserLogin")]
         public ActionResult<clsUser> UserLogin(UserLoginDTO userLogin)
         {
+            return _userService.GetUser(userLogin.UserName, userLogin.Password);
+        }
+
+        [HttpPost]
+        [Route("UserLoginWithDUO")]
+        public ActionResult<clsUser> UserLoginWithDUO(UserLoginDTO userLogin)
+        {
+            var duoStatus = _userService.Authenticate(userLogin.UserName, userLogin.Password);
             return _userService.GetUser(userLogin.UserName, userLogin.Password);
         }
 

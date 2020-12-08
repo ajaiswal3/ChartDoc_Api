@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.Api", "ChartDoc.Api\ChartDoc.Api.csproj", "{FF701854-BF53-4046-9A6B-20E2A808E695}"
 EndProject
@@ -12,9 +12,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.Services", "ChartD
 		{11C3350C-378E-445C-9B5F-4D51769518FD} = {11C3350C-378E-445C-9B5F-4D51769518FD}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartDoc.DAL", "ChartDoc.DAL\ChartDoc.DAL.csproj", "{1A18BD2A-B766-4904-95F3-312D730E8C40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.DAL", "ChartDoc.DAL\ChartDoc.DAL.csproj", "{1A18BD2A-B766-4904-95F3-312D730E8C40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartDoc.Context", "ChartDoc.Context\ChartDoc.Context.csproj", "{11C3350C-378E-445C-9B5F-4D51769518FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartDoc.Radius", "ChartDoc.Radius\ChartDoc.Radius.csproj", "{F9159E1D-01E0-4153-9AC9-57FED2842DA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{11C3350C-378E-445C-9B5F-4D51769518FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C3350C-378E-445C-9B5F-4D51769518FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11C3350C-378E-445C-9B5F-4D51769518FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9159E1D-01E0-4153-9AC9-57FED2842DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9159E1D-01E0-4153-9AC9-57FED2842DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9159E1D-01E0-4153-9AC9-57FED2842DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9159E1D-01E0-4153-9AC9-57FED2842DA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

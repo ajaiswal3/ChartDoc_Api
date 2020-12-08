@@ -11,7 +11,9 @@
           "ChartDoc.Context": "1.0.0",
           "ChartDoc.DAL": "1.0.0",
           "ChartDoc.Models": "1.0.0",
+          "ChartDoc.Radius": "1.0.0",
           "Nexmo.Csharp.Client": "4.3.2",
+          "Radius": "2.0.0.2",
           "log4net": "2.0.8",
           "DuoWeb": "1.0.0.0"
         },
@@ -1042,6 +1044,14 @@
           "lib/netstandard2.0/Nexmo.Api.dll": {
             "assemblyVersion": "4.3.2.0",
             "fileVersion": "4.3.2.0"
+          }
+        }
+      },
+      "Radius/2.0.0.2": {
+        "runtime": {
+          "lib/net45/Radius.dll": {
+            "assemblyVersion": "2.0.0.2",
+            "fileVersion": "2.0.0.2"
           }
         }
       },
@@ -2167,6 +2177,11 @@
           "ChartDoc.Models.dll": {}
         }
       },
+      "ChartDoc.Radius/1.0.0": {
+        "runtime": {
+          "ChartDoc.Radius.dll": {}
+        }
+      },
       "DuoWeb/1.0.0.0": {
         "runtime": {
           "DuoWeb.dll": {
@@ -2714,6 +2729,13 @@
       "sha512": "sha512-xmAQ0RaQ3lAmDNUWktX+r7vO+aibAW8IYDGXi0w2GysrVQ7oIWTmspcgvKXHffPju2nKPraAOQQz1qVZg1QunQ==",
       "path": "nexmo.csharp.client/4.3.2",
       "hashPath": "nexmo.csharp.client.4.3.2.nupkg.sha512"
+    },
+    "Radius/2.0.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QVEWjP3dn3d0BAf2zGcY152gP0e5iStXnem4ETwxvbL2os4izHnDgd2EO887tr74MJReN8g4EfitYVlsazE2zA==",
+      "path": "radius/2.0.0.2",
+      "hashPath": "radius.2.0.0.2.nupkg.sha512"
     },
     "Remotion.Linq/2.2.0": {
       "type": "package",
@@ -3531,6 +3553,11 @@
       "sha512": ""
     },
     "ChartDoc.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ChartDoc.Radius/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

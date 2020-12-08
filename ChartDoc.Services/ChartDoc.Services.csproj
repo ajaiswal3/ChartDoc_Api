@@ -7,12 +7,14 @@
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Nexmo.Csharp.Client" Version="4.3.2" />
+    <PackageReference Include="Radius" Version="2.0.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ChartDoc.Context\ChartDoc.Context.csproj" />
     <ProjectReference Include="..\ChartDoc.DAL\ChartDoc.DAL.csproj" />
     <ProjectReference Include="..\ChartDoc.Models\ChartDoc.Models.csproj" />
+    <ProjectReference Include="..\ChartDoc.Radius\ChartDoc.Radius.csproj" />
   </ItemGroup>
 
   <ItemGroup>

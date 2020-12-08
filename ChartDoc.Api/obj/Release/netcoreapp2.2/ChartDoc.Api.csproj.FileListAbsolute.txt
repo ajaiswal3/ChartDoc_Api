@@ -54,3 +54,5 @@ D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Release\netcoreapp2.2\Chart
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Release\netcoreapp2.2\ChartDoc.Api.csproj.CopyComplete
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Release\netcoreapp2.2\ChartDoc.Api.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\obj\Release\netcoreapp2.2\ChartDoc.Api.pdb
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Release\netcoreapp2.2\ChartDoc.Radius.dll
+D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.Api\bin\Release\netcoreapp2.2\ChartDoc.Radius.pdb

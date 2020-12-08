@@ -17,5 +17,8 @@ namespace ChartDoc.Services.Infrastructure
         ResetPasswordDTO GetResponseResetPassword(string userEmail, string userPassword);
         InsuranceResponseDTO ValidatePatientInsurance(string patientId);
         int ResetPasswordEmail(SendEmailResetPasswordParams emailParams);
+        Task<string> Authenticate(string userName, string password);
+        string SaveTemplate(int id, string title, string description, char tag);
+        TemplateDTO TemplateByTemplateId(int id);
     }
 }

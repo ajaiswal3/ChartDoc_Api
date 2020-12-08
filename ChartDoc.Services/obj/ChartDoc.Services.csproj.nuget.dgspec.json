@@ -1,36 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "D:\\QBA\\ChartDoc.Services\\ChartDoc.Services.csproj": {}
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\ChartDoc.Services.csproj": {}
   },
   "projects": {
-    "D:\\QBA\\ChartDoc.Context\\ChartDoc.Context.csproj": {
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QBA\\ChartDoc.Context\\ChartDoc.Context.csproj",
+        "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj",
         "projectName": "ChartDoc.Context",
-        "projectPath": "D:\\QBA\\ChartDoc.Context\\ChartDoc.Context.csproj",
-        "packagesPath": "C:\\Users\\swatantra\\.nuget\\packages\\",
-        "outputPath": "D:\\QBA\\ChartDoc.Context\\obj\\",
+        "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj",
+        "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+        "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\swatantra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj": {
-                "projectPath": "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj"
+              "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj": {
+                "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj"
               }
             }
           }
@@ -65,30 +63,28 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QBA\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QBA\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
+        "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
         "projectName": "ChartDoc.DAL",
-        "projectPath": "D:\\QBA\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
-        "packagesPath": "C:\\Users\\swatantra\\.nuget\\packages\\",
-        "outputPath": "D:\\QBA\\ChartDoc.DAL\\obj\\",
+        "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj",
+        "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+        "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\swatantra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -134,30 +130,28 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj": {
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj",
+        "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj",
         "projectName": "ChartDoc.Models",
-        "projectPath": "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj",
-        "packagesPath": "C:\\Users\\swatantra\\.nuget\\packages\\",
-        "outputPath": "D:\\QBA\\ChartDoc.Models\\obj\\",
+        "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj",
+        "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+        "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\swatantra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -191,43 +185,99 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\QBA\\ChartDoc.Services\\ChartDoc.Services.csproj": {
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QBA\\ChartDoc.Services\\ChartDoc.Services.csproj",
-        "projectName": "ChartDoc.Services",
-        "projectPath": "D:\\QBA\\ChartDoc.Services\\ChartDoc.Services.csproj",
-        "packagesPath": "C:\\Users\\swatantra\\.nuget\\packages\\",
-        "outputPath": "D:\\QBA\\ChartDoc.Services\\obj\\",
+        "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj",
+        "projectName": "ChartDoc.Radius",
+        "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj",
+        "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+        "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\swatantra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\ChartDoc.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\ChartDoc.Services.csproj",
+        "projectName": "ChartDoc.Services",
+        "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\ChartDoc.Services.csproj",
+        "packagesPath": "C:\\Users\\Suvresh.C\\.nuget\\packages\\",
+        "outputPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Suvresh.C\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\QBA\\ChartDoc.Context\\ChartDoc.Context.csproj": {
-                "projectPath": "D:\\QBA\\ChartDoc.Context\\ChartDoc.Context.csproj"
+              "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj": {
+                "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Context\\ChartDoc.Context.csproj"
               },
-              "D:\\QBA\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
-                "projectPath": "D:\\QBA\\ChartDoc.DAL\\ChartDoc.DAL.csproj"
+              "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj": {
+                "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.DAL\\ChartDoc.DAL.csproj"
               },
-              "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj": {
-                "projectPath": "D:\\QBA\\ChartDoc.Models\\ChartDoc.Models.csproj"
+              "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj": {
+                "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Models\\ChartDoc.Models.csproj"
+              },
+              "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj": {
+                "projectPath": "D:\\suvresh\\EHR\\Chart_Doc_2020_10_02\\ChartDoc.Radius\\ChartDoc.Radius.csproj"
               }
             }
           }
@@ -251,6 +301,10 @@
               "target": "Package",
               "version": "[4.3.2, )"
             },
+            "Radius": {
+              "target": "Package",
+              "version": "[2.0.0.2, )"
+            },
             "log4net": {
               "target": "Package",
               "version": "[2.0.8, )"
@@ -266,7 +320,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
