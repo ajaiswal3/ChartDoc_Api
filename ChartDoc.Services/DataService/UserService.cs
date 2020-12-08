@@ -575,7 +575,61 @@ namespace ChartDoc.Services.DataService
             }
             return result;
         }
+
+        public string SaveTemplate(int id, string title, string description, char tag)
+        {
+            string result = string.Empty;
+            string sqlTemplate = string.Empty;
+            try
+            {
+
+                sqlTemplate = " EXEC [USP_SaveTEMPLATE] '" + id + "','" + title + "', '" + description + "', '" + tag + "'";
+                result = (string)db.GetSingleValue(sqlTemplate);
+            }
+            catch (Exception ex)
+            {
+                var logger = logService.GetLogger(typeof(AppointmentService));
+                logger.Error(ex);
+                return result;
+            }
+            return result;
+        }
         #endregion
+
+        private DataTable GetTemplateById(int id)
+        {
+            DataTable dtPatient = new DataTable();
+            string sqlDoctor = "exec USP_GetTEMPLATE " + id;
+            dtPatient = db.GetData(sqlDoctor);
+            return dtPatient;
+        }
+
+        private TemplateData GetTemplateDataFromDatatable(DataTable dtTemplate)
+        {
+            TemplateData objData = new TemplateData();
+            if (dtTemplate.Rows.Count>0)
+            {
+                for (int index = 0; index <= dtTemplate.Rows.Count - 1; index++)
+                {
+                    objData.ID = Convert.ToInt32(dtTemplate.Rows[index]["ID"]);
+                    objData.Title = Convert.ToString(dtTemplate.Rows[index]["Title"]);
+                    objData.Description = Convert.ToString(dtTemplate.Rows[index]["Description"]);
+                }
+            }
+            return objData;
+        }
+
+        public TemplateDTO TemplateByTemplateId(int id)
+        {
+            TemplateDTO retObj = new TemplateDTO();
+            var retVal = GetTemplateDataFromDatatable(GetTemplateById(id));
+
+            retObj.data = retVal;
+            retObj.Code = "";
+            retObj.Status = "";
+
+            return retObj;
+        }
 
         #region UpdateStatusofUser*****************************************************************************************************************************
         /// <summary>
