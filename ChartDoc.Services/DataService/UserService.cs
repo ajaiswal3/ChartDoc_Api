@@ -184,38 +184,55 @@ namespace ChartDoc.Services.DataService
             RadiusPacket authPacket = rc.Authenticate(userName, password);
             authPacket.SetAttribute(new VendorSpecificAttribute(10135, 1, UTF8Encoding.UTF8.GetBytes("Testing")));
             authPacket.SetAttribute(new VendorSpecificAttribute(10135, 2, new[] { (byte)7 }));
-            RadiusPacket receivedPacket = await rc.SendAndReceivePacket(authPacket);
-            if (receivedPacket == null) throw new Exception("Can't contact remote radius server !");
 
-            switch (receivedPacket.PacketType)
+            for (int i = 0; i < 6; i++)
             {
-                case RadiusCode.ACCESS_ACCEPT:
-                    //Console.WriteLine("Access-Accept");
-                    returnStatus = "Access - Accept#";
-                    foreach (var attr in receivedPacket.Attributes)
+                RadiusPacket receivedPacket = await rc.SendAndReceivePacket(authPacket);
+                if (receivedPacket == null)
+                {
+                    if(i<6)
                     {
-                        statusValue += attr.Type.ToString() + " = " + attr.Value;
-                        //Console.WriteLine(attr.Type.ToString() + " = " + attr.Value);
+                        continue;
                     }
-                    returnStatus = returnStatus + statusValue;
+                    //throw new Exception("Can't contact remote radius server !");
+                    returnStatus = "Can not contact remote radius server !";
+                    return returnStatus;
+                }
+
+                switch (receivedPacket.PacketType)
+                {
+                    case RadiusCode.ACCESS_ACCEPT:
+                        //Console.WriteLine("Access-Accept");
+                        returnStatus = "Access - Accept#";
+                        foreach (var attr in receivedPacket.Attributes)
+                        {
+                            statusValue += attr.Type.ToString() + " = " + attr.Value;
+                            //Console.WriteLine(attr.Type.ToString() + " = " + attr.Value);
+                        }
+                        returnStatus = returnStatus + statusValue;
+                        break;
+                    case RadiusCode.ACCESS_CHALLENGE:
+                        //Console.WriteLine("Access-Challenge");
+                        returnStatus = "Access-Challenge";
+                        break;
+                    case RadiusCode.ACCESS_REJECT:
+                        //Console.WriteLine("Access-Reject");
+                        returnStatus = "Access-Reject";
+                        if (!rc.VerifyAuthenticator(authPacket, receivedPacket))
+                        {
+                            //Console.WriteLine("Authenticator check failed: Check your secret");
+                            returnStatus = returnStatus + "Authenticator check failed: Check your secret";
+                        }
+                        break;
+                    default:
+                        //Console.WriteLine("Rejected");
+                        returnStatus = "Rejected";
+                        break;
+                }
+                if(!string.IsNullOrEmpty(returnStatus))
+                {
                     break;
-                case RadiusCode.ACCESS_CHALLENGE:
-                    //Console.WriteLine("Access-Challenge");
-                    returnStatus = "Access-Challenge";
-                    break;
-                case RadiusCode.ACCESS_REJECT:
-                    //Console.WriteLine("Access-Reject");
-                    returnStatus = "Access-Reject";
-                    if (!rc.VerifyAuthenticator(authPacket, receivedPacket))
-                    {
-                        //Console.WriteLine("Authenticator check failed: Check your secret");
-                        returnStatus = returnStatus + "Authenticator check failed: Check your secret";
-                    }
-                    break;
-                default:
-                    //Console.WriteLine("Rejected");
-                    returnStatus = "Rejected";
-                    break;
+                }
             }
 
             return returnStatus;

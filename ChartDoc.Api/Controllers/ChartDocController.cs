@@ -2065,10 +2065,20 @@ namespace ChartDoc.Api.Controllers
 
         [HttpPost]
         [Route("UserLoginWithDUO")]
-        public ActionResult<clsUser> UserLoginWithDUO(UserLoginDTO userLogin)
+        public async Task<clsUser> UserLoginWithDUO(UserLoginDTO userLogin)
         {
+            clsUser usr = new clsUser();
             var duoStatus = _userService.Authenticate(userLogin.UserName, userLogin.Password);
-            return _userService.GetUser(userLogin.UserName, userLogin.Password);
+            string status = await duoStatus;
+            if(!status.Contains("Can not contact"))
+            {
+                usr = _userService.GetUser(userLogin.UserName, userLogin.Password);
+            }
+            else
+            {
+                usr = new clsUser();
+            }
+            return usr;
         }
 
         [HttpPost]
