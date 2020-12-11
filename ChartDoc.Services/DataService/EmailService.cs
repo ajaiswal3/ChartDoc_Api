@@ -113,5 +113,35 @@ namespace ChartDoc.Services.DataService
             objSmtpClient.EnableSsl = true;
             objSmtpClient.Send(objMailMessage);
         }
+
+        public void SendCreatePasswordEmail(string email, string userName, string userId, string passwordLink)
+        {
+            string sql = "USP_GETCONFIG @ID=4";
+            DataTable result = context.GetData(sql);
+            foreach (DataRow row in result.Rows)
+            {
+                emailMsgBody = Convert.ToString(row["EMAILBODY"]);
+                emailMsgSubject = Convert.ToString(row["EMAILSUBJECT"]);
+                emailServerIp = Convert.ToString(row["EMAILSERVERIP"]);
+                emailServerPort = Convert.ToString(row["EMAILSERVERPORT"]);
+                emailServerUserId = Convert.ToString(row["EMAILSERVERUSERID"]);
+                emailServerUserPassword = Convert.ToString(row["EMAILSERVERPASSWORD"]);
+            }
+            MailMessage objMailMessage = new MailMessage();
+            SmtpClient objSmtpClient = new SmtpClient(emailServerIp);
+            emailMsgBody = emailMsgBody.Replace("@@UserName@@", userName);
+            emailMsgBody = emailMsgBody.Replace("@@CreatePassword@@", passwordLink);
+            emailMsgBody = emailMsgBody.Replace("@@UserId@@", userId);
+
+            objMailMessage.From = new MailAddress(emailServerUserId);
+            objMailMessage.To.Add(email);
+            objMailMessage.Subject = emailMsgSubject;
+            objMailMessage.Body = emailMsgBody;
+
+            objSmtpClient.Port = Convert.ToInt32(emailServerPort);
+            objSmtpClient.Credentials = new System.Net.NetworkCredential(emailServerUserId, emailServerUserPassword);
+            objSmtpClient.EnableSsl = true;
+            objSmtpClient.Send(objMailMessage);
+        }
     }
 }

@@ -2085,6 +2085,13 @@ namespace ChartDoc.Api.Controllers
             return _userService.ResetPasswordEmail(resetPassword);
         }
 
+        [HttpPost]
+        [Route("SendEmailCreatePassword")]
+        public ActionResult<int> SendEmailCreatePassword(SendEmailCreatePasswordParams createPassword)
+        {
+            return _userService.CreatePasswordEmail(createPassword);
+        }
+
         [HttpGet]
         [Route("ValidateInsurance/{patientId}")]
         public ActionResult<InsuranceResponseDTO> ValidateInsurance(string patientId)

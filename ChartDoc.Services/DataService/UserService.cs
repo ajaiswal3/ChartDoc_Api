@@ -379,6 +379,21 @@ namespace ChartDoc.Services.DataService
             return status;
         }
 
+        public int CreatePasswordEmail(SendEmailCreatePasswordParams emailParams)
+        {
+            int status = 0;
+            try
+            {
+                emailService.SendCreatePasswordEmail(emailParams.Email, emailParams.UserName, emailParams.UserId, emailParams.PasswordLink);
+                status = 1;
+            }
+            catch (Exception ex)
+            {
+                status = 0;
+            }
+            return status;
+        }
+
         private string PostCurlCommand(string curlCommand, int timeoutInSeconds)
         {
             if (string.IsNullOrEmpty(curlCommand))
@@ -604,16 +619,19 @@ namespace ChartDoc.Services.DataService
             return dtPatient;
         }
 
-        private TemplateData GetTemplateDataFromDatatable(DataTable dtTemplate)
+        private List<TemplateData> GetTemplateDataFromDatatable(DataTable dtTemplate)
         {
-            TemplateData objData = new TemplateData();
+            List<TemplateData> objData = new List<TemplateData>();
             if (dtTemplate.Rows.Count>0)
             {
                 for (int index = 0; index <= dtTemplate.Rows.Count - 1; index++)
                 {
-                    objData.ID = Convert.ToInt32(dtTemplate.Rows[index]["ID"]);
-                    objData.Title = Convert.ToString(dtTemplate.Rows[index]["Title"]);
-                    objData.Description = Convert.ToString(dtTemplate.Rows[index]["Description"]);
+                    TemplateData obj = new TemplateData();
+                    obj.ID = Convert.ToInt32(dtTemplate.Rows[index]["ID"]);
+                    obj.Title = Convert.ToString(dtTemplate.Rows[index]["Title"]);
+                    obj.Description = Convert.ToString(dtTemplate.Rows[index]["Description"]);
+
+                    objData.Add(obj);
                 }
             }
             return objData;

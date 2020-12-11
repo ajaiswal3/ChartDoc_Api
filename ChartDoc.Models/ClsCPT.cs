@@ -17,6 +17,8 @@ namespace ChartDoc.Models
         public string patientId { get; set; }
         public string code { get; set; }
         public string desc { get; set; }
+        public string icd_code { get; set; }
+        public string icd_desc { get; set; }
         public decimal? chargeAmount { get; set; }
         public bool disposed;
         #endregion
