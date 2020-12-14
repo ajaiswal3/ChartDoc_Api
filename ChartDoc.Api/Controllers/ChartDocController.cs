@@ -1195,15 +1195,19 @@ namespace ChartDoc.Api.Controllers
         public async Task<string> SaveAppointmentNew(IFormCollection data)
         {
             clsAppointment appointment = JsonConvert.DeserializeObject<clsAppointment>(data["appointmentDetails"]);
+            appointment = await _fileControlService.SaveAppointmentImage(appointment, data.Files);
             appointment.fName = _sharedService.Encrypt(appointment.fName.ToUpper());
             appointment.lName = _sharedService.Encrypt(appointment.lName.ToUpper());
-            appointment.mName = _sharedService.Encrypt(appointment.mName.ToUpper());
+            if (appointment.mName != null)
+            {
+                appointment.mName = _sharedService.Encrypt(appointment.mName.ToUpper());
+            }
             appointment.patientName = _sharedService.Encrypt(appointment.patientName.ToUpper());
             appointment.contactNo = _sharedService.Encrypt(appointment.contactNo);
             appointment.address = _sharedService.Encrypt(appointment.address);
             appointment.gender = _sharedService.Encrypt(appointment.gender);
             appointment.email = _sharedService.Encrypt(appointment.email);
-            appointment = await _fileControlService.SaveAppointmentImage(appointment, data.Files);
+
             return _appointmentService.SaveActiveAppointment(appointment);
         }
         #endregion
