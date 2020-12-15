@@ -8,6 +8,7 @@
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Nexmo.Csharp.Client" Version="4.3.2" />
     <PackageReference Include="Radius" Version="2.0.0.2" />
+    <PackageReference Include="System.DirectoryServices" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

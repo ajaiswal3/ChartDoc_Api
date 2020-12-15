@@ -15,6 +15,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using ChartDoc.Radius;
+using System.DirectoryServices;
 
 namespace ChartDoc.Services.DataService
 {
@@ -236,6 +237,29 @@ namespace ChartDoc.Services.DataService
             }
 
             return returnStatus;
+        }
+
+        //Add User to Active Directory
+        public string AddActiveDirectoryUser(string domainName, string userName, string userFullName, string password)
+        {
+            string status = string.Empty;
+            domainName = "ChartDoc.Internal";
+            userName = "CHARTDOC";
+            password = "ChartD0cWaters";
+            try
+            {
+                //DirectoryEntry child = new DirectoryEntry("LDAP://" + domainName + "/" + objectDn, userName, password);
+                DirectoryEntry child = new DirectoryEntry("LDAP://" + domainName, userName, password);
+                DirectoryEntry newUser = child.Children.Add("suvresh_new", "user");
+                newUser.Invoke("SetPassword", new object[] { "3l!teP@$$w0RDz" });
+                newUser.CommitChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return status;
         }
 
         #region GetUserList************************************************************************************************************************************

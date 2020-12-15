@@ -2082,6 +2082,13 @@ namespace ChartDoc.Api.Controllers
         }
 
         [HttpPost]
+        [Route("AddActiveDirectoryUser")]
+        public ActionResult<string> AddActiveDirectoryUser(ActiveDirectoryParams addUser)
+        {
+            return _userService.AddActiveDirectoryUser(addUser.DomainName, addUser.UserName, addUser.UserFullName, addUser.Password);
+        }
+
+        [HttpPost]
         [Route("ValidateUserEmail")]
         public ActionResult<ResetPasswordDTO> ValidateUserEmail(ResetPasswordParams resetPassword)
         {
