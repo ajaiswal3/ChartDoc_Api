@@ -15,6 +15,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using ChartDoc.Radius;
+using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
 
 namespace ChartDoc.Services.DataService
 {
@@ -184,38 +186,199 @@ namespace ChartDoc.Services.DataService
             RadiusPacket authPacket = rc.Authenticate(userName, password);
             authPacket.SetAttribute(new VendorSpecificAttribute(10135, 1, UTF8Encoding.UTF8.GetBytes("Testing")));
             authPacket.SetAttribute(new VendorSpecificAttribute(10135, 2, new[] { (byte)7 }));
-            RadiusPacket receivedPacket = await rc.SendAndReceivePacket(authPacket);
-            if (receivedPacket == null) throw new Exception("Can't contact remote radius server !");
 
-            switch (receivedPacket.PacketType)
+            for (int i = 0; i < 6; i++)
             {
-                case RadiusCode.ACCESS_ACCEPT:
-                    //Console.WriteLine("Access-Accept");
-                    returnStatus = "Access - Accept#";
-                    foreach (var attr in receivedPacket.Attributes)
+                RadiusPacket receivedPacket = await rc.SendAndReceivePacket(authPacket);
+                if (receivedPacket == null)
+                {
+                    if(i<6)
                     {
-                        statusValue += attr.Type.ToString() + " = " + attr.Value;
-                        //Console.WriteLine(attr.Type.ToString() + " = " + attr.Value);
+                        continue;
                     }
-                    returnStatus = returnStatus + statusValue;
+                    //throw new Exception("Can't contact remote radius server !");
+                    returnStatus = "Can not contact remote radius server !";
+                    return returnStatus;
+                }
+
+                switch (receivedPacket.PacketType)
+                {
+                    case RadiusCode.ACCESS_ACCEPT:
+                        //Console.WriteLine("Access-Accept");
+                        returnStatus = "Access - Accept#";
+                        foreach (var attr in receivedPacket.Attributes)
+                        {
+                            statusValue += attr.Type.ToString() + " = " + attr.Value;
+                            //Console.WriteLine(attr.Type.ToString() + " = " + attr.Value);
+                        }
+                        returnStatus = returnStatus + statusValue;
+                        break;
+                    case RadiusCode.ACCESS_CHALLENGE:
+                        //Console.WriteLine("Access-Challenge");
+                        returnStatus = "Access-Challenge";
+                        break;
+                    case RadiusCode.ACCESS_REJECT:
+                        //Console.WriteLine("Access-Reject");
+                        returnStatus = "Access-Reject";
+                        if (!rc.VerifyAuthenticator(authPacket, receivedPacket))
+                        {
+                            //Console.WriteLine("Authenticator check failed: Check your secret");
+                            returnStatus = returnStatus + "Authenticator check failed: Check your secret";
+                        }
+                        break;
+                    default:
+                        //Console.WriteLine("Rejected");
+                        returnStatus = "Rejected";
+                        break;
+                }
+                if(!string.IsNullOrEmpty(returnStatus))
+                {
                     break;
-                case RadiusCode.ACCESS_CHALLENGE:
-                    //Console.WriteLine("Access-Challenge");
-                    returnStatus = "Access-Challenge";
-                    break;
-                case RadiusCode.ACCESS_REJECT:
-                    //Console.WriteLine("Access-Reject");
-                    returnStatus = "Access-Reject";
-                    if (!rc.VerifyAuthenticator(authPacket, receivedPacket))
-                    {
-                        //Console.WriteLine("Authenticator check failed: Check your secret");
-                        returnStatus = returnStatus + "Authenticator check failed: Check your secret";
-                    }
-                    break;
-                default:
-                    //Console.WriteLine("Rejected");
-                    returnStatus = "Rejected";
-                    break;
+                }
+            }
+
+            return returnStatus;
+        }
+
+        //Add User to Active Directory
+        public string AddActiveDirectoryUser(string userName, string password, string userFirstName, string userMiddleName, string userLastName)
+        {
+            string adminUserName = "Administrator";
+            string adminPassword = "ek@n436&nnDkDMDheZ";
+
+            string returnStatus = string.Empty;
+            string ldapString = string.Empty;
+            
+            try
+            {
+                string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                var splittedString = stringDomainName.Split('.');
+                string intermediateLDAP = string.Empty;
+                foreach (var item in splittedString)
+                {
+                    intermediateLDAP = intermediateLDAP + "DC=" + item + ",";
+                }
+                intermediateLDAP = intermediateLDAP.TrimEnd(',');
+                ldapString = @"LDAP://CN=Users," + intermediateLDAP;
+
+                //DirectoryEntry localMachine = new DirectoryEntry("WinNT://" + Environment.MachineName);
+                //DirectoryEntry localMachine = new DirectoryEntry("LDAP://" + stringDomainName, userName, password);
+                //DirectoryEntry localMachine = new DirectoryEntry("LDAP://CN=Users,DC=ChartDoc,DC=internal", userName, password);
+                DirectoryEntry localMachine = new DirectoryEntry(ldapString, adminUserName, adminPassword);
+
+                DirectoryEntry newUser = localMachine.Children.Add("CN="+ userName, "user");
+                newUser.Properties["samAccountName"].Value = userName;
+                newUser.CommitChanges();
+                newUser.Invoke("SetPassword", new object[] { password });
+                
+                newUser.Properties["givenName"].Value = userFirstName;  // first name
+                newUser.Properties["sn"].Value = userLastName;    // surname = last name
+                newUser.Properties["displayName"].Value = userFirstName + " " + userMiddleName + " " + userLastName;
+                newUser.Properties["LockOutTime"].Value = 0;
+
+                newUser.CommitChanges();
+                returnStatus = newUser.Guid.ToString();
+
+                //Enable user
+                int val = (int)newUser.Properties["userAccountControl"].Value;
+                newUser.Properties["userAccountControl"].Value = val & ~0x2;
+                newUser.CommitChanges();
+
+                localMachine.Close();
+                newUser.Close();
+
+                //PrincipalContext PrincipalContext4 = new PrincipalContext(ContextType.Domain, stringDomainName, "DC=ChartDoc,DC=internal", ContextOptions.SimpleBind, userName, password);
+                //UserPrincipal UserPrincipal1 = new UserPrincipal(PrincipalContext4);
+
+                //UserPrincipal1.UserPrincipalName = "Rupesh";
+                //UserPrincipal1.Name = "Rupesh";
+                //UserPrincipal1.GivenName = "Rupesh";
+                //UserPrincipal1.Surname = "Kadam";
+                //UserPrincipal1.DisplayName = "Rupesh Kadam";
+                //UserPrincipal1.Description = "ChartDoc User";
+                //UserPrincipal1.SamAccountName = "Rupesh";
+                //UserPrincipal1.SetPassword("3l!teP@$$w0RDz");
+
+                //UserPrincipal1.Save();
+            }
+            catch (Exception ex)
+            {
+                Guid guid = new Guid();
+                returnStatus = guid.ToString();
+            }
+
+            return returnStatus;
+        }
+
+        public string RemoveActiveDirectoryUser(string userName)
+        {
+            string returnStatus = string.Empty;
+            string ldapString = string.Empty;
+            try
+            {
+                //string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                //var splittedString = stringDomainName.Split('.');
+                //string intermediateLDAP = string.Empty;
+                //foreach (var item in splittedString)
+                //{
+                //    intermediateLDAP = intermediateLDAP + "DC=" + item + ",";
+                //}
+                //intermediateLDAP = intermediateLDAP.TrimEnd(',');
+
+                // set up domain context
+                //PrincipalContext ctx = new PrincipalContext(ContextType.Domain, stringDomainName, intermediateLDAP, ContextOptions.SimpleBind, adminUserName, adminPassword);
+                PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+
+                // find the user you want to delete
+                UserPrincipal user = UserPrincipal.FindByIdentity(ctx, userName);
+
+                if (user != null)
+                {
+                    user.Delete();
+                    returnStatus = "success";
+                }
+            }
+            catch (Exception ex)
+            {
+                returnStatus = "error";
+            }
+
+            return returnStatus;
+        }
+
+        public string UpdateActiveDirectoryUserPassword(string userName, string password)
+        {
+            string returnStatus = string.Empty;
+            string ldapString = string.Empty;
+            try
+            {
+                //string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                //var splittedString = stringDomainName.Split('.');
+                //string intermediateLDAP = string.Empty;
+                //foreach (var item in splittedString)
+                //{
+                //    intermediateLDAP = intermediateLDAP + "DC=" + item + ",";
+                //}
+                //intermediateLDAP = intermediateLDAP.TrimEnd(',');
+
+                // set up domain context
+                //PrincipalContext ctx = new PrincipalContext(ContextType.Domain, stringDomainName, intermediateLDAP, ContextOptions.SimpleBind, adminUserName, adminPassword);
+                PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+
+                // find the user you want to delete
+                UserPrincipal user = UserPrincipal.FindByIdentity(ctx, userName);
+
+                if (user != null)
+                {
+                    user.SetPassword(password);
+                    user.Save();
+
+                    returnStatus = "success";
+                }
+            }
+            catch (Exception ex)
+            {
+                returnStatus = "error";
             }
 
             return returnStatus;
@@ -369,7 +532,22 @@ namespace ChartDoc.Services.DataService
             int status = 0;
             try
             {
-                emailService.SendResetPasswordLinkEmail(emailParams.Email, emailParams.LandingPageLink);
+                emailService.SendResetPasswordLinkEmail(emailParams.Email, emailParams.LandingPageLink, emailParams.UserId);
+                status = 1;
+            }
+            catch (Exception ex)
+            {
+                status = 0;
+            }
+            return status;
+        }
+
+        public int CreatePasswordEmail(SendEmailCreatePasswordParams emailParams)
+        {
+            int status = 0;
+            try
+            {
+                emailService.SendCreatePasswordEmail(emailParams.Email, emailParams.UserName, emailParams.UserId, emailParams.PasswordLink);
                 status = 1;
             }
             catch (Exception ex)
@@ -604,16 +782,19 @@ namespace ChartDoc.Services.DataService
             return dtPatient;
         }
 
-        private TemplateData GetTemplateDataFromDatatable(DataTable dtTemplate)
+        private List<TemplateData> GetTemplateDataFromDatatable(DataTable dtTemplate)
         {
-            TemplateData objData = new TemplateData();
+            List<TemplateData> objData = new List<TemplateData>();
             if (dtTemplate.Rows.Count>0)
             {
                 for (int index = 0; index <= dtTemplate.Rows.Count - 1; index++)
                 {
-                    objData.ID = Convert.ToInt32(dtTemplate.Rows[index]["ID"]);
-                    objData.Title = Convert.ToString(dtTemplate.Rows[index]["Title"]);
-                    objData.Description = Convert.ToString(dtTemplate.Rows[index]["Description"]);
+                    TemplateData obj = new TemplateData();
+                    obj.ID = Convert.ToInt32(dtTemplate.Rows[index]["ID"]);
+                    obj.Title = Convert.ToString(dtTemplate.Rows[index]["Title"]);
+                    obj.Description = Convert.ToString(dtTemplate.Rows[index]["Description"]);
+
+                    objData.Add(obj);
                 }
             }
             return objData;

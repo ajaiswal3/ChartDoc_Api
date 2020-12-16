@@ -2069,10 +2069,41 @@ namespace ChartDoc.Api.Controllers
 
         [HttpPost]
         [Route("UserLoginWithDUO")]
-        public ActionResult<clsUser> UserLoginWithDUO(UserLoginDTO userLogin)
+        public async Task<clsUser> UserLoginWithDUO(UserLoginDTO userLogin)
         {
+            clsUser usr = new clsUser();
             var duoStatus = _userService.Authenticate(userLogin.UserName, userLogin.Password);
-            return _userService.GetUser(userLogin.UserName, userLogin.Password);
+            string status = await duoStatus;
+            if(!status.Contains("Can not contact"))
+            {
+                usr = _userService.GetUser(userLogin.UserName, userLogin.Password);
+            }
+            else
+            {
+                usr = new clsUser();
+            }
+            return usr;
+        }
+
+        [HttpPost]
+        [Route("AddActiveDirectoryUser")]
+        public ActionResult<string> AddActiveDirectoryUser(ActiveDirectoryParams addUser)
+        {
+            return _userService.AddActiveDirectoryUser(addUser.UserName, addUser.Password, addUser.UserFirstName, addUser.UserMiddleName, addUser.UserLastName);
+        }
+
+        [HttpPost]
+        [Route("DeleteActiveDirectoryUser")]
+        public ActionResult<string> DeleteActiveDirectoryUser(ADUserParam deleteUser)
+        {
+            return _userService.RemoveActiveDirectoryUser(deleteUser.UserName);
+        }
+
+        [HttpPost]
+        [Route("ChangeActiveDirectoryUserPassword")]
+        public ActionResult<string> ChangeActiveDirectoryUserPassword(ADChangePasswordParam userParam)
+        {
+            return _userService.UpdateActiveDirectoryUserPassword(userParam.UserName, userParam.Password);
         }
 
         [HttpPost]
@@ -2087,6 +2118,13 @@ namespace ChartDoc.Api.Controllers
         public ActionResult<int> SendEmailResetPassword(SendEmailResetPasswordParams resetPassword)
         {
             return _userService.ResetPasswordEmail(resetPassword);
+        }
+
+        [HttpPost]
+        [Route("SendEmailCreatePassword")]
+        public ActionResult<int> SendEmailCreatePassword(SendEmailCreatePasswordParams createPassword)
+        {
+            return _userService.CreatePasswordEmail(createPassword);
         }
 
         [HttpGet]

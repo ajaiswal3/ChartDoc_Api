@@ -6,7 +6,7 @@ namespace ChartDoc.Models
 {
     public class TemplateDTO
     {
-        public TemplateData data { get; set; }
+        public List<TemplateData> data { get; set; }
         public string Code { get; set; }
         public string Status { get; set; }
     }

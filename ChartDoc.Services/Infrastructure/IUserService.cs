@@ -20,5 +20,9 @@ namespace ChartDoc.Services.Infrastructure
         Task<string> Authenticate(string userName, string password);
         string SaveTemplate(int id, string title, string description, char tag);
         TemplateDTO TemplateByTemplateId(int id);
+        int CreatePasswordEmail(SendEmailCreatePasswordParams emailParams);
+        string AddActiveDirectoryUser(string userName, string password, string userFirstName, string userMiddleName, string userLastName);
+        string RemoveActiveDirectoryUser(string userName);
+        string UpdateActiveDirectoryUserPassword(string userName, string password);
     }
 }
