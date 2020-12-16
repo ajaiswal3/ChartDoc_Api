@@ -85,7 +85,7 @@ namespace ChartDoc.Services.DataService
             objSmtpClient.Send(objMailMessage);
         }
 
-        public void SendResetPasswordLinkEmail(string email, string resetLink)
+        public void SendResetPasswordLinkEmail(string email, string resetLink, string userId)
         {
             string sql = "USP_GETCONFIG @ID=3";
             DataTable result = context.GetData(sql);
@@ -102,6 +102,7 @@ namespace ChartDoc.Services.DataService
             SmtpClient objSmtpClient = new SmtpClient(emailServerIp);
             emailMsgBody = emailMsgBody.Replace("@@EMAIL@@", email);
             emailMsgBody = emailMsgBody.Replace("@@RESETLINK@@", resetLink);
+            emailMsgBody = emailMsgBody.Replace("@@USERID@@", userId);
 
             objMailMessage.From = new MailAddress(emailServerUserId);
             objMailMessage.To.Add(email);

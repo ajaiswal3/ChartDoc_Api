@@ -2085,7 +2085,21 @@ namespace ChartDoc.Api.Controllers
         [Route("AddActiveDirectoryUser")]
         public ActionResult<string> AddActiveDirectoryUser(ActiveDirectoryParams addUser)
         {
-            return _userService.AddActiveDirectoryUser(addUser.DomainName, addUser.UserName, addUser.UserFullName, addUser.Password);
+            return _userService.AddActiveDirectoryUser(addUser.UserName, addUser.Password, addUser.UserFirstName, addUser.UserMiddleName, addUser.UserLastName);
+        }
+
+        [HttpPost]
+        [Route("DeleteActiveDirectoryUser")]
+        public ActionResult<string> DeleteActiveDirectoryUser(ADUserParam deleteUser)
+        {
+            return _userService.RemoveActiveDirectoryUser(deleteUser.UserName);
+        }
+
+        [HttpPost]
+        [Route("ChangeActiveDirectoryUserPassword")]
+        public ActionResult<string> ChangeActiveDirectoryUserPassword(ADChangePasswordParam userParam)
+        {
+            return _userService.UpdateActiveDirectoryUserPassword(userParam.UserName, userParam.Password);
         }
 
         [HttpPost]

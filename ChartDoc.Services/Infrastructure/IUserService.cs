@@ -21,6 +21,8 @@ namespace ChartDoc.Services.Infrastructure
         string SaveTemplate(int id, string title, string description, char tag);
         TemplateDTO TemplateByTemplateId(int id);
         int CreatePasswordEmail(SendEmailCreatePasswordParams emailParams);
-        string AddActiveDirectoryUser(string domainName, string userName, string userFullName, string password);
+        string AddActiveDirectoryUser(string userName, string password, string userFirstName, string userMiddleName, string userLastName);
+        string RemoveActiveDirectoryUser(string userName);
+        string UpdateActiveDirectoryUserPassword(string userName, string password);
     }
 }

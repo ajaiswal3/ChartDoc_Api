@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using ChartDoc.Radius;
 using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
 
 namespace ChartDoc.Services.DataService
 {
@@ -240,26 +241,147 @@ namespace ChartDoc.Services.DataService
         }
 
         //Add User to Active Directory
-        public string AddActiveDirectoryUser(string domainName, string userName, string userFullName, string password)
+        public string AddActiveDirectoryUser(string userName, string password, string userFirstName, string userMiddleName, string userLastName)
         {
-            string status = string.Empty;
-            domainName = "ChartDoc.Internal";
-            userName = "CHARTDOC";
-            password = "ChartD0cWaters";
+            string adminUserName = "Administrator";
+            string adminPassword = "ek@n436&nnDkDMDheZ";
+
+            string returnStatus = string.Empty;
+            string ldapString = string.Empty;
+            
             try
             {
-                //DirectoryEntry child = new DirectoryEntry("LDAP://" + domainName + "/" + objectDn, userName, password);
-                DirectoryEntry child = new DirectoryEntry("LDAP://" + domainName, userName, password);
-                DirectoryEntry newUser = child.Children.Add("suvresh_new", "user");
-                newUser.Invoke("SetPassword", new object[] { "3l!teP@$$w0RDz" });
+                string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                var splittedString = stringDomainName.Split('.');
+                string intermediateLDAP = string.Empty;
+                foreach (var item in splittedString)
+                {
+                    intermediateLDAP = intermediateLDAP + "DC=" + item + ",";
+                }
+                intermediateLDAP = intermediateLDAP.TrimEnd(',');
+                ldapString = @"LDAP://CN=Users," + intermediateLDAP;
+
+                //DirectoryEntry localMachine = new DirectoryEntry("WinNT://" + Environment.MachineName);
+                //DirectoryEntry localMachine = new DirectoryEntry("LDAP://" + stringDomainName, userName, password);
+                //DirectoryEntry localMachine = new DirectoryEntry("LDAP://CN=Users,DC=ChartDoc,DC=internal", userName, password);
+                DirectoryEntry localMachine = new DirectoryEntry(ldapString, adminUserName, adminPassword);
+
+                DirectoryEntry newUser = localMachine.Children.Add("CN="+ userName, "user");
+                newUser.Properties["samAccountName"].Value = userName;
                 newUser.CommitChanges();
+                newUser.Invoke("SetPassword", new object[] { password });
+                
+                newUser.Properties["givenName"].Value = userFirstName;  // first name
+                newUser.Properties["sn"].Value = userLastName;    // surname = last name
+                newUser.Properties["displayName"].Value = userFirstName + " " + userMiddleName + " " + userLastName;
+                newUser.Properties["LockOutTime"].Value = 0;
+
+                newUser.CommitChanges();
+                returnStatus = newUser.Guid.ToString();
+
+                //Enable user
+                int val = (int)newUser.Properties["userAccountControl"].Value;
+                newUser.Properties["userAccountControl"].Value = val & ~0x2;
+                newUser.CommitChanges();
+
+                localMachine.Close();
+                newUser.Close();
+
+                //PrincipalContext PrincipalContext4 = new PrincipalContext(ContextType.Domain, stringDomainName, "DC=ChartDoc,DC=internal", ContextOptions.SimpleBind, userName, password);
+                //UserPrincipal UserPrincipal1 = new UserPrincipal(PrincipalContext4);
+
+                //UserPrincipal1.UserPrincipalName = "Rupesh";
+                //UserPrincipal1.Name = "Rupesh";
+                //UserPrincipal1.GivenName = "Rupesh";
+                //UserPrincipal1.Surname = "Kadam";
+                //UserPrincipal1.DisplayName = "Rupesh Kadam";
+                //UserPrincipal1.Description = "ChartDoc User";
+                //UserPrincipal1.SamAccountName = "Rupesh";
+                //UserPrincipal1.SetPassword("3l!teP@$$w0RDz");
+
+                //UserPrincipal1.Save();
             }
             catch (Exception ex)
             {
-
+                Guid guid = new Guid();
+                returnStatus = guid.ToString();
             }
 
-            return status;
+            return returnStatus;
+        }
+
+        public string RemoveActiveDirectoryUser(string userName)
+        {
+            string returnStatus = string.Empty;
+            string ldapString = string.Empty;
+            try
+            {
+                //string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                //var splittedString = stringDomainName.Split('.');
+                //string intermediateLDAP = string.Empty;
+                //foreach (var item in splittedString)
+                //{
+                //    intermediateLDAP = intermediateLDAP + "DC=" + item + ",";
+                //}
+                //intermediateLDAP = intermediateLDAP.TrimEnd(',');
+
+                // set up domain context
+                //PrincipalContext ctx = new PrincipalContext(ContextType.Domain, stringDomainName, intermediateLDAP, ContextOptions.SimpleBind, adminUserName, adminPassword);
+                PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+
+                // find the user you want to delete
+                UserPrincipal user = UserPrincipal.FindByIdentity(ctx, userName);
+
+                if (user != null)
+                {
+                    user.Delete();
+                    returnStatus = "success";
+                }
+            }
+            catch (Exception ex)
+            {
+                returnStatus = "error";
+            }
+
+            return returnStatus;
+        }
+
+        public string UpdateActiveDirectoryUserPassword(string userName, string password)
+        {
+            string returnStatus = string.Empty;
+            string ldapString = string.Empty;
+            try
+            {
+                //string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+                //var splittedString = stringDomainName.Split('.');
+                //string intermediateLDAP = string.Empty;
+                //foreach (var item in splittedString)
+                //{
+                //    intermediateLDAP = intermediateLDAP + "DC=" + item + ",";
+                //}
+                //intermediateLDAP = intermediateLDAP.TrimEnd(',');
+
+                // set up domain context
+                //PrincipalContext ctx = new PrincipalContext(ContextType.Domain, stringDomainName, intermediateLDAP, ContextOptions.SimpleBind, adminUserName, adminPassword);
+                PrincipalContext ctx = new PrincipalContext(ContextType.Domain);
+
+                // find the user you want to delete
+                UserPrincipal user = UserPrincipal.FindByIdentity(ctx, userName);
+
+                if (user != null)
+                {
+                    user.SetPassword(password);
+                    user.Save();
+
+                    returnStatus = "success";
+                }
+            }
+            catch (Exception ex)
+            {
+                returnStatus = "error";
+            }
+
+            return returnStatus;
         }
 
         #region GetUserList************************************************************************************************************************************
@@ -410,7 +532,7 @@ namespace ChartDoc.Services.DataService
             int status = 0;
             try
             {
-                emailService.SendResetPasswordLinkEmail(emailParams.Email, emailParams.LandingPageLink);
+                emailService.SendResetPasswordLinkEmail(emailParams.Email, emailParams.LandingPageLink, emailParams.UserId);
                 status = 1;
             }
             catch (Exception ex)

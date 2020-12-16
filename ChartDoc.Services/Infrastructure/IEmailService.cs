@@ -9,7 +9,7 @@ namespace ChartDoc.Services.Infrastructure
     {
         void sendEmail(clsAppointment appointment);
         void sendUserEmail(string fullName, string email);
-        void SendResetPasswordLinkEmail(string email, string resetLink);
+        void SendResetPasswordLinkEmail(string email, string resetLink, string userId);
         void SendCreatePasswordEmail(string email, string userName, string userId, string passwordLink);
 
     }
