@@ -30,7 +30,6 @@ D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDo
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.AssemblyInfo.cs
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.dll
 D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
-D:\suvresh\EHR\Chart_Doc_2020_10_02\ChartDoc.DAL\obj\Debug\netcoreapp2.2\ChartDoc.DAL.csprojAssemblyReference.cache
 D:\suvresh\ChartDocDEV\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.deps.json
 D:\suvresh\ChartDocDEV\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.dll
 D:\suvresh\ChartDocDEV\ChartDoc.DAL\bin\Debug\netcoreapp2.2\ChartDoc.DAL.pdb
